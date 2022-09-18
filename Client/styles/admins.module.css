@@ -1,0 +1,127 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.admins_title{
+    font-size: 3rem;
+    margin: 2rem 0 1rem;
+    font-weight: 300;
+    cursor: pointer;
+    text-align: center;
+}
+.input{
+    border-radius: 5px;
+    border: none;
+    font-size: 2.5rem;
+    background-color: rgb(203, 243, 255);
+    box-shadow: 0 0 5px rgb(203, 243, 255);
+    width: 100%;
+}
+.label{
+    margin: 2rem 0 2rem;
+    font-size: 2rem;
+    text-transform: capitalize;
+    letter-spacing: 0.7rem;
+}
+.hdr{
+    font-size: 2.5rem;
+    font-weight: 400;
+    padding: 1rem 0 2rem;
+    margin: 4rem 0 1rem;
+    border-bottom: 0.1px solid #4bee00;
+    text-align: center;
+    width: 90%;
+}
+.login_container{
+    border: 0.1px solid;
+    padding: 3rem;
+    border-radius: 10px;
+    margin: 4rem 0 2rem;   
+    box-shadow: 0 0 5px rgb(158, 255, 114, 0.6);
+    width: 90%;
+
+}
+.btn_container{
+    display: flex;
+ justify-content: center;
+}
+.submit_conainter{
+    display: flex;
+    flex-direction: column;
+ align-items: center;
+}
+.submit{
+    margin: 4rem 0 0;
+    font-size: 2.2rem;
+    padding: 0.1rem 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    background-color: #fff;
+    font-weight: 300;
+    cursor: pointer;
+    color: #4bee00;
+    width: 80%;
+    border: 0.5px solid;
+}
+.list_container{
+    display: flex;
+    flex-direction: column;
+    margin: 3rem 0;
+    border-top: 1px solid #101010;
+    width: 90%;
+    padding: 1rem;
+}
+.admin_hdr{
+    font-size: 2.5rem;
+    font-weight: 400;
+    padding: 1rem 0 2rem;
+    margin: 4rem 0 2rem;
+    border-bottom: 0.1px solid rgb(255, 63, 63);
+    text-align: center;
+}
+.admin{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 0.1px solid;
+    padding: 2rem;
+    margin: 2rem 0 2.5rem;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgb(255, 63, 63, 0.6);
+}
+.username{
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 2rem 0 1rem;
+}
+.password{
+    font-size: 1.4rem;
+    font-weight: 450;
+    padding: 0.5rem 0 0;
+}
+.btn_delete{
+    margin: 2rem 0 1.5rem;
+    font-size: 2rem;
+    padding: 0.1rem 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    background-color: #fff;
+    font-weight: 300;
+    cursor: pointer;
+    color: rgb(255, 63, 63);
+    width: 60%;
+    border: 0.5px solid;
+}
+.reveal{
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: lowercase;
+    border-top: 1px solid;
+    padding: 1rem 0 0;
+    cursor: pointer;
+}

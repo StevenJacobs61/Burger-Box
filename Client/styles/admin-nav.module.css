@@ -1,0 +1,30 @@
+.container{
+    margin: 13rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    align-items: center;
+}
+.btn{
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 0.5px solid;
+    background-color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    color: rgb(78, 99, 239);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.btn_admin:hover{
+    background-color: #101010;
+}
+.btn_orders:hover{
+    background-color: #101010;
+}
+.icon{
+    width: 2.8rem;
+    height: 2.8rem;
+    color: rgb(36, 36, 36);
+}

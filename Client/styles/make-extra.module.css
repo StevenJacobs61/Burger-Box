@@ -1,0 +1,100 @@
+.container{
+    width: 95vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    background: rgb(255, 255, 255, 0.5);    
+}
+.wrapper{
+    width: 85vw;
+    height: 85vh;
+    background-color: #fff;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    position: relative;
+    padding: 1rem 1rem 0 0;
+    overflow: scroll;
+}
+.hdr{
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin: 1rem;
+}
+.input_container{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    margin: 1rem;
+}
+.label_hdr{
+    font-size: 2.2rem;
+    margin: 1rem 0 2rem;
+}
+.label{
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+.input{
+    font-size: 2rem;
+    width: 50%;
+    border-radius: 5px;
+    border: 0.5px solid;
+}
+.close{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 30px;
+    height: 30px;
+}
+.btn{
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 0.5px solid;
+    background-color: #101010;
+    color: #fff;
+    font-size: 2rem;
+    border: 1px solid rgb(0, 114, 159);
+}
+.btn:hover{
+    background-color: #fff;
+    color: #101010;
+}
+.radio{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 4rem 2rem;
+}
+.btn_current{
+    font-size: 2.5rem;
+    margin: 1.2rem 0;
+    padding: 0.6rem;
+    border-radius: 10px;
+    color: #50b101;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    background-color: #fff;
+}
+.btn_other{
+    font-size: 2.5rem;
+    margin: 1.2rem 0;
+    padding: 0.6rem;
+    border-radius: 10px;
+    color: #959794;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    background-color: #fff;
+}

@@ -1,0 +1,95 @@
+.container{
+    width: 95vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    background: rgb(255, 255, 255, 0.5);
+}
+.wrapper{
+    width: 85vw;
+    height: 85vh;
+    background-color: #fff;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    position: relative;
+    padding: 1rem 1rem 0 0;
+    overflow: scroll;
+}
+.hdr{
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 1rem;
+    color: rgb(84, 1, 1);
+}
+.hdr_text{
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 2rem 1rem 1rem;
+    color: rgb(0, 182, 130);
+}
+.input_container{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem 1rem 2rem;
+    border-bottom: 0.5px solid;
+}
+.input_container >* {
+    text-transform: capitalize;
+}
+
+.text{
+    font-size: 2.2rem;
+    margin: 1rem 2rem;
+}
+.label{
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+.input{
+    font-size: 2rem;
+    width: 70%;
+    padding: 0.5rem;
+    border-radius: 7px;
+    border: 0.5px solid;
+    background-color: rgb(231, 249, 255);
+}
+.textarea{
+    font-size: 1.5rem;
+    width: 70%;
+    padding: 0.7rem;
+    border-radius: 7px;
+    border: 0.5px solid;
+    height: 15rem;
+    background-color: rgb(231, 249, 255);
+}
+.close{
+    position: fixed;
+    top: 4%;
+    right: 5%;
+    width: 18%;
+    opacity: 0.3;
+    height: 18%;
+}
+.btn{
+    width: 50%;
+    padding: 1rem;
+    margin: 1rem 0 2rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    color: rgb(0, 182, 130);
+    background-color: #fff;
+    border: 1px solid;
+    border-radius: 10px;
+}

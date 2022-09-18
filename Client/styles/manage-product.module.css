@@ -1,0 +1,56 @@
+.container{
+    width: 100%;
+}
+.tr_title{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.products_hdr{
+    text-align: center;
+    margin: 2rem 0 0;
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+.btn_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn_container>*{
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 0.5rem 0.2rem;
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+    margin: 0.6rem 0;
+    text-transform: uppercase;
+}
+.btn_delete{
+    color: rgb(245, 99, 99);
+    }
+.btn_available{
+    color: rgb(62, 206, 74);
+}
+.btn_upgrade{
+    color: #2c3643;
+}
+.btn_extra{
+    color: #3e80d5
+}
+
+.btn_show{
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 0.5px solid;
+  background-color: #fff;
+  padding: 1rem;
+  margin: 0 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.unavailable{
+    color: rgb(123, 0, 0);
+}

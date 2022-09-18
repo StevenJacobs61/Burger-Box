@@ -1,0 +1,70 @@
+.tr_title{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.title_list{
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 0.5px solid;
+    padding: 0 0 0.8rem;
+}
+.upgrade{
+    font-weight: 400;
+    cursor: pointer;
+}
+.extra{
+    font-size: 1.1rem;
+}
+.title_item{
+    margin: 0 0 1rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.btn_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.btn_container>*{
+    width: 100%;
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.1rem;
+    background-color: #fff;
+    border: 0.3px solid;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+}
+.btn_accept{
+  
+    color: rgb(13, 198, 0);
+}
+.btn_complete{
+    width: 100%;
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.25rem;
+    background-color: #fff;
+    border: 0.3px solid;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: rgb(94, 86, 255);
+    cursor: pointer;
+}
+.btn_del{
+    width: 100%;
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.2rem;
+    background-color: #fff;
+    border: 0.3px solid;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: rgb(255, 86, 86);
+    cursor: pointer;
+}
