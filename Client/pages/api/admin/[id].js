@@ -13,6 +13,9 @@ export default async function handler(req, res) {
     dbConnect();
   
     if (method === "GET") {
+      if(!token || token !== process.env.TOKEN){
+        return res.status(401).json("Not authenticated!")
+      }
       try {
         const adminId= await admin.findById(id);
         res.status(200).json(adminId);

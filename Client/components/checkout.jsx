@@ -8,11 +8,11 @@ import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
 
 
-const Checkout = () => {
+const Checkout = ({settingsList}) => {
 
   const router = useRouter();
 
-// Delivery details set by useEffect on input change
+// ** Delivery details set by useEffect on input change
 
 const [name,setName] = useState();  
 const [street,setStreet] = useState();
@@ -23,21 +23,26 @@ const [number,setNumber] = useState();
 const [email, setEmail] = useState();
 const [instructions, setInstructions] = useState();
 
-// Connect to websocket
+// ** Connect to websocket
 const [socket, setSocket] = useState()
 
 useEffect(() => {
   setSocket(io("ws://localhost:7500"))
 }, [])
 
-// Track delivery or Collection
-const [showDeliver, setShowDeliver] = useState(true);
+// ** Track delivery or Collection Option
+const [showDeliver, setShowDeliver] = useState(()=> {
+  if(settingsList.del) return true;
+  else return false;
+});
 
-// manage redux cart state to show total
+// **Redux - render/update checkout total
 const dispatch = useDispatch()
 const cart = useSelector((state) => state.cart)
 
-// update delivery details from inputs
+
+
+// ** Validate Delivery postcodes for delivery area restriction
 useEffect(() => {
   if (postcodeOne == '25' || postcodeOne == '10' || postcodeOne == '9'){
     setPostcode('BN' + postcodeOne + postcodeTwo)
@@ -54,7 +59,9 @@ useEffect(() => {
   }
 }, [postcodeTwo])
 
-// prepare data for order submission
+
+
+// ** Prepare data for order submission
 const handleOrder = ()=>{
 
 // get local order data
@@ -63,7 +70,9 @@ const handleOrder = ()=>{
        }
       const localData = JSON.parse(localStorage.getItem("Orders"))
 
-      // pass arguements in the json style of the orders schema
+      // pass arguements in the json style of the MDB orders schema
+const time = showDeliver ? settingsList.delTime : settingsList.colTime;
+
  createOrder({details:{
   address: {
     street:street,
@@ -77,11 +86,13 @@ const handleOrder = ()=>{
 orders:localData,
 total: cart.total,
 delivery:showDeliver,
-status: 1,
+time:time,
+status: 5,
 });
 };
 
-// create order to send to mongoose and admin user
+// ** Validate order requirements ad submit order to MDB, 
+// & redirect to checkout
 const createOrder = async (data) => {
   // Check minium order amount is met £10
   if(data.total < 10){
@@ -95,8 +106,6 @@ const createOrder = async (data) => {
     // Post order to mongoose
       const res = await axios.post("http://localhost:3000/api/orders", data);
       if (res.status === 201) {
-        // Alert admins of new order
-        socket?.emit("newOrder", res.data);
         // Change quantity for redux state (basket icon)
         dispatch(addQuantity());
         // redirect to order page
@@ -105,34 +114,44 @@ const createOrder = async (data) => {
     } catch (err) {
       console.log(err);
       alert ('All fields must be completed correctly');
-
-    }} 
+    }}; 
 }
 
 return (
+  <div className={styles.wrapper}>
+    <h1 className={styles.title}>{settingsList.del ? "Delivery options" : "collection details"}</h1>
+    <h3 className={styles.times_hdr}>current times:</h3>
+    { settingsList.del ? 
+    <div className={styles.times_container}>
+      <h3 className={styles.time_hdr}>Delivery Time:</h3>
+      <p className={styles.time}>{settingsList.delTime}mins</p>
+    </div>
+    : null}
+    <div className={styles.times_container}>
+      <h3 className={styles.time_hdr}>Collection Time:</h3>
+      <p className={styles.time}>{settingsList.colTime}mins</p>
+    </div>  
     <div className={styles.container}>
-        <h1 className={styles.hdr}>Checkout</h1>
-        <h3 className={styles.discount}>Discount: 10%</h3>
-        <h3 className={styles.total}>£{cart.total < 0 ? 0 : cart.total}</h3>
-       <div className={styles.deliver_container}>
-         <button className={styles.btn_deliver} 
-      
-         onClick={() => setShowDeliver(true)} style={{ background: showDeliver ? '#101010' : '#fff', color: showDeliver ? '#fff' : '#101010' }}>
+        <div className={styles.deliver_container}>
+          {settingsList.del ? <><button className={styles.btn_deliver}
+          onClick={() => setShowDeliver(true)} style={{ background: showDeliver ? '#101010' : '#fff', color: showDeliver ? '#fff' : '#101010' }}>
           Deliver
           </button>
-         <p className={styles.or}>OR</p>
-         <button className={styles.btn_collection} 
-         style={{ background: !showDeliver ? '#101010' : '#fff', color: !showDeliver ? '#fff' : '#101010' }}
-         onClick={() => setShowDeliver(false)}>Collect</button>
-       </div>  
-     <div className={styles.details_container}>
+          <p className={styles.or}>OR</p>            
+          <button className={styles.btn_collection}
+          style={{ background: !showDeliver ? '#101010' : '#fff', color: !showDeliver ? '#fff' : '#101010' }}
+          onClick={() => setShowDeliver(false)}>Collect</button>
+          </> 
+          : <p className={styles.del_unavialable}>Delivery unavailable!</p>}
+        </div>
         <p className={styles.text}>* all fields except Delivery Instructions are required</p>
+      <div className={styles.details_container}>
           <label htmlFor="" className={styles.details_label}>Full Name:</label>
           <input type="text" id='name' name='name' placeholder='Name ...' className={styles.details_input}
           onChange={(e) => setName(e.target.value)}/>
           {showDeliver && <><label htmlFor="" className={styles.details_label}>Street:</label>
           <input type="text" placeholder='Street ...' id='street' name='street' className={styles.details_input}
-          onChange={(e) => setStreet(e.target.value)}/> 
+          onChange={(e) => setStreet(e.target.value)}/>
           <label htmlFor="" className={styles.details_label}>Postcode: <p className={styles.postcode_req}>* Must be BN25, BN9 or BN10</p></label>
           <div className={styles.postcode_container}>
             <p className={styles.postcode_text}>BN</p>
@@ -142,18 +161,19 @@ return (
             onChange={(e) => (setPostcodeTwo(e.target.value))}/>
           </div>
           <label htmlFor="" className={styles.details_label}>Delivery Instrutions:</label>
-          <textarea type="text" placeholder='Delivery Instructions...' 
+          <textarea type="text" placeholder='Delivery Instructions...'
           className={styles.instructions} onChange={(e)=>setInstructions(e.target.value)}/>
           </>}
           <label htmlFor="" className={styles.details_label}>Phone Number:</label>
-          <input type="number" placeholder='Phone Number ...' id='number' name='number' className={styles.details_input}
+          <input type="text" placeholder='Phone Number ...' id='number' name='number' className={styles.details_input}
           onChange={(e) => setNumber(e.target.value)}/>
           <label htmlFor="" className={styles.details_label}>Email:</label>
           <input type="email" placeholder='Email ...' id='email' name='email' className={styles.details_input}
           onChange={(e) => setEmail(e.target.value)}/>
-        </div>       
-        <button className={styles.btn_pay} onClick={handleOrder} >Place Order</button>
         </div>
+        <div className={styles.pay_container}><button className={styles.btn_pay} onClick={handleOrder} >Checkout</button></div>
+        </div>
+  </div>
   )
 }
 

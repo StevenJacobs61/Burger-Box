@@ -1,0 +1,47 @@
+.container, .icon_container{
+    background-color: #101010;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+}
+.hdr{
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    border: 0;
+}
+
+.icon{
+    width: 27px;
+    height: 27px;
+    fill: var(--bg-color--blue);
+    margin: 0rem 0 1rem;
+}
+@media screen and (min-width:480px){
+    .hdr{
+        font-size: 2.5rem;
+        letter-spacing: 0.2rem;
+    }
+    .icon{
+        width: 30px;
+        height: 30px;
+        margin: 0.3rem  0 1rem;
+    }
+}
+
+/* Hover */
+
+.hdr:hover{
+    color: var(--bg-color--blue);
+}
+.icon:hover{
+    transform: scale(1.05);
+}

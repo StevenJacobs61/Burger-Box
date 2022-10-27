@@ -13,7 +13,6 @@ const ManageSection = ({section, products, setProducts, sections, setSections}) 
   const[showProducts, setShowProducts] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [isExtra, setIsExtra] = useState(false)
-  const [showProduct, setShowProduct] = useState(false);
   const [showExtras, setShowExtras] = useState(false)
 
 
@@ -44,7 +43,8 @@ const ManageSection = ({section, products, setProducts, sections, setSections}) 
       <h1 className={styles.header} onClick={() => setShowProducts(!showProducts)}>{section.title}</h1>
 <div className={styles.btn_container}>
   <button className={styles.btn_add} onClick={() => setShowAdd(true)}>Add <br/> Product</button>
-  <button className={styles.btn_available} style={{color: sections[index].available ? '#00b20f' : '#cccaca'}} onClick={() => handleAvailable(section._id)}>{sections[index].available ? 'Available' : 'Unavailable'}</button>
+  <button className={styles.btn_available} 
+  style={{color: sections[index].available ? '#00b20f' : '#cccaca'}} onClick={() => handleAvailable(section._id)}>{sections[index].available ? 'Available' : 'Unavailable'}</button>
 </div>
 </div>
    {showProducts ? <table className={styles.table}>
@@ -57,9 +57,9 @@ const ManageSection = ({section, products, setProducts, sections, setSections}) 
           <th>Action</th>
         </tr>
       </tbody>
-      <tbody>
+      <tbody className={styles.table}>
         {products.map((product) =>
-      (product.section === section.title ? 
+      (product?.section === section.title ? 
       <ManageProduct  key={product._id} product={product} 
      sections={sections} 
       setProducts={setProducts}
@@ -72,14 +72,14 @@ const ManageSection = ({section, products, setProducts, sections, setSections}) 
       </tr>
      { showExtras ? <tr>
         <td>
-            <button className={styles.btn_add} onClick={handleExtraAdd}>Add Extra</button>
+            <button className={styles.btn_add_extra} onClick={handleExtraAdd}>Add Extra</button>
         </td>
       </tr>: null}
       {showExtras ? products?.map((product) => 
-      product.extraSection?.some((extraSection) => 
+      product?.extraSection?.some((extraSection) => 
       extraSection === section.title) ?
       <ManageExtras key={product._id} setProducts={setProducts}
-      product={product} products={products}/>
+      product={product} products={products} section={section}/>
 : null) : null}
      </tbody>
     </table> : null}

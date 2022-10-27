@@ -1,3 +1,5 @@
+/* Containers */
+
 .navbar{
     position: fixed;
     width: 100%;
@@ -6,55 +8,53 @@
     z-index: 999;
 }
 .container{
- top: 0;
- padding: 0 2rem;
- background-color: #010101 ;
- display: flex;
- align-items: center;
- justify-content: space-between;
- width: 100%;
+    padding: 0.5rem 1rem;
+    height: 100%;
+    background-color: #010101 ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
+
+/* Text Links */
 .pagelinks{
     display: flex;
     cursor: pointer;
     transition: all ease-out 0.3s;
     align-items: center;
+    justify-content: flex-start;
+    width: 50%;
 }
 .pagelink{
     color: #fff;
-    margin: 0 2rem;
-    font-size: 2.3rem;
-    text-shadow: 0 0 3px #fff;
-}
-.pagelink:hover{
-    transform: scale(1.2);
-    transition: all 0.3s;
+    margin: 0 3rem 0 1rem;
+    font-size: 3rem;
 }
 .text{
- color: #fff;
- margin: 0 0 5px;
- font-size: 2.2rem;
- text-shadow: 0 0 3px #fff;
- text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 5px;
+    font-size: 2.2rem;
+    text-transform: uppercase;
 }
 
+.contact{
+    display: flex;
+    transition: all 0.3s;
+    margin-right: 2rem;
+}
+/* Icon Links */
 
 .logo{
     color: #fff;
     cursor: pointer;
    display: flex;
-    width: 170px;
-    height: 80px;
+    width: 115px;
+    height: 50px;
     position: absolute;
-    top: 8%;
     right: 45%;
+    top: 12%;
 }
-.logo:hover{
-    transform: scale(1.02);
-    transition: all 0.3s;
-}
-
-
 .socials{
  margin: 0 6rem 0 ;
  display: flex;
@@ -64,107 +64,95 @@
     margin: 0 20px;
     cursor: pointer;
 }
-.insta{
+.insta, .facebook{
     fill: #fff;
     width: 50px;
     height: 50px;
 }
-.insta:hover{
-    transform: scale(1.5);
-    transition: all 0.3s;
-}
-.facebook{
- fill: #fff;
- width: 50px;
- height: 50px;
-}
-.facebook:hover{
-    transform: scale(1.5);
-    transition: all 0.3s;
-}
-.contact{
-    display: flex;
-    transition: all 0.3s;
-}
+
+
+/* Expand Icon */
+
 .chevron{
     fill: #fff;
     width: 50px;
     height: 50px;
     cursor: pointer;
+    display: none;
 }
+
+/* Basket Icon */
+
 .basket{
- text-align: right;
- position: fixed;
- top: 17%;
- right: 4%;
- z-index: 999;
- transition: all ease-in-out 0.1s;
- display: flex;
- flex-direction: column;
- align-items: center;
+    text-align: right;
+    position: fixed;
+    right: 4%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .basket_icon{
     fill:rgb(185, 184, 184) ;
-    width: 30px;
-    height: 30px;
+    width: 33px;
+    height: 33px;
     cursor: pointer;
 }
-.basket:hover{
-    transform: scale(1.3);
-}
+
 .quantity{
-    font-size: 1.5rem;
-  
+    font-size: 1.8rem;
     color: rgb(153, 1, 1);
     font-weight: 600;
 }
 
-@media screen and (max-width: 1201px){
-    .pagelink {
-        font-size: 2rem;
-    }
-    .text{
-        font-size: 2rem;
-    }
+
+@media screen and (max-width: 1200px){
     .logo{
-        right: 40%;
+        right: 50%;
+    }
+    .pagelink {
+        font-size: 2.2rem;
     }
 }
 @media screen and (max-width: 1024px){
-    .pagelink {
-        font-size: 1.8rem;
-        margin: 0 2.8rem 0 0;
-    }
     .pagelinks{
-        margin-left: 1rem; 
+        justify-content: flex-start;
+        width: 60%;
+    }
+    .pagelink {
+        font-size: 2.1rem;
     }
     .text{
-        font-size: 1.8rem;
+        font-size: 2.1rem;
     }
     .socials{
         margin: 0 1.5rem 0;
        }
-       .social{
-           margin: 0 0.5rem;
-           
-       }
-       .logo{
-        right: 37%;
-        transform: scale(0.9);
+    .social{
+        margin: 0 0.5rem;
+        
     }
-    .container{
-        padding: 0px 20px;
+    .logo{
+    left: 40%;
     }
     .insta{
     width: 35px;
     height: 35px;
 }
-
-.facebook{
- width: 35px;
- height: 35px;
-}
-
+    .facebook{
+    width: 35px;
+    height: 35px;
+    }
+    .basket_icon{
+        width: 30px;
+        height: 30px;
+    }
+    .basket{
+        top: 15%;
+    }
+    .quantity{
+        font-size: 1.5rem;
+    }
 }
 @media screen and (max-width: 768px){
     .container{
@@ -172,19 +160,26 @@
         padding: 0;
         align-items: flex-end;
         height: 100%;
-     
     }
+    .basket_icon{
+        width: 25px;
+        height: 25px;
+    }
+    .basket{
+        top:20%;
+    }
+
     .logo{
-        top: 11%;
-        right: 55%;
-        transform: scale(0.9);
+        top: 14%;
+        left: 5%;
     }
     .pagelinks{
         flex-direction: column;
-        margin: 0 4rem;
+        align-items: flex-end;
+        margin: 0 6.5rem;
     }
     .pagelink{
-        margin: 1rem 2rem;
+        margin: 1rem 0;
         font-size: 3rem;
     }
     .contact{
@@ -196,9 +191,12 @@
         align-items: flex-end;
         
     }
+    .chevron{
+        display: unset;
+    }
     .chevron_container{
         display: block;
-        margin: 3rem 4rem;
+        margin: 1rem 6rem 1rem;
     }
     .texts{
         margin: 2rem 4rem;
@@ -211,32 +209,28 @@
         margin: 1rem 2rem
         
     }
-    .insta{
-    fill: #fff;
-    width: 50px;
-    height: 50px;
+    .insta, .facebook{
+    width: 40px;
+    height: 40px;
     }
-    .insta:hover{
-        transform: scale(1.5);
-        transition: all 0.3s;
-    }
-    .facebook{
-    fill: #fff;
-    width: 50px;
-    height: 50px;
-    }
+  
 
 }
 @media screen and (max-width: 480px){
     .logo{
-       width: 140px;
-       height: 65px;
-        right: 60%;
-        top: 16%;
+       width: 122px;
+       height: unset;
+       aspect-ratio: 2.1/1;
+        right: 55%;
+        top: 10%;
+    }
+    .chevron_container{
+        margin: 1.75rem;
     }
     .chevron{
         width: 40px;
         height: 40px;
+
     }
     .basket{
         right: 3%;
@@ -245,6 +239,20 @@
         width: 25px;
         height: 25px;
     }
+    .quantity{
+        font-size: 1.4rem;
+    }
+    .pagelink, .text{
+        font-size: 2.7rem;
+    }
 }
 
+/* Hover */
 
+.facebook:hover, .insta:hover, .pagelink:hover{
+    transform: scale(1.02);
+    text-shadow: 0 0 2px #fff;
+}
+.basket:hover{
+    transform: scale(1.1);
+}

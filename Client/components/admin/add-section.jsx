@@ -28,7 +28,7 @@ const AddSection = ({setShowAdd, sections, setSections}) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
         <div className={styles.wrapper}>
           <AiOutlineClose className={styles.close} onClick={() => setShowAdd(false)}>Close</AiOutlineClose>
             <h1 className={styles.hdr}>Add Section</h1>

@@ -1,5 +1,14 @@
+/* Containers */
+
 .container{
-    margin: 11rem 0 0;
+    margin: 8rem 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.inner_container{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,39 +20,51 @@
     flex-direction: column;
     align-items: center;
 }
+
+@media screen and (min-width:480px){
+    .inner_container{
+        width: 450px;
+    }
+}
+@media screen and (min-width:769px){
+    .inner_container{
+        width: 500px;
+    }
+}
+@media screen and (min-width:1024px){
+    .inner_container{
+        width: 90%;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .wrapper{
+        margin: 0;
+    }
+    .container{
+        margin: 8rem 0 0;
+    }
+}
+
+/* Headers */
+
 .hdr{
-margin: 2rem 0 2rem;
+margin: 2rem 0;
 font-size: 2.8rem;
 font-weight: 500;
 text-transform: uppercase;
-letter-spacing: 0.4rem;
+letter-spacing: 0.2rem;
 line-height: 3rem;
 text-align: center;
 }
+
+/* Info */
+
 .notice{
     font-size: 1.5rem;
     text-align: center;
     line-height: 2rem;
     color: rgb(115, 0, 0);
     margin: 1rem;
-}
-.btn_pay{
-    padding: 0.7rem;
-    border-radius: 15px;
-    font-size: 2rem;
-    cursor: pointer;
-    background-color: #fff;
-    font-weight: 600;
-    word-spacing: 0.5rem;
-    letter-spacing: 0.4rem;
-    transition: all 0.2s;
-    margin: 1.5rem;
-    text-transform: uppercase;
-    box-shadow: 0 0 15px #101010;
-}
-.btn_pay:hover{
-    background-color: #101010;
-    color: #fff;
 }
 .note_hdr{
     font-size: 2rem;
@@ -58,4 +79,72 @@ text-align: center;
     width: 80%;
     text-align: center;
     letter-spacing: 0.1rem;
+}
+.total{
+ display: none;
+}
+@media screen and (max-width:1023px){
+    #total{
+    display: none;
+    }
+}
+
+/* Buttons */
+
+.btn_pay{
+    padding: 0.8rem 0.6rem;
+    border-radius: 7px;
+    font-size: 1.7rem;
+    cursor: pointer;
+    background-color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.2rem;
+    margin: 0 0 2.5rem;
+    text-transform: capitalize;
+    opacity: 0.9;
+    border: 1px solid;
+}
+#top{
+    display: none;
+}
+
+@media screen and (min-width:1024px){
+    .wrapper{
+        width: 60%;
+    }
+    .hdr{
+        font-size: 3.5rem;
+        line-height: 4rem;
+        border: 3px solid rgb(231, 249, 255);
+        padding: 3rem;
+        border-radius: 20px;
+        font-weight: 400;
+    }
+    .note_hdr{
+        font-size: 2.2rem;
+        margin: 1.5rem 0;
+    }
+    .notice{
+        margin: 2rem 0 0;
+    }
+    .note{
+        font-size: 2rem;
+    }
+    #top{
+        display: unset;
+        margin: 0.5rem 0 1rem;
+    }
+    #bottom{
+        display: none;
+    }
+    .btn_pay{
+        font-size: 2.5rem;
+    }
+    
+}
+/* Hover */
+
+.btn_pay:hover{
+    transform: scale(1.01);
+    opacity: 1;
 }

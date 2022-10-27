@@ -8,7 +8,6 @@ import { useEffect } from 'react'
 const Admins = ({admins}) => {
 
  const [reveal, setReveal] = useState([])
- const [show, setShow] = useState(false)
 const router = useRouter()
 
 const handleReveal = (adminNumber) => {
@@ -71,16 +70,14 @@ try{
   return (
    
            <div className={styles.container}>
-            <h1 className={styles.admins_title} onClick={() => setShow(!show)}>Manage Admins</h1>
-        { show ? <>
                 <h1 className={styles.hdr}>Add Admins</h1>
             <div className={styles.login_container}>
-                <form className={styles.submit_conainter} onSubmit={handleSubmit}>
+                <form className={styles.submit_containter} onSubmit={handleSubmit}>
                     <label htmlFor="username" className={styles.label}>username:</label>
                     <input type="text" id='username' name='username' className={styles.input}/>
                     <label htmlFor="input" className={styles.label}>password:</label>
                     <input type="password"  id='password' name='password' className={styles.input}/>
-                    <button className={styles.submit} type='submit'>Submit</button>
+                    <button className={styles.btn_submit} type='submit'>Submit</button>
                 </form>
             </div>
             <div className={styles.list_container}>
@@ -95,7 +92,6 @@ try{
                 </div>
                 )}
             </div>
-        </>: null}
     </div>
  
   )

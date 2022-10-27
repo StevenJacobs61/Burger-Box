@@ -1,13 +1,16 @@
 import React from 'react'
 import styles from '../../styles/admin-nav.module.css'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import  {MdOutlineNotificationsOff} from 'react-icons/md'
 import  {MdOutlineNotificationsNone} from 'react-icons/md'
+import  {MdOutlineNextPlan} from 'react-icons/md'
+import  {HiOutlineLogout} from 'react-icons/hi'
 import { useDispatch } from 'react-redux';
 import { changeNotif } from '../../redux/cartSlice';
 import { useSelector } from 'react-redux';
+import { setAdmin } from '../../redux/userSlice'
+import axios from 'axios'
 
 
 const AdminNav = () => {
@@ -39,13 +42,25 @@ const AdminNav = () => {
   }
 }
 
+const handleLogout = async () => {
+  if(confirm("Are you sure you wish to logout?")){
+    await axios.delete("http://localhost:3000/api/login/cookie");
+    router.push("/");
+    dispatch(setAdmin(false));
+  }else{
+    alert("There was an error logging out, try deleting your BurgerBox browser cookie if the issue persists.")
+  }
+}
+
   return (
     <div className={styles.container}>
-        {route === "/admin" ?
-          <Link href={'/'}><button className={styles.btn}>Current orders</button></Link>
-          :
-          <Link href={'/admin'}><button className={styles.btn}>Admin</button></Link>
-        }
+          <MdOutlineNextPlan className={styles.icon}
+          onClick={() => {
+            if (route === "/admin") router.push("/");
+            else router.push("/admin")
+          }}/>
+          <HiOutlineLogout className={styles.icon}
+          onClick={()=> handleLogout()}/>
         {!notifications ?
         <div className={styles.icon_container}>
         <MdOutlineNotificationsOff 
@@ -57,9 +72,8 @@ const AdminNav = () => {
           onClick={() => handleMute()} 
           className={styles.icon}/>
           </div>
-        
         }
-    </div>
+    </div> 
   )
 }
 

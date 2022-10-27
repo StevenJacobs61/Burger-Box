@@ -25,3 +25,12 @@ h1, h2, h3, h4{
   padding: 0;
   border: 0;
 }
+
+:root{
+  --bg-color--blue: rgb(231, 249, 255);
+  --text--dark-red: rgb(104, 0, 0);
+  --text--light-green: rgb(5, 156, 0);
+  --btn--edit: rgb(0, 164, 164);
+  --btn--del: rgb(255, 67, 67);
+  --color--grey-dark: rgb(109, 109, 109);
+}

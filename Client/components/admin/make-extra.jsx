@@ -80,7 +80,7 @@ const handleAddExtras = async (product) => {
 
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
         <div className={styles.wrapper}>
           <AiOutlineClose className={styles.close} onClick={() => setShowMakeExtra(false)}>Close</AiOutlineClose>
             <h1 className={styles.hdr}>Make Extra</h1>

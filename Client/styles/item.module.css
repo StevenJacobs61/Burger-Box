@@ -20,8 +20,9 @@
     border-radius: 10px;
     flex-direction: column;
     position: relative;
-    padding: 1rem 1rem 0 0;
+    padding: 1rem 0;
     overflow: scroll;
+    border: 1px solid;
 }
 .hdr{
     text-align: center;
@@ -38,6 +39,59 @@
     height: 30px;
     cursor: pointer;
 }
+@media screen and (min-width:480px){
+    .wrapper{
+        width: 60vw;
+        padding: 2rem 0;
+    }
+    .close{
+        right:23%;
+        width: 35px;
+        height: 35px;
+    }
+    .hdr{
+        font-size: 2.4rem;
+    }
+}
+@media screen and (min-width:769px){
+    .wrapper{
+        width: 50vw;
+    }
+    .close{
+        right:29%;
+        width: 40px;
+        height: 40px;
+    }
+}
+@media screen and (min-width:1024px){
+    .wrapper{
+        width: 42vw;
+        padding: 2rem 2rem;
+    }
+    .hdr{
+        margin: 2rem;
+    }
+    .close{
+        right:32%;
+        width: 40px;
+        height: 40px;
+    }
+}
+@media screen and (min-width:1200px){
+    .wrapper{
+        width: 35vw;
+        padding: 2rem 1rem;
+    }
+    .hdr{
+        margin: 2rem;
+    }
+    .close{
+        right:36%;
+        width: 45px;
+        height: 45px;
+    }
+}
+
 .details{
     width: 85%;
     cursor: pointer;
@@ -95,55 +149,154 @@ margin: 1rem 1.1rem 1rem 1rem;
     justify-content: space-between;
     width: 100%;
     text-transform: uppercase;
-    margin: 2rem 0;
+    margin: 1rem 0;
     border-top: 1px solid;
     border-bottom: 1px solid;
+}
+@media screen and (min-width:769px){
+    .title,  .info{
+        font-size: 2rem;
+    }
+    .info{
+        font-size: 2rem;
+    }
+}
+@media screen and (min-width:1024px){
+    /* .item{
+        resize: both;
+    } */
+}
+@media screen and (min-width:1200px){
+    .title{
+        font-size: 2.3rem;
+    }
+    .info{
+        font-size: 2.3rem;
+    }
 }
 .btn_container{
     width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn_container>*{
+    font-size: 1.5rem;
+    background-color: #fff;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: 1px solid;
+    opacity: 0.9;
+    cursor: pointer;
+    padding: 0.8rem;
+    letter-spacing: 0.1rem;
+
 }
 .btn_accept{
-    width: 100%;
     margin: 0 1rem 0.5rem;
-    font-size: 1.5rem;
-    padding: 0.3rem 0.1rem;
-    background-color: #fff;
-    border: 0.3px solid;
-    border-radius: 5px;
-    text-transform: uppercase;
-    color: rgb(13, 198, 0);
+    color: var(--text--light-green);
 }
 .btn_complete{
-    width: 100%;
     margin: 0 0 0.5rem 1rem;
-    font-size: 1.5rem;
-    padding: 1rem 0;
-    letter-spacing: 0.4rem;
-    background-color: #fff;
-    border: 1px solid;
-    border-radius: 5px;
-    text-transform: uppercase;
     color: rgb(94, 86, 255);
     font-weight: 500;
 }
 .btn_del{
-    width: 100%;
     margin: 0 0 0.5rem 1rem;
-    font-size: 1.5rem;
-    padding: 0.3rem;
-    background-color: #fff;
-    border: 0.3px solid;
-    border-radius: 5px;
-    text-transform: uppercase;
-    color: rgb(255, 86, 86);
+    color: var(--btn--del);
 }
 .textarea{
-    width: 100%;
+    width: 95%;
     height: 10rem;
     margin: 1rem 0 2rem;
     border-radius: 10px;
     border: 0.5px solid;
     font-size: 2rem;
     padding: 1rem;
+    background-color: var(--bg-color--blue);
+}
+@media screen and (min-width:480px){
+    .btn_container>*{
+        font-size: 2.1;
+    }
+}
+@media screen and (min-width:769px){
+    .btn_container>* {
+        font-size: 2.2rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Refund */
+
+.refunded_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-transform: uppercase;
+    margin: 0 0 2rem;
+    border-bottom: 0.5px solid;
+    padding: 0 0 0.5rem;
+}
+.refunded_title{
+    margin: 0 0 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.refunded{
+    font-size: 2rem;
+    margin: 0 1rem 0 0;
+    font-weight: 400;
+}
+
+.refund_wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0.5rem;
+    border-top: 1px solid var(--bg-color--blue);
+    padding: 1rem 0 0;
+}
+.refund_hdr{
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+    color: var(--text--dark-red);
+}
+.refund_warning_text{
+    font-size: 1.3rem;
+    text-align: center;
+    color: var(--text--dark-red);
+    margin: 0 0 1rem;
+}
+.refund_text{
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem;
+}
+.refund_input{
+    background-color: var(--bg-color--blue);
+    border-radius: 5px;
+    border: 1px solid;
+    font-size: 2rem;
+    width: 30%;
+    margin: 0 0 2rem;
+}
+.btn_refund{
+    font-size: 1.5rem;
+    background-color: #fff;
+    border: 1px solid;
+    padding: 0.4rem 0.7rem;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: var(--btn--del);
+    cursor: pointer;
+}
+
+/* Hover */
+
+.btn_container>* {
+    opacity: 1;
+    transform: scale(1.015);
 }

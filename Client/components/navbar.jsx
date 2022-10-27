@@ -7,17 +7,18 @@ import {HiChevronDoubleDown} from 'react-icons/hi';
 import {BsBasket} from 'react-icons/bs';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
-
-
-
-
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
   const cart = useSelector((state) => state.cart)
+  const user = useSelector((state) => state.user)
   
   const [click, setClick] = useState(true);
   const[mobileScreen, setMobileScreen] = useState(true);
   const [quantity, setQuantity] = useState(0)
+  const [login, setLogin] = useState(false);
+  const router = useRouter();
+  
   
 useEffect(() => {
   if(localStorage.getItem("Orders") === null){
@@ -28,7 +29,7 @@ useEffect(() => {
 }, [cart]);
 
 
-const sizeDetector = (e) => {
+const sizeDetector = () => {
  if(window.innerWidth > 768){
   setMobileScreen(false)
  } else {
@@ -36,9 +37,24 @@ const sizeDetector = (e) => {
  }
 }
 
+// Hide navbar on scroll down 
 useEffect(() => {
+  sizeDetector()
   window.addEventListener('resize', sizeDetector)
 }, [])
+
+// Remove basket icon on login page
+
+useEffect(() => {
+  if(window.location.pathname.slice(-5,) == "login"){
+    setLogin(true)
+  }else{
+    setLogin(false)
+  }
+ 
+}, [router.query])
+
+
 
 
 const [showNav, setShowNav] = useState(true);
@@ -66,52 +82,57 @@ useEffect(() => {
     };
   }
 }, [lastScrollY]);
-  
 
-
-  return (<>
+  return (
+  <>{!user.admin ? 
+  <>
      <div className={styles.navbar} style={{top: showNav ? '0' : '-110%'}}>
        
         <div className={styles.container}>
             <div className={styles.chevron_container}>
               <HiChevronDoubleDown className={styles.chevron} onClick={() => setClick(!click)} style={{transform: click ?"rotate(0)":"rotate(180deg)"}}/>
             </div>
-          <div className={styles.pagelinks} style={{display: click && mobileScreen ?"none":"flex"}}>
+            { click && mobileScreen? null :<div className={styles.pagelinks} style={{display: click && mobileScreen ?"none":"flex"}}>
             <Link href={'/'}>
               <div className={styles.pagelink} onClick={() => setClick(!click)}>Order</div>
             </Link>
             <Link href={'/admin'}>
               <div className={styles.pagelink} onClick={() => setClick(!click)}>Admin</div>
             </Link>
-          </div>
+          </div>}
             <Link href={'/'}>
               <div className={styles.logo_container}>
-                <div className={styles.logo} ><Image  className={styles.img} src={'/img/burger-box-logo.webp'} alt='logo' layout='fill'/></div>
+                <div className={styles.logo}>
+                  <Image  className={styles.img} src={'/img/bb-logo.webp'} alt='logo' layout='fill'/>
+                  </div>
               </div>
             </Link>
-          <div className={styles.contact} style={{display: click && mobileScreen ?"none":"flex"}}>
+          { click && mobileScreen ? null :<div className={styles.contact}>
             <div className={styles.socials}>
               <Link href={'https://www.facebook.com/BurgerBoxSeaford'}>
-                <div className={styles.social} onClick={() => setClick(!click)}> <FiFacebook className={styles.facebook}/> </div>
+                <a target="_blank">
+                  <div className={styles.social} onClick={() => setClick(!click)}> <FiFacebook className={styles.facebook}/> </div>
+                </a>
               </Link>
-              <Link href={'https://www.instagram.com/burgerboxseaford/'} >
-                <div className={styles.social} onClick={() => setClick(!click)}> <AiOutlineInstagram className={styles.insta}/> </div>
-              </Link>
+                <Link href={'https://www.instagram.com/burgerboxseaford/'} >
+              <a target="_blank">
+                  <div className={styles.social} onClick={() => setClick(!click)}> <AiOutlineInstagram className={styles.insta}/> </div>
+              </a>
+                </Link>
             </div>
             <div className={styles.texts}>
               <div className={styles.text}>Contact Us</div>
               <div className={styles.text}>01323 899221</div>
             </div>
-          </div>
+          </div>}
        
         </div>
        </div>
-       <Link href={'/cart'}>
-         <div className={styles.basket} style={{top: !showNav ? "3%" : null}}>
+    {!login && !user.offline && user.open ? <div className={styles.basket} style={{top: !showNav ? "20%" : "15%"}}>
           <p className={styles.quantity}>{quantity}</p>
-          <BsBasket className={styles.basket_icon}/>
-              </div>
-       </Link>
+          <BsBasket className={styles.basket_icon} onClick={() => router.push("/cart")}/>
+              </div>:null}
+     </> : null}
      </>
   )
 }

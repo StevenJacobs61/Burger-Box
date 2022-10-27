@@ -25,7 +25,7 @@ details:{
         required:true,
     },
     number:{
-        type:Number,
+        type:String,
         maxlength:15,
         minlength:10,
         required:true,
@@ -49,11 +49,21 @@ delivery:{
     type: Boolean,
     required:true
    },
+time:{
+    type:Number,
+    required: true,
+    maxlength:8
+},
 status:{
     type:Number,
     maxlength:1,
     required:true
   },
+  refunded:{
+    type:Number,
+    default: 0,
+    required:true
+  }
 },
 {timestamps: true},
 );

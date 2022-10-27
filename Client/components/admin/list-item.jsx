@@ -28,15 +28,17 @@ const [status, setStatus] = useState(order.status);
                </div>)}
              </ul>
             </td>
-            <td onClick={() => showItem(order)} className={styles.title_item}>£{order.total}</td>
+            <td onClick={() => showItem(order)} className={styles.title_item}>£{order.total} <br/> {order.refunded > 0 ? `-${order.refunded}` : null}</td>
             <td onClick={() => showItem(order)} className={styles.title_item}>{order.delivery ? 'D' : 'C'}</td>
             <td>
             {status === 0 ? 
-            <button 
-            className={styles.btn_del} 
-            onClick={() => handleDelete(order._id)}>
-             Delete
-            </button>
+            <div className={styles.btn_container}>
+              <button
+              className={styles.btn_del}
+              onClick={() => handleDelete(order._id)}>
+               Delete
+              </button>
+            </div>
             : status === 1 ? 
             <div className={styles.btn_container}>
               <button 
@@ -51,25 +53,29 @@ const [status, setStatus] = useState(order.status);
               </button>
             </div>
             : status === 2 ?
-            <button 
-            className={styles.btn_complete} 
-            onClick={() => handleComplete(order._id)}>
-              complete
-            </button>
+            <div className={styles.btn_container}>
+              <button
+              className={styles.btn_complete}
+              onClick={() => handleComplete(order._id)}>
+                complete
+              </button>
+            </div>
             : status === 3 ?
-            <button 
-            className={styles.btn_complete} 
-            onClick={() => handleSendPast(order._id)}>
-             Send past
-            </button>
+            <div className={styles.btn_container}>
+              <button
+              className={styles.btn_complete}
+              onClick={() => handleSendPast(order._id)}>
+               History
+              </button>
+            </div>
             : status === 4 ?
-            <button 
-            className={styles.btn_del} 
-            onClick={() => handleDelete(order._id)}>
-             Delete
-            </button>
-            : status === 5 ?
-            <p >Waiting for payment</p> 
+            <div className={styles.btn_container}>
+              <button
+              className={styles.btn_del}
+              onClick={() => handleDelete(order._id)}>
+               Delete
+              </button>
+            </div>
           :null}
           </td>
           </tr>

@@ -1,56 +1,111 @@
-.container{
-    width: 100%;
+/* Info */
+
+.unavailable{
+    color: rgb(123, 0, 0);
+    font-size: 2rem;
 }
-.tr_title{
+.text{
     font-size: 1rem;
-    font-weight: 700;
+    cursor: pointer;
+}
+@media screen and (min-width:480px){
+    .text{
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+}
+@media screen and (min-width:769px){
+    .text{
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+}
+@media screen and (min-width: 1024px){
+    .text{
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
 }
 
-.products_hdr{
-    text-align: center;
-    margin: 2rem 0 0;
-    font-size: 2.5rem;
-    font-weight: 300;
+/* Image */
+
+.img_container{
+    position: absolute;
 }
+
+.img{
+    width: 20px;
+    aspect-ratio: 1/1;
+    position: relative;
+}
+
+/* Buttons */
 .btn_container{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .btn_container>*{
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     border-radius: 5px;
     border: 1px solid;
-    padding: 0.5rem 0.2rem;
+    padding: 0.8rem 0.3rem;
     background-color: #fff;
     cursor: pointer;
-    width: 100%;
-    margin: 0.6rem 0;
+    margin: 0 0 1rem 0;
     text-transform: uppercase;
+    opacity: 0.9;
+    font-weight: 600;
+    width: 100%;
+    letter-spacing: 0.05rem;
 }
 .btn_delete{
     color: rgb(245, 99, 99);
     }
-.btn_available{
-    color: rgb(62, 206, 74);
-}
-.btn_upgrade{
-    color: #2c3643;
-}
-.btn_extra{
-    color: #3e80d5
-}
 
+.btn_edit{
+    color: rgb(0, 182, 160);
+}
 .btn_show{
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 0.5px solid;
   background-color: #fff;
-  padding: 1rem;
-  margin: 0 1rem;
-  text-transform: capitalize;
+  padding: 0.4rem 0.3rem;
+  text-transform: lowercase;
   font-weight: 500;
+  cursor: pointer;
+  margin: 0.3rem;
+  letter-spacing: 0.05rem;
 }
-.unavailable{
-    color: rgb(123, 0, 0);
+.btn_container>*:hover, .btn_show:hover{
+    transform: scale(1.02);
+    opacity: 1;
 }
+@media screen and (min-width:480px){
+    .btn_show{
+        font-size: 1.3rem;
+        
+    }
+}
+@media screen and (min-width:769px){
+    .btn_show{
+        font-size: 1.3rem;
+    }
+    .btn_container>*{
+        font-size: 1.2rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+@media screen and (min-width:1024px){
+    .btn_show{
+        font-size: 1.1rem;
+        padding: 0.5rem 0.4rem;
+    }
+    .btn_container>*{
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+

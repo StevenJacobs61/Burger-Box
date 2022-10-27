@@ -22,7 +22,7 @@ const CurrentOrders = ({orders}) => {
   }
 
   // Orders states
-  const [orderSections, setOrderSections] = useState([1,2,3,4,0])
+  const [orderSections, setOrderSections] = useState([1,2,3,0,4])
   const [ordersList, setOrdersList] = useState(orders)
   const [note, setNote] = useState()
 
@@ -69,74 +69,95 @@ const CurrentOrders = ({orders}) => {
       if (notifications){
         showItem(data);
       };
-      setOrdersList(ordersList.map((order) => {
+      setOrdersList([... new Set(ordersList.map((order) => {
         if(order._id === data._id){
           order.status = 2;
         } return order;
-      }));
+      })
+      )
+    ]);
     });
   }, [socket]);
 
   // Prevent duplicate orders
+
   useEffect(() => {
     setOrdersList([... new Set(ordersList)])
   }, [socket])
+
   useEffect(() => {
     setOrdersList([... new Set(ordersList)])
-  }, [])
+  }, [newOrder])
 
 
-// MONGOOSE API CALL FUNCTIONS
+  // MONGOOSE API CALL FUNCTIONS
 
-// status: 
-// 0 = Declined
-// 1 = Active/Paid
-// 2 = Completed
-// 4 = Past
-// 5 = Waiting payment
+  // status: 
+  // 0 = Declined
+  // 1 = Active/Paid
+  // 2 = Completed
+  // 4 = History
+  // 5 = Waiting payment
 
-// Accept and Decline, also ListItem as a props
+  // Accept and Decline, ListItem prop
 
-const handleAccept = async (id) => {
-  const newData = {
-    status: 5
+  const handleAccept = async (id) => {
+    const newData = {
+      status: 2
+    }
+    try{
+      const res = await axios.put('http://localhost:3000/api/orders/' + id, newData);
+      setOrdersList(ordersList.map((item) => {
+        if (item._id === id){
+          item.status = 2;
+        } return item;
+      }))
+      socket?.emit("respond", {id, res: true, note});
+      setShow(false);
+      setNote()
+    }catch(err){
+      console.log(err);
+    }
   }
+
+// Complete
+
+  const handleComplete = async (id) => {
+    let order = null;
+    const newData = {
+      status: 3
+    }
   try{
-    const res = await axios.put('http://localhost:3000/api/orders/' + id, newData);
+    const res = await axios.put('http://localhost:3000/api/orders/' + id, newData)
     setOrdersList(ordersList.map((item) => {
       if (item._id === id){
-        item.status = 5;
+        item.status = 3;
+        order = item;
       } return item;
-     }))
-    socket?.emit("respond", {id, res: true, note});
+    }));
     setShow(false);
-    setNote()
+    socket.emit("respond", {order})
   }catch(err){
-    console.log(err);
+      console.log(err);
   }
-}
-const handleComplete = async (id) => {
-  const newData = {
-    status: 3
   }
-try{
-   const res = await axios.put('http://localhost:3000/api/orders/' + id, newData)
-   setOrdersList(ordersList.map((item) => {
-    if (item._id === id){
-      item.status = 3;
-    } return item;
-   }));
-   setShow(false);
-}catch(err){
-    console.log(err);
-}
-}
 
+  // Decline and refund full
 
     const handleDecline = async (id) => {
      const newData = {
        status: 0
      }
+     let success = false;
+     if(confirm("Are you sure you want to delete this order?"))
+    {
+     try {
+       const refund = await axios.post("http://localhost:4000/refund", {id})
+       success = refund.data.success
+     } catch (error) {
+      console.log(error);
+     }
+     if(success){
    try{
       const res = await axios.put('http://localhost:3000/api/orders/' + id, newData)
        setOrdersList(ordersList.map((item) => {
@@ -150,8 +171,51 @@ try{
    }catch(err){
        console.log(err);
    }}
+   if (!success){
+    alert("Refund was unsuccessful")
+   };
+  };
+  };
+
+  // REFUND certain amount
+
+  const handleRefund = async (order, amount) => {
+    const id = order._id
+    amount = parseInt(amount) * 100
+    const total = order.total
+    total = total * 100
+      let success = false;
+      if(total < amount){
+        alert("The amount to refund must be less or equal to the order total!")
+      }else{
+      if (confirm("Are you sure you want to make this refund?")){
+        try {
+          const refund = await axios.post("http://localhost:4000/refund", {id, amount})
+          success = refund.data.success
+        } catch (error) {
+         console.log(error);
+        }
+      }
+      if(success){
+        setShow(false)
+        const refundAmount = amount/100;
+        if(amount === 0){
+          refundAmount = order.total
+        }
+        setOrdersList(ordersList.map((ord) => {
+          if(ord._id === id){
+            ord.refunded = refundAmount
+          } return ord;
+        }))
+      }
+    }
+  }
+
+  // Delete
 
    const handleDelete = async (order) => {
+    if(confirm("Are you sure you want to delete this order?"))
+    {
     try{
        const res = await axios.delete('http://localhost:3000/api/orders/' + order)
        const ord = ordersList.filter((item) => item._id === order)[0]
@@ -160,6 +224,7 @@ try{
       }catch(err){
         console.log(err);
       }
+    }
     }
   
     const handleSendPast = async (id) => {
@@ -186,13 +251,13 @@ const handleAcceptAll = async () => {
     status: 1
   }
   const update = {
-    status: 5
+    status: 2
   }
 try{
    const res = await axios.patch('http://localhost:3000/api/orders', {filter, update})
    setOrdersList(ordersList.map((item) => {
     if(item.status === 1){
-      item.status = 5;
+      item.status = 2;
     } return item;
   }));
    socket?.emit("respond", {id: 1, res: true});
@@ -205,23 +270,29 @@ try{
 
 }
 const handleDeclineAll = async () => {
-const filter = {
-status: 1
-}
+const toDecline = ordersList.filter((o) => o.status === 1) 
 const update = {
 status: 0
 }
-try{
-const res = await axios.patch('http://localhost:3000/api/orders', {filter, update})
-setOrdersList(ordersList.map((item) => {
-  if(item.status === 1){
-    item.status = 0;
-  } return item;
-}));
-socket?.emit("respond", {id: 1, res: false});
-setShow(false);
-}catch(err){
-console.log(err);
+if(confirm("Are you sure you want to decline these orders?")){
+  let amount = 0;
+      try {
+        toDecline.map(async(ord)=> {
+          const id = ord._id
+        const refund = await axios.post("http://localhost:4000/refund", {id, amount})
+        if(refund.data.success){
+          const res = await axios.put('http://localhost:3000/api/orders/' + id, update)
+          setOrdersList(ordersList.map((item) => {
+            if (item._id === id){
+              item.status = 0;
+            } return item;
+           }))
+           socket?.emit("respond", {id, res: false, note});
+        }
+        })     
+      } catch (error) {
+        console.log(error);
+      }
 }
 }
 
@@ -254,14 +325,17 @@ const handleDeleteAll = async (orderSection) => {
 const filter = {
 status: orderSection
 }
+if(confirm("Are your sure you want to delete these order?"))
+    {
 try {
 await axios.delete('http://localhost:3000/api/orders', filter);
 setOrdersList(ordersList.filter((item) => item.status !== orderSection));
 setShow(false);
 } catch (error) {
 console.log(error);
-}
-}
+};
+};
+};
 
 // Send to past all completed orders
 
@@ -288,7 +362,7 @@ console.log(err);
 // END OF MONGOOSE API CALL FUNCTIONS
   return (
     <div className={styles.container}>
-        <h1 className={styles.hdr}>Orders</h1>
+        <h1 className={styles.hdr} style={{margin: sectionShow.some((s)=> s === 1) ? null : "0 0 2.5rem"}}>Orders</h1>
          {orderSections.map((orderSection) =>
        <div className={styles.sections_container} key={orderSection}>
           <div className={styles.title_container}>
@@ -297,30 +371,30 @@ console.log(err);
             orderSection === 1 ? "New " :
             orderSection === 2 ? "Active " :
             orderSection === 3 ? "Completed " :
-            orderSection === 4 ? "Past " :
+            orderSection === 4 ? "History" :
             null} 
-            Orders</h1>
-            {orderSection === 0 &&  <button className={styles.btn_clear} onClick={()=>handleDeleteAll(orderSection)}>Delete All</button>}
+            {orderSection === 4 ? null : "Orders"}</h1>
+            {orderSection === 0 &&  <button className={styles.btn_clear} onClick={()=>handleDeleteAll(orderSection)}>Delete</button>}
             {orderSection === 1 && <div className={styles.btn_all_container}>
-              <button className={styles.btn_accept_all} onClick={handleAcceptAll}>Accept all</button>
-              <button className={styles.btn_decline_all} onClick={handleDeclineAll}>Decline all</button>
+              <button className={styles.btn_accept_all} onClick={handleAcceptAll}>Accept</button>
+              <button className={styles.btn_decline_all} onClick={handleDeclineAll}>Decline</button>
             </div>}
-            {orderSection === 2 &&   <button className={styles.btn_clear} onClick={handleCompleteAll}>complete all</button>}
-            {orderSection === 3 && <button className={styles.btn_clear} onClick={handleSendPastAll}>Send past All</button>}
-            {orderSection === 4 &&  <button className={styles.btn_clear} onClick={()=>handleDeleteAll(orderSection)}>Delete all</button>}
+            {orderSection === 2 &&   <button className={styles.btn_clear} onClick={handleCompleteAll}>complete</button>}
+            {orderSection === 3 && <button className={styles.btn_clear} onClick={handleSendPastAll}>History</button>}
+            {orderSection === 4 &&  <button className={styles.btn_clear} onClick={()=>handleDeleteAll(orderSection)}>Delete</button>}
             </div>
             {sectionShow.some((sect) => sect === orderSection) ? <table className={styles.table}>
             <tbody>
               <tr className={styles.tr_title}>
                 <th>ID</th>
-                <th>Created/<br></br>Updated</th>
+                <th>Cr/Up</th>
                 <th>order</th>
                 <th>Total</th>
-                <th>C/D</th>
+                <th>Co/De</th>
                 <th>Action</th>
               </tr>
             </tbody>
-            {ordersList?.filter((order) => order.status === orderSection || order.status === 5 && orderSection === 1)
+            {ordersList?.filter((order) => order.status === orderSection)
             .map((item) => 
             <ListItem key={Math.random(1000)} 
             order={item} 
@@ -346,6 +420,7 @@ console.log(err);
        handleComplete={handleComplete}
        handleSendPast={handleSendPast}
        setNote={setNote}
+       handleRefund={handleRefund}
        /> 
        : null}
     </div>

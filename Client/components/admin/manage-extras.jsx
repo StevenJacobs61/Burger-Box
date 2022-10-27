@@ -3,7 +3,7 @@ import styles from '../../styles/manage-extras.module.css'
 import { useState } from 'react'
 import axios from 'axios'
 
-const ManageExtra = ({product, products, setProducts}) => {
+const ManageExtra = ({product, products, setProducts, section}) => {
   
   const [index, setIndex] = useState(products.indexOf(product)) 
   const [showButtons, setShowButtons] = useState(false);
@@ -23,7 +23,6 @@ const ManageExtra = ({product, products, setProducts}) => {
      }catch(err){
          console.log(err);
      }
-    };
 
     const handleDelete = async (id) => {
       if(products.filter((prod) => prod.title === "Fries").length === 1){
@@ -39,23 +38,42 @@ const ManageExtra = ({product, products, setProducts}) => {
         }}
       };
 
+    const handleDelExtra = async (id) => {
+      const extraSections = product.extraSection.filter((es)=> es !== section.title)
+      const newData = {
+        extraSection:extraSections
+      }
+     
+        try {
+          const res = await axios.put(
+            "http://localhost:3000/api/products/" + id, newData);
+            setProducts(products.map((prod) => {
+              if (prod._id === id){
+                prod.extraSection = extraSections
+              } return prod;
+            }))
+        } catch (err) {
+          console.log(err);
+        }}
+      
+      }
   return (
     <tr className={styles.tr_title}>
-    <td>{products[index].available ? null : "Unavailable"}</td>
-    <td>{'12345678809'.slice(0, 5)}...</td>
-    <td>{product.title}</td>
-    <td>{product.price}</td>
+    <td className={styles.unavailable} onClick={()=>setShowButtons(!showButtons)}>{products[index].available ? null : "x"}</td>
+    <td className={styles.text} onClick={()=>setShowButtons(!showButtons)}>{'12345678809'.slice(0, 5)}...</td>
+    <td className={styles.text} onClick={()=>setShowButtons(!showButtons)}>{product.title}</td>
+    <td className={styles.text} onClick={()=>setShowButtons(!showButtons)}>{product.price === 0 ? "Free" : `£${product.price}`}</td>
     <td>
       {showButtons ? 
         <div className={styles.btn_container}>
-          <button className={styles.btn_available} style={{color: products[index].available ? '#00b20f' : '#7a7a7a'}} onClick={() => handleAvailable(product._id)}>{products[index].available ? 'Available' : 'Unavailable'}</button>
+          <button className={styles.btn_available} style={{color: products[index].available ? '#00b20f' : '#7a7a7a'}} onClick={() => handleAvailable(product._id)}>{products[index].available ? 'Available' : '+ available'}</button>
+          <button onClick={()=>handleDelExtra(product._id)}>- Extra</button>
           <button className={styles.btn_delete} onClick={() => handleDelete(product._id)}>Delete</button>
-          <p onClick={()=>setShowButtons(false)}>Hide</p>
         </div>
         : <button className={styles.btn_show} onClick={()=>setShowButtons(true)}>Options</button>}
     </td>
 </tr>
   )
-}
+      }
 
 export default ManageExtra

@@ -3,23 +3,25 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name: 'user',
     initialState:{
-        username:'',
-        password:'',
         admin: false,
+        offline:false,
+        open:true,
+        complete:false,
     },
     reducers:({
-        addUser: (state, action) => {
-            state.username = action.payload.username;
-            state.password = action.payload.password;
-        },
         setAdmin: (state, action) => {
-            state.admin = action.payload.isAdmin;
+            state.admin = action.payload;
         },
-        reset: (state) => {
-            state.username='',  
-            state.password=''
+        setOffline: (state, action) =>{
+            state.offline = action.payload
+        },
+        nowOpen: (state, action) =>{
+            state.open = action.payload
+        },
+        nowComplete: (state, action) =>{
+            state.complete = action.payload
         }
 }
 )});
-export const {addUser, setAdmin, reset} = userSlice.actions;
+export const {setAdmin, setOffline, nowOpen, nowComplete} = userSlice.actions;
 export default userSlice.reducer;

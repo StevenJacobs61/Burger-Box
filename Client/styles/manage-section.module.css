@@ -1,56 +1,105 @@
+/* Containers */
+
 .container{
     padding: 0 1rem;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
    }
-   .item{
-   width: 100%;
-   padding: 0 1rem 2rem;
-   }
-   .title_container{
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       border-bottom: 0.5px solid #101010;
-    
-   }
-   .btn_clear{
-       margin: 1rem 1rem 1rem;
-       font-size: 0.8rem;
-       padding: 0.7rem 0.5rem;
-       background-color: #fff;
-       border: 0.3px solid;
-       border-radius: 5px;
-       color: #ff6106;
-       text-transform: uppercase;
-       cursor: pointer;
-   }
-   .table{
-      width: 100%;
-       border-spacing: 15px;
-       text-align: center;
-   }
-   .tr_title{
-    font-size: 1rem;
-    font-weight: 700;
+.item{
+    width: 100%;
+    padding: 0 0 2rem;
 }
-
-   .header{
-       cursor: pointer;
-       margin: 1rem;
-       padding: 1rem;
-       font-weight: 500;
-       letter-spacing: 0.1rem;
-       font-size: 2.5rem;
-       text-transform: uppercase;
-   }
-   .header:hover{
-       transform: scale(1.03);
-   }
-   .btn_container{
+.title_container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--bg-color--blue);
+    width: 100%;
+    
+}
+.table{
+    width: 100%;
+    border-spacing: 5px;
+    text-align: center;
+}
+@media screen and (min-width:769px){
+   .container{
+    padding: 0 2rem;
    }
-   .btn_container>*{
+}
+@media screen and (min-width:1024px){
+    .container{
+        padding: 0 1rem;
+       }
+}
+
+/* Headers */
+
+.tr_title{
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    line-height: 2rem;
+}
+
+.header{
+    cursor: pointer;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+.hdr_extras{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: rgb(88, 0, 0);
+    cursor: pointer;
+    letter-spacing: 0.2rem;
+    margin: 0.7rem 0;
+    opacity: 0.9;
+    font-weight: 500;
+
+}
+@media screen and (min-width:480px){
+    .hdr_extras{
+        font-size: 2rem;
+    }
+}
+@media screen and (min-width:769px){
+    .tr_title{
+        font-size: 1.5rem;
+    }
+    .header{
+        font-size: 2.7rem;
+    }
+}
+@media screen and (min-width:1024px){
+    .tr_title{
+        font-size: 1.1rem;
+        line-height: 2rem;
+    }
+    .header{
+        margin: 0;
+        padding: 1.5rem 0;
+        font-size: 3rem;
+    }
+    .hdr_extras{
+        font-size: 2rem;
+        font-weight: 400;
+    }
+}
+/* Buttons */
+
+.btn_container{
+    display: flex;
+    justify-content: space-between;
+}
+.btn_container>*, .btn_clear{
     font-size: 0.8rem;
     padding: 0.6rem 0.6rem;
     background-color: #fff;
@@ -59,31 +108,54 @@
     text-transform: uppercase;
     cursor: pointer;
     margin: 1rem;
-
-   }
-   .btn_available{
+    letter-spacing: 0.05rem;
+    opacity: 0.9;
+}
+.btn_available{
     color: #09a616;
-   }
-   .btn_add{
+}
+.btn_add{
     color: #fe9292;
-    font-size: 0.8rem;
-    padding: 0.6rem 0.8rem;
-    background-color: #fff;
-    border: 0.3px solid;
+}
+.btn_clear{
+    color: #ff6106;
+}
+.btn_add_extra{
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 0.6rem 0.5rem;
     border-radius: 5px;
-    text-transform: uppercase;
+    color: #fe9292;
+    background-color: #fff;
+    border: 0.5px solid;
     cursor: pointer;
-   }
-   .hdr_container{
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
-    width: 100%;
-    
-   }
-   .hdr_extras{
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    color: rgb(88, 0, 0);
-    cursor: pointer;
-   }
+    opacity: 0.9;
+}
+
+@media screen and (min-width:769px){
+.btn_container>*{
+    font-size: 1rem;
+}
+.btn_add_extra{
+    font-size: 1rem;
+}
+}
+@media screen and (min-width:1024px){
+.btn_container>*{
+    font-size: 0.8rem;
+}
+.btn_add_extra{
+    font-size: 0.9rem;
+}
+.btn_available{
+    margin: 1rem 0 1rem 1rem;
+}
+}
+  
+/* Hover */
+
+.btn_container>*:hover, .header:hover, .hdr_extras:hover, .btn_add_extra:hover{
+    transform: scale(1.015);
+    opacity: 1;
+
+}

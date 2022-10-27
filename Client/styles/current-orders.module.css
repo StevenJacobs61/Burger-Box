@@ -1,35 +1,78 @@
 .container{
-    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
+.sections_container{
+    width: 97%;
+    margin: 0 0 2rem;
+    border: 3px solid var(--bg-color--blue);
+    padding: 1rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media screen and (min-width:480px){
+    .container{
+        width: 93%;
+    }
+}
+@media screen and (min-width:769px){
+    .container{
+        width: 90%;
+    }
+    .sections_container{
+        padding: 1rem 5rem;
+    }
+}
+@media screen and (min-width:1024px){
+    .container{
+        width: 80%;
+    }
+}
+@media screen and (min-width:1200px){
+    .container{
+        width: 70%;
+    }
+}
+
+/* Headers */
+
 .hdr{
     text-transform: uppercase;
     font-size: 3rem;
-    margin: 1rem 0;
+    margin: 0 0 2rem;
     letter-spacing: 0.2rem;
-    font-weight: 500;
+    font-weight: 400;
 }
+.title_hdr{
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+@media screen and (min-width:769px){
+    .hdr{
+        font-size: 3rem;
+    }
+}
+@media screen and (min-width:1024px){
+    .hdr{
+        margin: 0 0 1.5rem;
+        letter-spacing: 0.5rem;
+    }
+}
+
 
 /* Table styles */
 
-.sections_container{
-    width: 97%;
-    margin: 0 0 3rem;
-}
 .title_container{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-}
-.title_hdr{
-    margin: 0 0 1rem;
-    cursor: pointer;
-    font-size: 1.8rem;
-    font-weight: 500;
 }
 .table{
     width: 100%;
@@ -38,22 +81,37 @@
 .tr_title{
     font-size: 1.2rem;
     font-weight: 500;
+    text-transform: lowercase;
 }
+@media screen and (min-width:769px){
+    .tr_title{
+        font-size: 1.5rem;
+    }
+    .title_hdr{
+        font-size: 2.5rem;
+        margin: 0.5rem;
+    }
+}
+
 
 /* All buttons */
 
 .btn_all_container{
     display: flex;
-    margin: 0 0rem 0;
+    margin: 0;
+    padding: 1.2rem 0.7rem;
    }
  .btn_all_container>*{
-    margin: 1.5rem;
-    font-size: 0.8rem;
+    margin: 0 0 0 1.5rem;
+    font-size: 0.9rem;
     background-color: #fff;
-    border: 0.3px solid;
+    border: 1px solid;
     border-radius: 5px;
     text-transform: uppercase;
-    padding: 0.5rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    font-weight: 500;
+    opacity: 0.8;
  }  
 .btn_accept_all{
     color: rgb(13, 198, 0);
@@ -62,13 +120,44 @@
     color: rgb(255, 98, 98);
 }
 .btn_clear{
-    margin: 1rem 1rem 1rem;
-    font-size: 0.8rem;
-    padding: 0.5rem;
+    margin: 1rem 0rem 1rem;
+    font-size: 0.9rem;
+    padding: 0;
+    font-weight: 500;
     background-color: #fff;
-    border: 0.3px solid;
+    border: 1px solid;
     border-radius: 5px;
     text-transform: uppercase;
     color: rgb(255, 86, 86);
     padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+@media screen and (min-width:480px){
+    .btn_all_container>*{
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+    .btn_clear{
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+}
+@media screen and (min-width:769px){
+    .btn_all_container>*{
+        font-size: 1.2rem;
+        padding: 0.8rem;
+    }
+    .btn_clear{
+        font-size: 1.2rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Hover */
+
+.btn_all_container>*:hover, .btn_clear:hover{
+    transform: scale(1.01);
+    opacity: 1;
 }

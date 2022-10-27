@@ -62,28 +62,29 @@ const ManageProduct = ({product, setProducts,
   }catch(err){
       console.log(err);
   }};
+  console.log(window.scrollY);
   return(
   <>
-    <tr className={styles.tr_title}>
-      <td onClick={() => setShowProduct(true)}>{ products[index].available ?
-      <Image style={{transform: products[index].available ? 'scale(1)' : 'scale(0.2)'}}
-      className={styles.img} 
-      src={'/img/burger.webp'} 
-      width={50} height={50} objectFit='cover' alt='photo'
-      />
-     : <p className={styles.unavailable}>Unavailable</p> }
+    <tr className={styles.tr}>
+      <td onClick={() => setShowButtons(!showButtons)}>{ products[index].available ?
+        <Image style={{transform: products[index].available ? 'scale(1)' : 'scale(0.2)', cursor: "pointer"}}
+        className={styles.img}
+        src={'/img/burger.webp'}
+        width={40} height={40} objectFit='cover' alt='photo'
+        />
+     : <p className={styles.unavailable}>x</p> }
       </td>
-      <td onClick={() => setShowProduct(true)}>{'12345678809'.slice(0, 5)}...</td>
-      <td onClick={() => setShowProduct(true)}>{product.title}</td>
-      <td onClick={() => setShowProduct(true)}>£{product.price}</td>
+      <td className={styles.text} onClick={() => setShowButtons(!showButtons)}>{'12345678809'.slice(0, 5)}...</td>
+      <td className={styles.text} onClick={() => setShowButtons(!showButtons)}>{product.title}</td>
+      <td className={styles.text} onClick={() => setShowButtons(!showButtons)}>{product.price === 0 ? "Free" : `£${product.price}`}</td>
       <td> 
       {showButtons ?
         <div className={styles.btn_container}>
-          <button className={styles.btn_available} style={{color: products[index].available ? '#00b20f' : '#7a7a7a'}} onClick={() => handleAvailable(product._id)}>{products[index].available ? 'Available' : 'Unavailable'}</button>
-          <button className={styles.btn_upgrade} style={{color: products[index].upgrade ? 'rgb(0, 182, 160)' : '#7a7a7a'}} onClick={() => handleUpgrade(product._id)}>{products[index].upgrade ? 'Upgrade' : 'Make Upgrade'}</button>
-          <button className={styles.btn_extra} style={{color: isExtra ? '#3e80d5' : '#7a7a7a'}} onClick={() => setShowMakeExtra(true)}>{isExtra ? 'Extra' : 'Make Extra'}</button>
+          <button className={styles.btn_available} style={{color: products[index].available ? '#00b20f' : '#7a7a7a'}} onClick={() => handleAvailable(product._id)}>{products[index].available ? 'Available' : '+ available'}</button>
+          <button className={styles.btn_upgrade} style={{color: products[index].upgrade ? 'rgb(210, 164, 16)' : '#7a7a7a'}} onClick={() => handleUpgrade(product._id)}>{products[index].upgrade ? 'Upgrade' : '+ Upgrade'}</button>
+          <button className={styles.btn_extra} style={{color: isExtra ? '#3e80d5' : '#7a7a7a'}} onClick={() => setShowMakeExtra(true)}>{isExtra ? 'Extra' : '+ Extra'}</button>
+          <button className={styles.btn_edit} onClick={()=> setShowProduct(true)}>Edit</button>
           <button className={styles.btn_delete} onClick={() => handleDelete(product._id, product.title)}>Delete</button>
-          <p onClick={()=>setShowButtons(false)}>Hide</p>
         </div>
           : <button className={styles.btn_show} onClick={()=>setShowButtons(true)}>Options</button>}
       </td>

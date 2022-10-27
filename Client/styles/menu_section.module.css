@@ -1,14 +1,14 @@
 .container{
-    width: 100%;
+    width: 90%;
     height: 100%;
-    border: 2.5px solid #101010;
-    border-radius: 15px;
+    border: 2px solid #101010;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem;
-    align-items: center;
-    margin: 0.8rem 0;
+    padding: 0 1rem;
+    margin: 0.4rem 2rem;
+    cursor: pointer;
 }
 .title_wrapper{
     display: flex;
@@ -18,10 +18,11 @@
     align-items: center;
 }
 .title{
- font-size: 4rem;
- margin: 0 0.5rem;
- font-weight: 500;
- flex: 1;
+    font-size: 2.5rem;
+    margin: 0 0.5rem;
+    font-weight: 500;
+    flex: 1;
+    text-transform: capitalize;
 }
 .icon{
     height: 50px;
@@ -29,8 +30,10 @@
     margin: 0 1rem 0 0;
 }
 .items_container{ 
-    padding: 1rem;
-    margin: 1.5rem 0;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .item{
     margin: 1rem;
@@ -43,4 +46,54 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+@media screen and (min-width:480px){
+    .container{
+        margin: 0 0 1rem 0;
+        padding: 0.1rem 1rem;
+        width: 100%;
+    }
+    .title{
+        font-size: 3rem;
+        font-weight: 400;
+    }
+} 
+@media screen and (min-width:1024px){
+    .container{
+        margin: 0 0 1rem 0;
+        padding: 0.1rem 1rem;
+    }
+    .title{
+        font-size: 3rem;
+        font-weight: 400;
+    }
+} 
+ @media screen and (min-width:550px){
+    .items_container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1rem 0;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media screen and (min-width:769px){
+    .items_container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width:1024px){
+    .items_container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .container{
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Hover */
+
+.container:hover{
+    transform: scale(1.008);
 }

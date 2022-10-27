@@ -17,26 +17,7 @@ export async function CheckOut({lineItems}, id, email){
 		customerEmail:email,
 		mode: 'payment',
 		lineItems,
-		successUrl: `http://localhost:3000/order/success/${id}`,
+		successUrl: `http://localhost:3000/order/${id}`,
 		cancelUrl: `http://localhost:3000/order/${id}`
 	});
-};
-
-export async function Refund(id) {
-
-	let stripePromise = null;
-
-	const getStripe = () => {
-		if(!stripePromise) {
-			stripePromise = loadStripe(JSON.stringify(process.env.STRIPE_SECRET_KEY));
-		};
-		return stripePromise
-	};
-
-	const stripe = await getStripe();
-	
-	 const res = await stripe.checkout.sessions.list();
-	console.log(res);
-
-
 };
