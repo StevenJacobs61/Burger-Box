@@ -5,7 +5,7 @@ import ManageProduct from './manage-product'
 import Add from './add'
 import axios from 'axios'
 import ManageExtras from './manage-extras'
-import { useEffect } from 'react'
+import Show from '../show'
 
 const ManageSection = ({section, products, setProducts, sections, setSections}) => {
   
@@ -83,10 +83,19 @@ const ManageSection = ({section, products, setProducts, sections, setSections}) 
 : null) : null}
      </tbody>
     </table> : null}
-    {showAdd ? <Add isExtra={isExtra} setIsExtra={setIsExtra} 
-    setShowAdd={setShowAdd} sections={sections} 
-    section={section}
-    products={products} setProducts={setProducts}/> 
+    {showAdd ? 
+    
+    <Show 
+    setIsExtra={setIsExtra} 
+    setShowAdd={setShowAdd}>
+      <Add isExtra={isExtra}  sections={sections} 
+      section={section}
+      products={products} 
+      setProducts={setProducts}
+      setIsExtra={setIsExtra} 
+      setShowAdd={setShowAdd}/> 
+    </Show>
+
     : null} 
   </div>
 

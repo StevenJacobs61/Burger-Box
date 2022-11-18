@@ -1,9 +1,9 @@
 import styles from '../../styles/add-section.module.css'
 import React from 'react'
-import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useState } from 'react'
 import {AiOutlineClose} from 'react-icons/ai';
+import SubmitBtn from '../buttons/submitBtn'
 
 const AddSection = ({setShowAdd, sections, setSections}) => {
     const [title, setTitle] = useState();
@@ -36,8 +36,9 @@ const AddSection = ({setShowAdd, sections, setSections}) => {
               <label className={styles.label}>Title:</label>
               <input className={styles.input} onChange={(e) => setTitle(e.target.value)} type="text"/>
             </div>
-
-            <button className={styles.btn} onClick={handleAddSection}>Submit</button>
+            <div className={styles.btn_container}>
+            <SubmitBtn innerTxt={"submit"} btnFunction={handleAddSection}/>
+            </div>
         </div>
     </div>
   )

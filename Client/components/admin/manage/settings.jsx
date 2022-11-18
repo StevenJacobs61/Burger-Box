@@ -3,6 +3,7 @@ import styles from "../../../styles/admin/manage/settings.module.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
+import SubmitBtn from '../../buttons/submitBtn'
 
 const Settings = ({settingsList, adminsList}) => {
 
@@ -278,7 +279,7 @@ const Settings = ({settingsList, adminsList}) => {
                 <h3 className={styles.update_text}>Update Time</h3>
                 <input type="number" className={styles.time_input} onChange={(e) => setDelTime(e.target.value)}/>
             </div>
-        <button className={styles.btn_submit} onClick={() => handleSubmit()}>Submit</button>
+                <SubmitBtn innerTxt={"Submit"} btnFunction={handleSubmit}/>
             </div>
             : null}
         </div>
@@ -317,7 +318,7 @@ const Settings = ({settingsList, adminsList}) => {
              <p className={styles.current_text}>"{upBanner}"</p>
              <h3 className={styles.update_text}>Update Banner</h3>
             <textarea type="text" className={styles.banner_input} onChange={(e) => setBanner(e.target.value)}/>
-            <button className={styles.btn_submit} onClick={() => handleBannerUpdate()}>Submit</button>
+            <SubmitBtn innerTxt={"Submit"} btnFunction={handleBannerUpdate}/>
             </div>
             : null}
         </div>
@@ -339,7 +340,7 @@ const Settings = ({settingsList, adminsList}) => {
              <p className={styles.current_text}>"{upNotice}"</p>
              <h3 className={styles.update_text}>Update Notice</h3>
             <textarea type="text" className={styles.banner_input} onChange={(e) => setNotice(e.target.value)}/>
-            <button className={styles.btn_submit} onClick={() => handleNoticeUpdate()}>Submit</button>
+            <SubmitBtn innerTxt={"Submit"} btnFunction={handleNoticeUpdate}/>
             </div> :null}
         </div>
 
@@ -405,7 +406,9 @@ const Settings = ({settingsList, adminsList}) => {
                         <p className={styles.account_title}>Password:</p>
                         <input type="text" placeholder="password" className={styles.account_input} onChange={(e)=> setPassword(e.target.value)}/>
                     </div>
-                    <button className={styles.btn_submit} onClick={()=>handleAddAccount()}>submit</button>
+                    <div className={styles.btn_container}>
+                        <SubmitBtn  innerTxt={"Submit"} btnFunction={handleAddAccount}/>
+                    </div>
                 </div> </>}
             </div> :null}
         </div>

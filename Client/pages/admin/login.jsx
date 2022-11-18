@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import styles from '../../styles/login.module.css'
 import axios from 'axios'
+import SelectBtn from '../../components/buttons/selectBtn'
 
 
 const Login = () => {
@@ -42,7 +43,9 @@ if(res.data){
             <input type="text" onChange={(e) => setUsername(e.target.value)} className={styles.input}/>
             <label htmlFor="input" className={styles.label}>password:</label>
             <input type="password" onChange={(e) => setPassword(e.target.value)}  className={styles.input}/>
-            <button className={styles.submit} type='submit' onClick={() => handleUser()} >Login</button>
+            <div className={styles.btn_container}>
+              <SelectBtn innerTxt={"Login"} btnFucntion={handleUser} btnStyle={"S"} /> 
+            </div>
         </span>
 
     </div>

@@ -3,6 +3,7 @@ import styles from "../../styles/view-product.module.css"
 import {AiOutlineClose} from 'react-icons/ai';
 import { useState } from 'react';
 import axios from 'axios';
+import SubmitBtn from '../buttons/submitBtn';
 
 const ViewProduct = ({product, setShowProduct, setProducts, products}) => {
 
@@ -78,29 +79,29 @@ const ViewProduct = ({product, setShowProduct, setProducts, products}) => {
             </div>
         <div className={styles.input_container}>
             <label className={styles.label}>Current Price:</label>
-            <h2 className={styles.text}>£{product.price}</h2>
+            <h2 className={styles.text}>{product.price === 0 ? "Free" : `£${product.price}`}</h2>
               <label className={styles.label}>Set Price:</label>
               <input className={styles.input} onChange={(e) => setPrice(e.target.value)} type="number"/>
             </div>
         <div className={styles.input_container}>
             <label className={styles.label}>Current Description:</label>
-            <h2 className={styles.text}>"{product.desc}"</h2>
+            <h2 className={styles.text} style={{color: product.desc ? null : "var(--text--dark-red)"}}>{product.desc ? `"${product.desc}"` : "none"}</h2>
               <label className={styles.label}>Set Description:</label>
               <textarea className={styles.textarea} onChange={(e) => setDesc(e.target.value)} type="text"/>
             </div>
         <div className={styles.input_container}>
             <label className={styles.label}>Current Image:</label>
-            <h2 className={styles.text}>{product.img}</h2>
+            <h2 className={styles.text} style={{color: product.img ? null : "var(--text--dark-red)"}}>{product.img ? product.img : "none"}</h2>
               <label className={styles.label}>Set Image:</label>
               <input className={styles.input} onChange={(e) => setFile(e.target.value)} type="text"/>
             </div>
         <div className={styles.input_container}>
             <label className={styles.label}>Current Stripe-ID:</label>
-            <h2 className={styles.text}>{product.title}</h2>
+            <h2 className={styles.text}>{product.stripeId}</h2>
               <label className={styles.label}>Set Stripe-ID:</label>
               <input className={styles.input} onChange={(e) => setStripeId(e.target.value)} type="text"/>
             </div>
-            <button className={styles.btn} onClick={handleUpdate}>Submit</button>
+            <SubmitBtn innerTxt={"submit"} btnFunction={handleUpdate}/>
         </div>
         </div>
   )

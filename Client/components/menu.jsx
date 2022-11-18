@@ -7,6 +7,7 @@ import {FaArrowDown} from 'react-icons/fa';
 import {  useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { nowOpen } from '../redux/userSlice'
+import SelectBtn from './buttons/selectBtn'
 
 
 const Menu = ({sectionsList, itemsList, settings}) => {
@@ -39,6 +40,10 @@ useEffect(() => {
   dispatch(nowOpen(isOpen));
 
 }, [sections]);
+
+const handleBasket = () => {
+  router.push("/cart")
+}
 
 const roundedTotal = Math.round(total * 100)/100;
 
@@ -78,7 +83,9 @@ const roundedTotal = Math.round(total * 100)/100;
           </div>
           <div className={styles.checkout}>
             {!settings.offline ? <><p className={styles.text}>Total: £{roundedTotal}</p>
-            <Link href={'/cart'}><button className={styles.btn}>Basket</button></Link></> : 
+            <SelectBtn innerTxt={"basket"} btnFucntion={handleBasket} btnStyle={"L"}/>
+            </> 
+            : 
             <p className={styles.offline}>Offline</p>
             } 
           </div>

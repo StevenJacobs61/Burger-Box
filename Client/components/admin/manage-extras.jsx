@@ -23,9 +23,10 @@ const ManageExtra = ({product, products, setProducts, section}) => {
      }catch(err){
          console.log(err);
      }
+    }
 
-    const handleDelete = async (id) => {
-      if(products.filter((prod) => prod.title === "Fries").length === 1){
+    const handleDel = async (id) => {
+      if(product.title === "Fries" && products.find((p)=> p.title === "Fries")){
         alert("Must have a menu item titled 'Fries'")
       } else{
         try {
@@ -54,9 +55,10 @@ const ManageExtra = ({product, products, setProducts, section}) => {
             }))
         } catch (err) {
           console.log(err);
-        }}
-      
+        }
       }
+      
+      
   return (
     <tr className={styles.tr_title}>
     <td className={styles.unavailable} onClick={()=>setShowButtons(!showButtons)}>{products[index].available ? null : "x"}</td>
@@ -68,7 +70,7 @@ const ManageExtra = ({product, products, setProducts, section}) => {
         <div className={styles.btn_container}>
           <button className={styles.btn_available} style={{color: products[index].available ? '#00b20f' : '#7a7a7a'}} onClick={() => handleAvailable(product._id)}>{products[index].available ? 'Available' : '+ available'}</button>
           <button onClick={()=>handleDelExtra(product._id)}>- Extra</button>
-          <button className={styles.btn_delete} onClick={() => handleDelete(product._id)}>Delete</button>
+          <button className={styles.btn_delete} onClick={() => handleDel(product._id)}>Delete</button>
         </div>
         : <button className={styles.btn_show} onClick={()=>setShowButtons(true)}>Options</button>}
     </td>

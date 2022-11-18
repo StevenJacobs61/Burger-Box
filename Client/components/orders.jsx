@@ -65,7 +65,8 @@ const handleEdit = (order) => {
 // ** Makes lStorage "Orders" empty array, updates redux and state
 const handleClear = () => {
   localStorage.setItem("Orders", "[]");
-  dispatch(addQuantity(), changeTotal(0));
+  dispatch(addQuantity());
+  dispatch(changeTotal(0));
   setOrders([]);
 }
 

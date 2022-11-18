@@ -156,40 +156,9 @@
 }
 }
 
-/* Buttons */
-
-.btn{
-    padding: 0.5rem;
-    border-radius: 10px;
-    background-color: #fff;
-    color: rgb(0, 114, 159);
-    font-size: 2rem;
-    border: 1px solid ;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    cursor: pointer;
-    opacity: 0.8;
-}
-
-@media screen and (min-width:480px){
-    .btn{
-        font-size: 2.2rem;
-    }
-}
-@media screen and (min-width:769px){
-    .btn{
-        font-size: 2.5rem;
-    }
-}
-@media screen and (min-width:1024px){
-    .btn{
-        font-size: 2rem;
-    }
-}
-
 /* Hover */
 
-.close:hover, .btn:hover{
+.close:hover{
     transform: scale(1.01);
     opacity: 1;
  }

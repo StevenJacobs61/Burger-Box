@@ -18,7 +18,7 @@ const ManageProduct = ({product, setProducts,
     
 // Delete a product
   const handleDelete = async (id) => {
-    if(products.filter((prod) => prod.title === "Fries").length === 1){
+    if(product.title === "Fries" && products.find((p)=> p.title === "Fries")){
       alert("Must have a menu item titled 'Fries'")
     } else{
     try {
@@ -62,11 +62,10 @@ const ManageProduct = ({product, setProducts,
   }catch(err){
       console.log(err);
   }};
-  console.log(window.scrollY);
   return(
   <>
     <tr className={styles.tr}>
-      <td onClick={() => setShowButtons(!showButtons)}>{ products[index].available ?
+      <td onClick={() => setShowButtons(!showButtons)}>{ products[index]?.available ?
         <Image style={{transform: products[index].available ? 'scale(1)' : 'scale(0.2)', cursor: "pointer"}}
         className={styles.img}
         src={'/img/burger.webp'}
@@ -80,8 +79,8 @@ const ManageProduct = ({product, setProducts,
       <td> 
       {showButtons ?
         <div className={styles.btn_container}>
-          <button className={styles.btn_available} style={{color: products[index].available ? '#00b20f' : '#7a7a7a'}} onClick={() => handleAvailable(product._id)}>{products[index].available ? 'Available' : '+ available'}</button>
-          <button className={styles.btn_upgrade} style={{color: products[index].upgrade ? 'rgb(210, 164, 16)' : '#7a7a7a'}} onClick={() => handleUpgrade(product._id)}>{products[index].upgrade ? 'Upgrade' : '+ Upgrade'}</button>
+          <button className={styles.btn_available} style={{color: products[index]?.available ? '#00b20f' : '#7a7a7a'}} onClick={() => handleAvailable(product._id)}>{products[index]?.available ? 'Available' : '+ available'}</button>
+          <button className={styles.btn_upgrade} style={{color: products[index]?.upgrade ? 'rgb(210, 164, 16)' : '#7a7a7a'}} onClick={() => handleUpgrade(product._id)}>{products[index]?.upgrade ? 'Upgrade' : '+ Upgrade'}</button>
           <button className={styles.btn_extra} style={{color: isExtra ? '#3e80d5' : '#7a7a7a'}} onClick={() => setShowMakeExtra(true)}>{isExtra ? 'Extra' : '+ Extra'}</button>
           <button className={styles.btn_edit} onClick={()=> setShowProduct(true)}>Edit</button>
           <button className={styles.btn_delete} onClick={() => handleDelete(product._id, product.title)}>Delete</button>

@@ -11,6 +11,7 @@ import { setAdmin } from '../../redux/userSlice'
 
 
 const Admin = ({productsList, adminsList, sectionsList, settingsList, admin}) => {
+  const dispatch = useDispatch() 
 
   useEffect(()=>{
     dispatch(setAdmin(admin))
@@ -21,7 +22,6 @@ const Admin = ({productsList, adminsList, sectionsList, settingsList, admin}) =>
   const cart = useSelector((state) => state.cart);
 const [notifications, setNotifications] = useState(cart.notifications);
 
-const dispatch = useDispatch() 
 
 // Show sections on click
   const[showProducts, setShowProducts] = useState(false);

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
+import SelectBtn from './buttons/selectBtn';
 
 
 const Checkout = ({settingsList}) => {
@@ -171,7 +172,9 @@ return (
           <input type="email" placeholder='Email ...' id='email' name='email' className={styles.details_input}
           onChange={(e) => setEmail(e.target.value)}/>
         </div>
-        <div className={styles.pay_container}><button className={styles.btn_pay} onClick={handleOrder} >Checkout</button></div>
+        <div className={styles.btn_container}>
+          <SelectBtn innerTxt={"checkout"} btnFucntion={handleOrder} btnStyle={"L"}/>
+          </div>
         </div>
   </div>
   )

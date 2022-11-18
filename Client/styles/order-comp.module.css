@@ -12,6 +12,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 60vh;
+    overflow: scroll;
 }
 .order_container{
     display: flex;
@@ -58,6 +60,7 @@
     width: 500px;
     padding: 2.5rem 7rem;
     border: 0;
+    height: 70vh;
    }
    .order_container{
     margin: 0.5rem 0 0;

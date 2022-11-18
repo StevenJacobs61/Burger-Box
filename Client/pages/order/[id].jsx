@@ -5,6 +5,7 @@ import OrderComp from '../../components/order-comp';
 import { io } from 'socket.io-client';
 import { useEffect, useState, useRef } from 'react';
 import { CheckOut } from "../../components/stripe"
+import SelectBtn from '../../components/buttons/selectBtn';
 
 
 
@@ -17,7 +18,17 @@ const Order = ({order, products}) => {
   const [note, setNote] = useState();
   const socket = useRef(io("ws://localhost:7500"))
 
+  const [width, setWidth] = useState()
 
+  useEffect(() => {
+    handleWidth()
+    window.addEventListener("resize", handleWidth)
+  }, [])
+
+  const handleWidth = () => {
+    setWidth(window.innerWidth)
+  }
+  
 
  useEffect(() => {
   // Arrange main order items to array with product id and quantity
@@ -94,17 +105,19 @@ const handlePaid = async (id) => {
   }
 }
 
-
+const checkoutF = () => {
+  CheckOut({lineItems: productsList}, order._id, order.details.email)
+  handlePaid(order._id)
+}
 
   return (
     <div className={styles.container}>
      <div className={styles.inner_container}>
        <div className={styles.wrapper}>
-        {accepted === 5 ?
+        {accepted === 5 && width > 1023 ?
         <>
          <h1 className={styles.hdr}>Please Check your order and click checkout</h1>
-         <button id={styles.top} className={styles.btn_pay} onClick={() => {CheckOut({lineItems: productsList}, order._id, order.details.email), handlePaid(order._id)}}>Checkout</button>
-         {/* <button className={styles.btn_pay} onClick={() => handlePaid(order._id)}>Paid</button> */}
+         <SelectBtn id={styles.bottom} innerTxt={"checkout"} btnFucntion={checkoutF} btnStyle={"L"}/>
          </>
        : accepted === 1 ?
        <h1 className={styles.hdr}>Your order has been submitted to the restaurant</h1>
@@ -125,7 +138,10 @@ const handlePaid = async (id) => {
         <p className={styles.total} id={styles.total}>Total: {order.total}</p>
        </div>
        <OrderComp order={order} fries={fries}/>
-       {accepted === 5 ? <button id={styles.bottom} className={styles.btn_pay} onClick={() => {CheckOut({lineItems: productsList}, order._id, order.details.email), handlePaid(order._id)}}>Checkout</button> : null}
+       {accepted === 5 && width < 1024 ?
+       <SelectBtn id={styles.bottom} innerTxt={"checkout"} btnFucntion={checkoutF} btnStyle={"L"}/>
+      //  <button id={styles.bottom} className={styles.btn_pay} onClick={() => {CheckOut({lineItems: productsList}, order._id, order.details.email), handlePaid(order._id)}}>Checkout</button> 
+       : null}
      </div>
    </div>
     )

@@ -163,32 +163,9 @@
 }
 }
 
-/* Buttons */
-
-.btn{
-    width: 50%;
-    padding: 1rem;
-    margin: 1rem 0 2rem;
-    font-size: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.4rem;
-    color: rgb(0, 182, 130);
-    background-color: #fff;
-    border: 1px solid;
-    border-radius: 10px;
-    opacity: 0.8;
-    cursor: pointer;
-}
-@media screen and (min-width:1024px){
-    .btn{
-        font-size: 1.8rem;
-        width: unset;
-    }
-}
-
 /* Hover */
 
-.close:hover, .btn:hover, .input:hover{
+.close:hover, .input:hover{
     transform: scale(1.02);
     opacity: 1;
  }

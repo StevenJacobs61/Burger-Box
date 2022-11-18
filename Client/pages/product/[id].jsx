@@ -11,10 +11,10 @@ import {MdChildCare} from "react-icons/md"
 import {GiKetchup} from "react-icons/gi"
 import {GiCakeSlice} from "react-icons/gi"
 import {GiHotMeal} from "react-icons/gi"
+import SelectBtn from '../../components/buttons/selectBtn';
 
 const Product = ({products, product, settingsList, sectionsList}) => {
 const settings = settingsList[0]
-console.log(sectionsList);
 const [open, setOpen] = useState(true)
 
 useEffect(() => {
@@ -192,9 +192,10 @@ return (
             </div>
             <div className={styles.container_order}>
              
-            {settings.offline || !open ? <p onClick={()=> router.push("/")} className={styles.offline}>{open ? "Offline" : "closed"}</p> :<><h3 className={styles.finalPrice}>Total<br/>£{totalPrice}</h3>
-              <button className={styles.btn_order} 
-             onClick={()=>{handleOrder()}}>Add to <br></br>Basket</button> </>}
+            {settings.offline || !open ? <p onClick={()=> router.push("/")} className={styles.offline}>{open ? "Offline" : "closed"}</p> :
+            <div className={styles.add_container}><h3 className={styles.finalPrice}>Total £{totalPrice}</h3>
+            <SelectBtn innerTxt={"select"} btnFucntion={handleOrder} btnStyle={"L"}/>
+              </div>}
             </div>
         </div>
   </div>

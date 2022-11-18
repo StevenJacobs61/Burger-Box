@@ -16,7 +16,7 @@
     box-shadow: 0 0 3px rgb(162, 231, 252);
     margin: 5rem 0;
     width: 250px;
-    padding: 2rem 0;
+    padding: 2rem 0 0;
 }
 .input{
     border-radius: 7px;
@@ -35,7 +35,7 @@
 }
 .hdr{
     padding: 0.4rem 0.7rem; 
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.5rem;
@@ -44,29 +44,7 @@
     opacity: 0.8;
     color: #4a5168;
 }
-.submit{
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-size: 1.8rem;
-    border-radius: 10px;
-    font-weight: 200;
-    border: 0;
-    box-shadow: 0 0 2px #101010;
-    background-color: #fff;
-    color: #101010;
-    padding: 1rem;
-    margin: 2.2rem 0 1rem;
-    cursor: pointer;
-    opacity: 0.9;
-}
-.submit:hover{
-  transform: scale(1.01);
-  opacity: 1;
-}
 
-@media screen and (min-width:480px){
-    .title{
-    }
-}
+
 
 

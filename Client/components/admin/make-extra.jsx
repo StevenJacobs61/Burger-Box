@@ -4,6 +4,7 @@ import {AiOutlineClose} from 'react-icons/ai';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import SubmitBtn from '../buttons/submitBtn';
 
 const MakeExtra = ({product, products, sections, 
     showMakeExtra, setShowMakeExtra, setProducts,
@@ -101,8 +102,9 @@ const handleAddExtras = async (product) => {
                 )
               }
             </div> 
-        
-            <button className={styles.btn} onClick={() => handleAddExtras(product)}>Submit</button>
+            <div className={styles.btn_container}>
+                <SubmitBtn innerTxt={"submit"} btnFunction={handleAddExtras} fProps={product}/>
+            </div>
         </div>
     </div>
   )

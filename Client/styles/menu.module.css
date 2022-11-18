@@ -170,9 +170,9 @@ width: 410px;
 /* Notice */
 
 .notice_container{
-    background-color: var(--bg-color--blue);
+    background-color: #fff;
     width: 100vw;
-    margin: 1rem 0;
+    margin: 1rem 0 2rem;
 }
 .notice_hdr{
     text-align: center;

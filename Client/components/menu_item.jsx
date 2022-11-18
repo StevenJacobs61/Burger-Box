@@ -7,6 +7,7 @@ import {MdChildCare} from "react-icons/md"
 import {GiKetchup} from "react-icons/gi"
 import {GiCakeSlice} from "react-icons/gi"
 import {GiHotMeal} from "react-icons/gi"
+import SelectBtn from './buttons/selectBtn';
 
 const MenuItem = ({item, section, settings}) => {
   const router = useRouter()
@@ -65,7 +66,7 @@ const MenuItem = ({item, section, settings}) => {
           </div>
           {item.available && section.available && !settings.offline ?
          <div className={styles.btn_container}>
-              <button className={styles.btn} onClick={() => handleSelect()}>Select options</button>
+              <SelectBtn innerTxt={"Select options"} btnFucntion={handleSelect} btnStyle={"S"}/>
           </div>
           : <p className={styles.text}> {settings.offline ? "Offline" : "Unavailable"}</p> }
     </div>
