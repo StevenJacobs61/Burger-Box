@@ -15,7 +15,7 @@ const Admin = ({productsList, adminsList, sectionsList, settingsList, admin}) =>
 
   useEffect(()=>{
     dispatch(setAdmin(admin))
-  }, [])
+  }, )
 
   // Get notifiations status from redux
 
