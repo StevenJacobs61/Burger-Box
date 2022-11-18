@@ -46,7 +46,7 @@ const [showItem, setShowItem] = useState(false)
       setNewOrder(data);
       setShowItem(true)};
     });
-  }, [socket]);
+  }, [socket, notifications]);
   
   // Functions for managing pop up notificiations
 
@@ -108,7 +108,7 @@ const [showItem, setShowItem] = useState(false)
       }
       handleWidth()
       window.addEventListener("resize", handleWidth)
-    }, [])
+    }, )
 
   return (
     <div className={styles.container}>
