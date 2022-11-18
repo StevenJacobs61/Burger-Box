@@ -108,7 +108,7 @@ const [showItem, setShowItem] = useState(false)
       }
       handleWidth()
       window.addEventListener("resize", handleWidth)
-    }, )
+    }, [window])
 
   return (
     <div className={styles.container}>
