@@ -27,71 +27,71 @@ const socketOn = io.on("connection", (socket) => {
 
 // Stripe
 
-const express = require('express');
-const app = express();
-require("dotenv").config();
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+// const express = require('express');
+// const app = express();
+// require("dotenv").config();
+// const bodyParser = require("body-parser");
+// const cors = require("cors");
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended:true}));
+// app.use(bodyParser.json());
 
-app.use(cors());
+// app.use(cors());
 
 
-app.listen(process.env.PORT || 4000, () => {
-});
+// app.listen(process.env.PORT || 4000, () => {
+// });
 
 // Payment
 
-app.post("/refund", cors(), async(req, res) => {
+// app.post("/refund", cors(), async(req, res) => {
 
-  let {id, amount} = req.body;
-  let list = [];
-  let order = {};
+//   let {id, amount} = req.body;
+//   let list = [];
+//   let order = {};
 
   // get list of checkout sessions
-  try {
-    const checkouts = await stripe.checkout.sessions.list();
-    list = checkouts.data;
-  } catch (error) {
-    console.log(error);
-  };
+  // try {
+  //   const checkouts = await stripe.checkout.sessions.list();
+  //   list = checkouts.data;
+  // } catch (error) {
+  //   console.log(error);
+  // };
   // filter list for required session to refund
-  const orderList = list.filter((item) => item.client_reference_id === id)
+  // const orderList = list.filter((item) => item.client_reference_id === id)
   
   // respose if not found
-  if (orderList.length <= 0) {
-    return
-  } else {
-    // Set order
-    order = orderList[0]
-  }
+  // if (orderList.length <= 0) {
+  //   return
+  // } else {
+  //   // Set order
+  //   order = orderList[0]
+  // }
   // order Payment of intent to use for refund
-  const pi = order.payment_intent;
+  // const pi = order.payment_intent;
 
   // submit refund with pi
-try{
-  if(amount === 0){
-  const refund = await stripe.refunds.create({
-    payment_intent: pi
-  })
-}else {
-  const refund = await stripe.refunds.create({
-    payment_intent: pi,
-    amount: amount
-  });
-}
-  res.json({
-    message: "Refund successful",
-    success: true,
-  })
-}catch(err){
- console.log(err);
- res.json({
-  message: "Refund unsuccessful",
-  success: false
- });
-};
-});
+// try{
+//   if(amount === 0){
+//   const refund = await stripe.refunds.create({
+//     payment_intent: pi
+//   })
+// }else {
+//   const refund = await stripe.refunds.create({
+//     payment_intent: pi,
+//     amount: amount
+//   });
+// }
+//   res.json({
+//     message: "Refund successful",
+//     success: true,
+//   })
+// }catch(err){
+//  console.log(err);
+//  res.json({
+//   message: "Refund unsuccessful",
+//   success: false
+//  });
+// };
+// });
