@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../../styles/current-orders.module.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { io } from 'socket.io-client'
 import ListItem from './list-item'
 import axios from 'axios'
@@ -8,6 +8,7 @@ import Item from './item'
 import { useSelector } from 'react-redux'
 
 const CurrentOrders = ({orders}) => {
+
   // Show/hide sections on click
 
   const[sectionShow, setSectionShow] = useState([0,1,2,3,4,5]);
@@ -50,22 +51,17 @@ const CurrentOrders = ({orders}) => {
   };
   // Websocket updates
   
-  const [socket, setSocket] = useState()
+  const socket = useRef(io("ws://localhost:7500"))
   
   useEffect(() => {
-    setSocket(io("ws://localhost:7500"))
-  }, [])
-  useEffect(() => {
-    if(show){
-      setShow(false)
-    }
-    socket?.on("getNewOrder", (data) => {
+    socket.current.on("getNewOrder", (data) => {
       if (notifications){
         showItem(data);
       };
       setOrdersList((prev) => ([...prev, data]));
+      setOrdersList([... new Set(ordersList)])
     });
-    socket?.on("paid", (data) => {
+    socket.current.on("paid", (data) => {
       if (notifications){
         showItem(data);
       };
@@ -112,7 +108,8 @@ const CurrentOrders = ({orders}) => {
           item.status = 2;
         } return item;
       }))
-      socket?.emit("respond", {id, res: true, note});
+      socket.current.emit("respond", {id, res: true, note});
+      console.log("response submitted");
       setShow(false);
       setNote()
     }catch(err){
@@ -136,7 +133,7 @@ const CurrentOrders = ({orders}) => {
       } return item;
     }));
     setShow(false);
-    socket.emit("respond", {order})
+    socket.current.emit("respond", {order})
   }catch(err){
       console.log(err);
   }
@@ -149,23 +146,24 @@ const CurrentOrders = ({orders}) => {
        status: 0
      }
      let success = false;
+     let amount = 0;
      if(confirm("Are you sure you want to delete this order?"))
     {
      try {
-       const refund = await axios.post("http://localhost:4000/refund", {id})
+       const refund = await axios.post("http://localhost:3000/api/refund", {id, amount})
        success = refund.data.success
      } catch (error) {
       console.log(error);
      }
      if(success){
    try{
-      const res = await axios.put('http://localhost:3000/api/orders/' + id, newData)
+      const res = await axios.put("http://localhost:3000/api/orders/" + id, newData)
        setOrdersList(ordersList.map((item) => {
         if (item._id === id){
           item.status = 0;
         } return item;
        }))
-       socket?.emit("respond", {id, res: false, note});
+       socket.current.emit("respond", {id, res: false, note});
        setShow(false);
        setNote();
    }catch(err){
@@ -180,6 +178,7 @@ const CurrentOrders = ({orders}) => {
   // REFUND certain amount
 
   const handleRefund = async (order, amount) => {
+    console.log(amount);
     const id = order._id
     amount = parseInt(amount) * 100
     const total = order.total
@@ -190,7 +189,7 @@ const CurrentOrders = ({orders}) => {
       }else{
       if (confirm("Are you sure you want to make this refund?")){
         try {
-          const refund = await axios.post("http://localhost:4000/refund", {id, amount})
+          const refund = await axios.post("http://localhost:3000/api/refund", {id, amount})
           success = refund.data.success
         } catch (error) {
          console.log(error);
@@ -202,11 +201,19 @@ const CurrentOrders = ({orders}) => {
         if(amount === 0){
           refundAmount = order.total
         }
-        setOrdersList(ordersList.map((ord) => {
-          if(ord._id === id){
-            ord.refunded = refundAmount
-          } return ord;
-        }))
+        const data = {
+          refunded: refundAmount
+        }
+        try{
+          const res = await axios.put("http://localhost:3000/api/orders/" + id, data)
+          setOrdersList(ordersList.map((ord) => {
+            if(ord._id === id){
+              ord.refunded = refundAmount
+            } return ord;
+          }))
+        } catch (err){
+          console.log(err);
+        }
       }
     }
   }
@@ -260,7 +267,7 @@ try{
       item.status = 2;
     } return item;
   }));
-   socket?.emit("respond", {id: 1, res: true});
+  socket.current.emit("respond", {id: 1, res: true});
    setShow(false);
 }catch(err){
     console.log(err);
@@ -287,7 +294,7 @@ if(confirm("Are you sure you want to decline these orders?")){
               item.status = 0;
             } return item;
            }))
-           socket?.emit("respond", {id, res: false, note});
+           socket.current.emit("respond", {id, res: false, note});
         }
         })     
       } catch (error) {

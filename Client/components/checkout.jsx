@@ -27,9 +27,7 @@ const [instructions, setInstructions] = useState();
 // ** Connect to websocket
 const [socket, setSocket] = useState()
 
-useEffect(() => {
-  setSocket(io("ws://localhost:7500"))
-}, [])
+
 
 // ** Track delivery or Collection Option
 const [showDeliver, setShowDeliver] = useState(()=> {

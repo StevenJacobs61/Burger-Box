@@ -10,10 +10,8 @@ const Hero = ({settings}) => {
   // const [complete, setComplete] = useState(false);
 
   const text = "Burger'Box";
-  const textTwo = settings.banner;
 
   const [currentTxt, setCurrentTxt] = useState('');
-  const [currentTxtTwo, setCurrentTxtTwo] = useState('');
   const[completeOne, setCompleteOne] = useState(false)
   
 
@@ -22,8 +20,7 @@ const Hero = ({settings}) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // if(!completeOne) return
-    // else{
+   
       if(currentTxt === "Burger'Box") return
       else{
         const timeId =  setTimeout(()=>{
@@ -38,27 +35,8 @@ const Hero = ({settings}) => {
           }
           clearTimeout(timeId)     
         }
-      // }
     }
   }, [completeOne, currentTxt])
-  
-  // useEffect(() => {
-  //   if(currentTxtTwo === settings.banner) return
-  //   else{
-  //     const timeId =  setTimeout(()=>{
-  //       setCurrentTxtTwo(textTwo.slice(0, currentTxtTwo.length + 1));
-  //     }, 50);
-  //     return () => {
-  //       if(currentTxtTwo.length == textTwo.length -1){
-  //         setCurrentTxtTwo(settings.banner)
-  //         const shadowTimeout = setTimeout(()=>{
-  //           setCompleteOne(true)
-  //         }, 400)
-  //       }
-  //       clearTimeout(timeId)     
-  //     }
-  //   }
-  // }, [currentTxtTwo])
   
   
 

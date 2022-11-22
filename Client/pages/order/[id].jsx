@@ -18,6 +18,14 @@ const Order = ({order, products}) => {
   const [note, setNote] = useState();
   const socket = useRef(io("ws://localhost:7500"))
 
+
+  useEffect(() => {
+    if(order.status === 1){
+      socket.current.emit("newOrder", order);
+      localStorage.setItem("Orders", "[]")
+    }
+  }, [])
+  
   const [width, setWidth] = useState()
 
   useEffect(() => {
@@ -87,12 +95,13 @@ useEffect(() => {
 
 //  Function will be replaced by webhook from stripe when live
 
-useEffect(() => {
-  if(order.status === 1){
-    socket.current.emit("newOrder", order);
-    localStorage.setItem("Orders", "[]")
-  }
-  }, [])
+// useEffect(() => {
+//   if(order.status === 1){
+//     socket?.emit("newOrder", order);
+//     console.log("response recieved");
+//     localStorage.setItem("Orders", "[]")
+//   }
+//   }, [])
 
 const handlePaid = async (id) => {
   const data = {
@@ -135,7 +144,7 @@ const checkoutF = () => {
        <h2 className={styles.note_hdr}>Message from the BurgerBox:</h2>
         <p className={styles.note}>"{note}"</p>
         </> : null}
-        <p className={styles.total} id={styles.total}>Total: {order.total}</p>
+        <p className={styles.total} id={styles.total}>Total: £{order.total}</p>
        </div>
        <OrderComp order={order} fries={fries}/>
        {accepted === 5 && width < 1024 ?

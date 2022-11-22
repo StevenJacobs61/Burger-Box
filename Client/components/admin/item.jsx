@@ -1,16 +1,15 @@
 import React from 'react'
 import styles from '../../styles/item.module.css'
 import {AiOutlineClose} from 'react-icons/ai';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 const Item = ({setShow, order, 
   handleAccept, handleDecline, handleDelete, 
-  handleSendPast, handleComplete, setNote, handleRefund}) => {
+  handleSendPast, handleComplete, setNote, handleRefund, handleStripeRefund}) => {
 
   const [status, setStatus] = useState(order.status)
 
   const  [refundAm, setRefundAm] = useState(0)
-  
   return (
     <div className={styles.container}>
     <div className={styles.wrapper}>
@@ -136,7 +135,9 @@ const Item = ({setShow, order,
         <p className={styles.refund_warning_text}>If you don't enter an amount, the enitre order will be refunded</p>
         <h4 className={styles.refund_text}>Amount to refund</h4>
         <input className={styles.refund_input} onChange={(e) => setRefundAm(e.target.value)} type="number" defaultValue={0}/>
-        <button className={styles.btn_refund} onClick={()=> handleRefund(order, refundAm)} >Refund</button>
+        <button className={styles.btn_refund} 
+        onClick={()=> handleRefund(order, refundAm)} 
+        >Refund</button>
     </div> 
     : null}
     </div>

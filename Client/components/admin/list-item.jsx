@@ -28,7 +28,7 @@ const [status, setStatus] = useState(order.status);
                </div>)}
              </ul>
             </td>
-            <td onClick={() => showItem(order)} className={styles.title_item}>£{order.total} <br/> {order.refunded > 0 ? `-${order.refunded}` : null}</td>
+            <td onClick={() => showItem(order)} className={styles.title_item}>£{order.total} <br/> {order.refunded > 0 ? `-£${order.refunded}` : null}</td>
             <td onClick={() => showItem(order)} className={styles.title_item}>{order.delivery ? 'D' : 'C'}</td>
             <td>
             {status === 0 ? 
