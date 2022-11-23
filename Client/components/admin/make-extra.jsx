@@ -23,9 +23,8 @@ useEffect(() => {
 
     setCurrentExtraSections(currentESArray)
     
-}, [showMakeExtra]);
+}, [showMakeExtra, currentESArray]);
 
-const otherES = [];
 const allSectionsArray = [];
 const allSections = sections.map((section) => allSectionsArray.push(section.title))
 const filteredSections = allSectionsArray.filter((section) => 
@@ -36,7 +35,7 @@ useEffect(() => {
 
     setOtherExtraSections(filteredSections)
     
-}, [showMakeExtra]);
+}, [showMakeExtra, filteredSections]);
 
 // Manage extra sections array to post updated information of 
 

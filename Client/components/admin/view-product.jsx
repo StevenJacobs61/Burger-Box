@@ -69,7 +69,7 @@ const ViewProduct = ({product, setShowProduct, setProducts, products}) => {
         <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
         <div className={styles.wrapper}>
         <p className={styles.hdr_text}>Update</p>    
-        <h1 className={styles.hdr}>"{product.title}"</h1>
+        <h1 className={styles.hdr}>&quot;{product.title}&quot;</h1>
         <AiOutlineClose className={styles.close} onClick={() => {setShowProduct(false)}}></AiOutlineClose>
         <div className={styles.input_container}>
             <label className={styles.label}>Current title:</label>

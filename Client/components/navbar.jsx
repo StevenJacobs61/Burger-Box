@@ -81,7 +81,7 @@ useEffect(() => {
       window.removeEventListener('scroll', controlNavbar);
     };
   }
-}, [lastScrollY]);
+}, [lastScrollY, controlNavbar]);
 
   return (
   <>{!user.admin ? 

@@ -39,7 +39,7 @@ const Orders = ({orders, status}) => {
     setOrdersFour(orders.filter(order => order.status === 4));
     setOrdersFive(orders.filter(order => order.status === 5));
     
-  }, [])
+  }, [orders])
 
   
 

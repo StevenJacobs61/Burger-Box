@@ -48,7 +48,7 @@ useEffect(() => {
   } else {
     setPostcode()
   }
-}, [postcodeOne])
+}, [postcodeOne, postcodeTwo])
 
 useEffect(() => {
   if (postcodeOne == '25' || postcodeOne == '10' || postcodeOne == '9'){
@@ -56,7 +56,7 @@ useEffect(() => {
   }else {
     setPostcode()
   }
-}, [postcodeTwo])
+}, [postcodeTwo, postcodeOne])
 
 
 

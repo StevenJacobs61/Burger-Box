@@ -36,7 +36,7 @@ const Hero = ({settings}) => {
           clearTimeout(timeId)     
         }
     }
-  }, [completeOne, currentTxt])
+  }, [completeOne, currentTxt, dispatch])
   
   
 

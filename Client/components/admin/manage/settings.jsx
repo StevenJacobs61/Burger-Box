@@ -48,7 +48,7 @@ const Settings = ({settingsList, adminsList}) => {
         setNoticeOn(s.noticeOn)
 
         setDelivery(s.del)
-    }, [])
+    }, [adminsList, settingsList,])
 
     
 
@@ -249,7 +249,7 @@ const Settings = ({settingsList, adminsList}) => {
             }
         })
     },
-    [username, password])
+    [username, password, accounts])
 
     //*** STYLES Margin variable for headers 
     
@@ -315,7 +315,7 @@ const Settings = ({settingsList, adminsList}) => {
             onClick={()=> handleBanner()}
             style={{color: bannerOn ? "rgb(109, 109, 109)" : "var(--text--light-green)"}}>{bannerOn ? "OFF" : "On"}</button>  
              <h2 className={styles.time_text}>Current Banner:</h2>
-             <p className={styles.current_text}>"{upBanner}"</p>
+             <p className={styles.current_text}>&quot;{upBanner}&quot;</p>
              <h3 className={styles.update_text}>Update Banner</h3>
             <textarea type="text" className={styles.banner_input} onChange={(e) => setBanner(e.target.value)}/>
             <SubmitBtn innerTxt={"Submit"} btnFunction={handleBannerUpdate}/>
@@ -337,7 +337,7 @@ const Settings = ({settingsList, adminsList}) => {
             onClick={()=> handleNotice()}
             style={{color: delivery ? "rgb(109, 109, 109)" : "var(--text--light-green)"}}>{noticeOn ? "OFF" : "On"}</button>
             <h2 className={styles.time_text}>Current Notice:</h2>
-             <p className={styles.current_text}>"{upNotice}"</p>
+             <p className={styles.current_text}>&quot;{upNotice}&quot;</p>
              <h3 className={styles.update_text}>Update Notice</h3>
             <textarea type="text" className={styles.banner_input} onChange={(e) => setNotice(e.target.value)}/>
             <SubmitBtn innerTxt={"Submit"} btnFunction={handleNoticeUpdate}/>

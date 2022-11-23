@@ -35,7 +35,7 @@ useEffect(() => {
   else{
     dispatch(changeTotal(0))
   }
-}, []);
+}, [dispatch]);
 
 
 // ** Delete item from cart/local storage and local state 

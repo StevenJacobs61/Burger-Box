@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import styles from '../styles/menu_item.module.css'
 import { useRouter } from 'next/router';
-import {MdOutlineFastfood} from "react-icons/md"
+import {MdOutlineFastfood, MdOutlineLocalDrink} from "react-icons/md"
 import {MdChildCare} from "react-icons/md"
 import {GiKetchup} from "react-icons/gi"
 import {GiCakeSlice} from "react-icons/gi"
@@ -56,7 +56,7 @@ const MenuItem = ({item, section, settings}) => {
          </div>
          <div className={styles.desc_container}>
           <p className={styles.desc}>
-          "Consists of our signature beef patty a fillet of butter milk chicken, mozzarella sticks, a slice of cheese and hash browns, Then finished off with caramelised onions, turkey bacon and drizzled with a blend of sauces, in a buttered brioche bun."
+          &quot;Consists of our signature beef patty a fillet of butter milk chicken, mozzarella sticks, a slice of cheese and hash browns, Then finished off with caramelised onions, turkey bacon and drizzled with a blend of sauces, in a buttered brioche bun.&quot;
           </p>
          </div>
          <div className={styles.price_container}>

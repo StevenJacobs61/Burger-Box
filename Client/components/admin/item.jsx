@@ -132,7 +132,7 @@ const Item = ({setShow, order,
     {status === 2 || status === 3 || status === 4 ?
       <div className={styles.refund_wrapper}>
         <h3 className={styles.refund_hdr}>Refund</h3>
-        <p className={styles.refund_warning_text}>If you don't enter an amount, the enitre order will be refunded</p>
+        <p className={styles.refund_warning_text}>If you don&apos;t enter an amount, the enitre order will be refunded</p>
         <h4 className={styles.refund_text}>Amount to refund</h4>
         <input className={styles.refund_input} onChange={(e) => setRefundAm(e.target.value)} type="number" defaultValue={0}/>
         <button className={styles.btn_refund} 

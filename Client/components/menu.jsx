@@ -39,7 +39,7 @@ useEffect(() => {
 
   dispatch(nowOpen(isOpen));
 
-}, [sections]);
+}, [sections, dispatch]);
 
 const handleBasket = () => {
   router.push("/cart")
