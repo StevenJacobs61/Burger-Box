@@ -15,7 +15,7 @@ const Admin = ({productsList, adminsList, sectionsList, settingsList, admin}) =>
 
   useEffect(()=>{
     dispatch(setAdmin(admin))
-  }, [])
+  }, [dispatch, admin])
 
   // Get notifiations status from redux
 
@@ -107,7 +107,7 @@ const [showItem, setShowItem] = useState(false)
         setWidth(w)
       }
       window.addEventListener("resize", handleWidth)
-    }, [])
+    }, [showProducts, showSettings])
 
   return (
     <div className={styles.container}>

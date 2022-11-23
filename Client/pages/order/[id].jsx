@@ -55,7 +55,7 @@ const Order = ({order, products}) => {
       socket.current.emit("newOrder", order);
       localStorage.setItem("Orders", "[]")
     }
-  }, [])
+  }, [order])
   
   const [width, setWidth] = useState()
 
@@ -89,6 +89,15 @@ useEffect(() => {
   })
 }, [socket, order._id]);
 
+//  Function will be replaced by webhook from stripe when live
+
+// useEffect(() => {
+//   if(order.status === 1){
+//     socket?.emit("newOrder", order);
+//     console.log("response recieved");
+//     localStorage.setItem("Orders", "[]")
+//   }
+//   }, [])
 
 const handlePaid = async (id) => {
   const data = {
