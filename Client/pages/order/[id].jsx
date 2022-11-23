@@ -10,6 +10,9 @@ import SelectBtn from '../../components/buttons/selectBtn';
 
 
 const Order = ({order, products}) => {
+
+  const friesArray = products.filter((product) => product.title === "Fries")
+  const fries = friesArray[0]
   
   // Arrange main order items to array with product id and quantity
   const productsArray = products.map((product) => 
@@ -40,9 +43,7 @@ const Order = ({order, products}) => {
     });
   });
 
-  const friesArray = products.filter((product) => product.title === "Fries")
 
-  const [fries, setFries] = useState(friesArray[0])
   const [accepted, setAccepted] = useState(order.status)
   const [productsList, setProductsList] = useState
   (productsArray.filter((product) => product.quantity !== 0))
@@ -134,11 +135,11 @@ const checkoutF = () => {
            <h1 className={styles.hdr}>Your order has been completed, enjoy!</h1>
            : null}
            <p className={styles.notice}>* Do not leave this page whilst order is in progress</p>
-           <p className={styles.notice}>Please refresh the page after a short while if you haven't recived an expected update</p>
+           <p className={styles.notice}>Please refresh the page after a short while if you haven&apos;t recived an expected update</p>
            {note?.length >= 1 ?
        <>
        <h2 className={styles.note_hdr}>Message from the BurgerBox:</h2>
-        <p className={styles.note}>"{note}"</p>
+        <p className={styles.note}>&quot;{note}&quot;</p>
         </> : null}
         <p className={styles.total} id={styles.total}>Total: £{order.total}</p>
        </div>
