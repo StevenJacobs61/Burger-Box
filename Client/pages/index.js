@@ -15,7 +15,7 @@ export default function Home({ sections, itemsList, admin, orders, settings }) {
   useEffect(()=>{
     dispatch(setAdmin(admin))
     dispatch(setOffline(settings[0].offline))
-  }, [])
+  }, [dispatch, admin, settings])
 
   const sectionsList = sections.filter((section) => section.title !== "Extra Toppings")
 

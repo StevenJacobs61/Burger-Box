@@ -15,7 +15,7 @@ const Admin = ({productsList, adminsList, sectionsList, settingsList, admin}) =>
 
   useEffect(()=>{
     dispatch(setAdmin(admin))
-  }, )
+  }, [])
 
   // Get notifiations status from redux
 
@@ -92,23 +92,22 @@ const [showItem, setShowItem] = useState(false)
     // Change meneu width style on expand
 
     const [width, setWidth] = useState();
-    const handleWidth = () => {
-      const w = window.innerWidth;
-      if(w >=1024 && !showProducts || !showSettings) {
-        setShowProducts(true)
-        setShowSettings(true)
-      }
-      setWidth(w)
-    }
-
+    
     useEffect(() => {
       if(window.innerWidth >=1024) {
         setShowProducts(true)
         setShowSettings(true)
       }
-      handleWidth()
+      const handleWidth = () => {
+        const w = window.innerWidth;
+        if(w >=1024 && !showProducts || !showSettings) {
+          setShowProducts(true)
+          setShowSettings(true)
+        }
+        setWidth(w)
+      }
       window.addEventListener("resize", handleWidth)
-    }, [handleWidth])
+    }, [])
 
   return (
     <div className={styles.container}>

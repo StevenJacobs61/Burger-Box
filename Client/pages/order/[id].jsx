@@ -10,11 +10,42 @@ import SelectBtn from '../../components/buttons/selectBtn';
 
 
 const Order = ({order, products}) => {
+  
+  // Arrange main order items to array with product id and quantity
+  const productsArray = products.map((product) => 
+    ({
+     price: product.stripeId,
+     quantity: 0
+ }) 
+  );
+
+  const itemsArray = productsArray.map((product) => {
+    order.orders.map((order) => {
+      if (order.product.stripeId === product.price){
+        product.quantity += parseInt(order.quantity)
+      };
+      order.extraOptions.map((extra) => {
+        if(extra.stripeId === product.id){
+          product.quantity += parseInt(order.quantity)
+        }
+      });
+      order.extraUpgrades.map((upgrade) => {
+        if(upgrade.stripeId === product.price){
+          product.quantity ++
+        }
+      });
+      if(product.price === fries.stripeId && order.fries){
+        product.quantity += parseInt(order.quantity)
+      };
+    });
+  });
 
   const friesArray = products.filter((product) => product.title === "Fries")
+
   const [fries, setFries] = useState(friesArray[0])
-  const [accepted, setAccepted] = useState(null)
-  const [productsList, setProductsList] = useState([])
+  const [accepted, setAccepted] = useState(order.status)
+  const [productsList, setProductsList] = useState
+  (productsArray.filter((product) => product.quantity !== 0))
   const [note, setNote] = useState();
   const socket = useRef(io("ws://localhost:7500"))
 
@@ -38,41 +69,6 @@ const Order = ({order, products}) => {
   }
   
 
- useEffect(() => {
-  // Arrange main order items to array with product id and quantity
-  const productsArray = products.map((product) => 
-    ({
-     price: product.stripeId,
-     quantity: 0
- }) 
-  );
-  const itemsArray = productsArray.map((product) => {
-    order.orders.map((order) => {
-      if (order.product.stripeId === product.price){
-        product.quantity += parseInt(order.quantity)
-      };
-      order.extraOptions.map((extra) => {
-        if(extra.stripeId === product.id){
-          product.quantity += parseInt(order.quantity)
-        }
-      });
-      order.extraUpgrades.map((upgrade) => {
-        if(upgrade.stripeId === product.price){
-          product.quantity ++
-        }
-      });
-      if(product.price === fries.stripeId && order.fries){
-        product.quantity += parseInt(order.quantity)
-      };
-    });
-  },
-  );
-  const finalArray = productsArray.filter((product) =>
-  product.quantity !== 0
-  )
-  setProductsList(finalArray)
-  setAccepted(order.status)
-}, []);
 
 
 //  Websocket connection to admin
@@ -91,17 +87,8 @@ useEffect(() => {
     }
     setNote(res.data.note)
   })
-}, [socket]);
+}, [socket, order._id]);
 
-//  Function will be replaced by webhook from stripe when live
-
-// useEffect(() => {
-//   if(order.status === 1){
-//     socket?.emit("newOrder", order);
-//     console.log("response recieved");
-//     localStorage.setItem("Orders", "[]")
-//   }
-//   }, [])
 
 const handlePaid = async (id) => {
   const data = {
