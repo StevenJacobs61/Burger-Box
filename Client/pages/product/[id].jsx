@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { addQuantity } from '../../redux/cartSlice';
 import { setOffline, nowOpen } from '../../redux/userSlice';
 import { useSelector } from 'react-redux';
-import {MdOutlineFastfood} from "react-icons/md"
+import {MdOutlineFastfood, MdOutlineLocalDrink} from "react-icons/md"
 import {MdChildCare} from "react-icons/md"
 import {GiKetchup} from "react-icons/gi"
 import {GiCakeSlice} from "react-icons/gi"
@@ -24,7 +24,7 @@ useEffect(() => {
     setOpen(isOpen)
 
 
-}, [sectionsList]);
+}, [sectionsList, dispatch]);
 
   // initial data sorting
 const friesArray = products.filter((product) => product.title === "Fries")
@@ -52,7 +52,7 @@ const [width, setWidth] = useState();
 useEffect(() => {
   setWidth(window.innerWidth)
   dispatch(setOffline(settings.offline))
-}, [])
+}, [dispatch, settings.offline])
 
 useEffect(() => {
   window.addEventListener("resize", () =>setWidth(window.innerWidth));
@@ -114,7 +114,7 @@ return (
   <div className={styles.container}>
     <div className={styles.left}>
       {product.section.toLowerCase() === "burgers" ?
-              <div className={styles.img_container}><MdOutlineFastfood className={styles.icon} className={styles.icon} />
+              <div className={styles.img_container}><MdOutlineFastfood className={styles.icon} />
               </div> :
               section.title.toLowerCase() === "kids box meals" ?
               <div className={styles.img_container}><MdChildCare className={styles.icon} />
@@ -134,7 +134,7 @@ return (
 
        <h1 className={styles.title}>{product.title}</h1>
        {settings.offline || !open ? <h2 className={styles.offline} onClick={()=> router.push("/")}>{open ? "Offline" : "closed"}</h2> :<span className={styles.price}>Total £{totalPrice < 0 ? 0 : totalPrice}</span>}
-       <p className={styles.desc}>"{product.desc}"</p>
+       <p className={styles.desc}>&quot;{product.desc}&quot;</p>
     </div>
     
        <div className={styles.right}>

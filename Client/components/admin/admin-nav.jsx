@@ -29,7 +29,7 @@ const AdminNav = () => {
     const local = JSON.parse(localStorage.getItem("Notifications"));
     setNotifications(local)
     dispatch(changeNotif(local))
-  }, [])
+  }, [dispatch])
 
   const handleMute = () => {
     try{

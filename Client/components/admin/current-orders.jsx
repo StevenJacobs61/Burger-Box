@@ -35,7 +35,7 @@ const CurrentOrders = ({orders}) => {
   
   useEffect(() => {
     setNotifications(cart.notifications)
-  }, [])
+  }, [cart.notifications])
   useEffect(() => {
     setNotifications(cart.notifications)
   }, [cart])
@@ -73,17 +73,14 @@ const CurrentOrders = ({orders}) => {
       )
     ]);
     });
-  }, [socket]);
+  }, [socket, ordersList, notifications]);
 
   // Prevent duplicate orders
 
   useEffect(() => {
     setOrdersList([... new Set(ordersList)])
-  }, [socket])
+  }, [socket, ordersList, newOrder])
 
-  useEffect(() => {
-    setOrdersList([... new Set(ordersList)])
-  }, [newOrder])
 
 
   // MONGOOSE API CALL FUNCTIONS
