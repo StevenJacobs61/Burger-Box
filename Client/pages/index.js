@@ -8,6 +8,7 @@ import CurrentOrders from '../components/admin/current-orders'
 import { useDispatch } from 'react-redux'
 import { setAdmin, setOffline} from '../redux/userSlice'
 import { useEffect } from 'react'
+import dbConnect from '../utils/mongodb'
 
 
 export default function Home({ sections, itemsList, admin, orders, settings }) {
@@ -48,7 +49,9 @@ export const getServerSideProps = async (ctx) => {
    if (myCookie.token === process.env.TOKEN){
     admin = true
    }
-  const sectionsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/sections`);
+   await dbConnect()
+   const sectionsRes = await sections.find(); 
+  // const sectionsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/sections`);
   const itemsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/products`);
   const res = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/orders`);
   const settingsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/settings`);
