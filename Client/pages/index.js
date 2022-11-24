@@ -48,10 +48,10 @@ export const getServerSideProps = async (ctx) => {
    if (myCookie.token === process.env.TOKEN){
     admin = true
    }
-  const sectionsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/sections`);
-  const itemsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/products`);
-  const res = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/orders`);
-  const settingsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/settings`);
+  const sectionsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/sections`);
+  const itemsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/products`);
+  const res = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/orders`);
+  const settingsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/settings`);
   return {
     props:{
       sections:sectionsRes.data,
