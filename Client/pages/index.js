@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { setAdmin, setOffline} from '../redux/userSlice'
 import { useEffect } from 'react'
 import dbConnect from '../utils/mongodb'
+import sections from '../models/sections'
 
 
 export default function Home({ sections, itemsList, admin, orders, settings }) {
