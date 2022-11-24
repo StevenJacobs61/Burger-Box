@@ -41,16 +41,17 @@ export default function Home({ sections, itemsList, admin, orders, settings }) {
   )
 }
 export const getServerSideProps = async (ctx) => {
+  const dev = process.env.MODE === "DEV" ? true : false;
   const myCookie = ctx.req?.cookies || "";
   let admin = false;
 
    if (myCookie.token === process.env.TOKEN){
     admin = true
    }
-  const sectionsRes = await axios.get('http://localhost:3000/api/sections');
-  const itemsRes = await axios.get('http://localhost:3000/api/products');
-  const res = await axios.get('http://localhost:3000/api/orders');
-  const settingsRes = await axios.get('http://localhost:3000/api/settings');
+  const sectionsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/sections`);
+  const itemsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/products`);
+  const res = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/orders`);
+  const settingsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}api/settings`);
   return {
     props:{
       sections:sectionsRes.data,
