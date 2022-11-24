@@ -16,14 +16,15 @@ import orders from '../models/orders'
 
 
 
-export default function Home({ sections, itemsList, admin, orders, settings }) {
+export default function Home({ sectionsProp, itemsList, admin, orders, settings }) {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(setAdmin(admin))
     dispatch(setOffline(settings[0].offline))
   }, [dispatch, admin, settings])
-
-  const sectionsList = sections?.filter((section) => section.title !== "Extra Toppings")
+  const secs = JSON.parse(sectionsProp)
+  console.log(secs);
+  const sectionsList = secs.filter((section) => section.title !== "Extra Toppings")
 
   return (
     <div className={styles.container}>
@@ -56,19 +57,23 @@ export const getServerSideProps = async (ctx) => {
    }
    await dbConnect()
    const sectionsRes = await sections.find(); 
+   const sects = JSON.stringify(sectionsRes)
   // const sectionsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/sections`);
   const itemsRes = await products.find(); 
+  const items = JSON.stringify(itemsRes)
   // const itemsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/products`);
   const orderRes = await orders.find();
+  const ords = JSON.stringify(orderRes)
   // const res = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/orders`);
   const settingsRes = await settings.find()
+  const setts = JSON.stringify(sectionsRes)
   // const settingsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/settings`);
   return {
     props:{
-      sections:sectionsRes.data,
-      itemsList: itemsRes.data,
-      orders: orderRes.data,
-      settings: settingsRes.data,
+      sectionsProp:sects,
+      itemsList: items,
+      orders: ords,
+      settings: setts,
       admin
     }
   }
