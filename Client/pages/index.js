@@ -67,7 +67,7 @@ export const getServerSideProps = async (ctx) => {
     props:{
       sections:sectionsRes.data,
       itemsList: itemsRes.data,
-      orders: res.data,
+      orders: orderRes.data,
       settings: settingsRes.data,
       admin
     }
