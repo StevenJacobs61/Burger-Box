@@ -23,7 +23,7 @@ export default function Home({ sections, itemsList, admin, orders, settings }) {
     dispatch(setOffline(settings[0].offline))
   }, [dispatch, admin, settings])
 
-  const sectionsList = sections.filter((section) => section.title !== "Extra Toppings")
+  const sectionsList = sections?.filter((section) => section.title !== "Extra Toppings")
 
   return (
     <div className={styles.container}>
