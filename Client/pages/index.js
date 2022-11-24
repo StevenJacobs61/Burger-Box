@@ -37,7 +37,7 @@ export default function Home({ sections, itemsList, admin, orders, settings }) {
    <Menu sectionsList={sectionsList} settings={settings[0]} itemsList={itemsList} admin={admin}/>
    </>
    }
-    </div>
+    </div> 
   )
 }
 export const getServerSideProps = async (ctx) => {
