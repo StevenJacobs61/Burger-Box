@@ -16,16 +16,18 @@ import orders from '../models/orders'
 
 
 
-export default function Home({ sectionsProp, itemsList, admin, orders, settings }) {
+export default function Home({ sectionsProp, itemsList, admin, ordersList, settingsList }) {
   const dispatch = useDispatch()
+  const secs = JSON.parse(sectionsProp)
+  const items = JSON.parse(itemsList)
+  const ords = JSON.parse(ordersList)
+  const sets = JSON.parse(settingsList)
+  const sectionsList = secs.filter((section) => section.title !== "Extra Toppings")
+  
   useEffect(()=>{
     dispatch(setAdmin(admin))
-    dispatch(setOffline(settings[0].offline))
-  }, [dispatch, admin, settings])
-  const secs = JSON.parse(sectionsProp)
-  console.log(secs);
-  const sectionsList = secs.filter((section) => section.title !== "Extra Toppings")
-
+    dispatch(setOffline(sets[0].offline))
+  }, [dispatch, admin, sets[0]])
   return (
     <div className={styles.container}>
       <Head>
@@ -37,11 +39,11 @@ export default function Home({ sectionsProp, itemsList, admin, orders, settings 
       {admin ? 
       <>
       <AdminNav />
-      <CurrentOrders orders={orders}/>
+      <CurrentOrders orders={ords}/>
       </> :
       <>
-    <Hero settings={settings[0]}/> 
-   <Menu sectionsList={sectionsList} settings={settings[0]} itemsList={itemsList} admin={admin}/>
+    <Hero settings={sets[0]}/> 
+   <Menu sectionsList={secs} settings={sets[0]} itemsList={items} admin={admin}/>
    </>
    }
     </div> 
@@ -72,8 +74,8 @@ export const getServerSideProps = async (ctx) => {
     props:{
       sectionsProp:sects,
       itemsList: items,
-      orders: ords,
-      settings: setts,
+      ordersList: ords,
+      settingsList: setts,
       admin
     }
   }
