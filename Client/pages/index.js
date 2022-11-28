@@ -43,7 +43,7 @@ export default function Home({ sectionsProp, itemsList, admin, ordersList, setti
       </> :
       <>
     <Hero settings={sets[0]}/> 
-   <Menu sectionsList={secs} settings={sets[0]} itemsList={items} admin={admin}/>
+   <Menu sectionsList={sectionsList} settings={sets[0]} itemsList={items} admin={admin}/>
    </>
    }
     </div> 
@@ -68,7 +68,7 @@ export const getServerSideProps = async (ctx) => {
   const ords = JSON.stringify(orderRes)
   // const res = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/orders`);
   const settingsRes = await settings.find()
-  const setts = JSON.stringify(sectionsRes)
+  const setts = JSON.stringify(settingsRes)
   // const settingsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/settings`);
   return {
     props:{

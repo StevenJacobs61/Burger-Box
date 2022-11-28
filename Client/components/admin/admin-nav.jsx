@@ -44,8 +44,9 @@ const AdminNav = () => {
 
 const handleLogout = async () => {
   if(confirm("Are you sure you wish to logout?")){
-    await axios.delete("http://localhost:3000/api/login/cookie");
+    await axios.delete("/api/login/cookie");
     router.push("/");
+    router.reload();
     dispatch(setAdmin(false));
   }else{
     alert("There was an error logging out, try deleting your BurgerBox browser cookie if the issue persists.")

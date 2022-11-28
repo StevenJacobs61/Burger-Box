@@ -8,9 +8,6 @@ const MenuSection = ({ itemsList, section, settings}) => {
 const [expand, setExpand] = useState(false);
 const [width, setWidth] = useState();
 
-
-
-
 const handleClick = (e) => {
  if(e.target.id == 1){
   setExpand(!expand);

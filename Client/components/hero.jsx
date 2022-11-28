@@ -6,7 +6,6 @@ import {nowComplete} from "../redux/userSlice"
 
 
 const Hero = ({settings}) => {
-
   // const [complete, setComplete] = useState(false);
 
   const text = "Burger'Box";

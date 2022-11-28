@@ -21,9 +21,7 @@ const MenuItem = ({item, section, settings}) => {
     }
   }
 
-
   return (
-    
     <div className={styles.section}>
       <div className={styles.container} onClick={() => handleSelect()}>
          <div className={styles.top_wrapper}>
