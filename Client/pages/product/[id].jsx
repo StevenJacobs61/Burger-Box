@@ -12,10 +12,22 @@ import {GiKetchup} from "react-icons/gi"
 import {GiCakeSlice} from "react-icons/gi"
 import {GiHotMeal} from "react-icons/gi"
 import SelectBtn from '../../components/buttons/selectBtn';
+import dbConnect from '../../utils/mongodb';
+import sections from '../../models/sections'
+import products from '../../models/products'
+import settings from '../../models/settings'
 
-const Product = ({products, product, settingsList, sectionsList}) => {
+const Product = ({prods, prod, setts, secs}) => {
+  // Refactor needed for vercel hosting
+  // ** Couldn't make internal api calls with getServerSideProps
+  const sectionsList = JSON.parse(secs)
+  const products = JSON.parse(prods)
+  const product = JSON.parse(prod)
+  const settingsList = JSON.parse(setts)
+
 const settings = settingsList[0]
 const [open, setOpen] = useState(true)
+const dispatch = useDispatch();
 
 useEffect(() => {
   const sectionClosed = sectionsList.filter((section) => !section.available);
@@ -44,7 +56,6 @@ const[note, setNote] = useState();
 
 // redux and router
 const router = useRouter();
-const dispatch = useDispatch();
 const cart = useSelector((state) => state.cart)
 
 // Resize detenction to show element on 1024px+ display
@@ -203,18 +214,28 @@ return (
 }
 
 export const getServerSideProps = async ({params}) => {
-    const productsRes = await axios.get('http://localhost:3000/api/products');
-    const productRes = await axios.get(`http://localhost:3000/api/products/${params.id}`);
-    const settingsRes = await axios.get(`http://localhost:3000/api/settings`);
-    const sectionsRes = await axios.get(`http://localhost:3000/api/sections`);
-    
+
+  await dbConnect()
+
+  const productRes = await products.findById(params.id);
+  const prod = JSON.stringify(productRes)    
+  // const productRes = await axios.get(`http://localhost:3000/api/products/${params.id}`);
+  const sectionsRes = await sections.find(); 
+  const sects = JSON.stringify(sectionsRes)
+  // const sectionsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/sections`);
+  const itemsRes = await products.find(); 
+  const items = JSON.stringify(itemsRes)
+  // const itemsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/products`);
+  const settingsRes = await settings.find()
+  const setts = JSON.stringify(settingsRes)
+  // const settingsRes = await axios.get(`${dev ? process.env.DEV_URL : process.env.PROD_URL}/api/settings`);
     
     return {
       props:{
-        products: productsRes.data,
-        product: productRes.data,
-        settingsList: settingsRes.data,
-        sectionsList: sectionsRes.data
+        prods: items,
+        prod: prod,
+        setts: setts,
+        secs: sects
       }
     }
   }
