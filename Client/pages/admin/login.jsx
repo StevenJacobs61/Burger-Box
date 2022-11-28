@@ -3,16 +3,23 @@ import React, { useState } from 'react'
 import styles from '../../styles/login.module.css'
 import axios from 'axios'
 import SelectBtn from '../../components/buttons/selectBtn'
+import cookie from "cookie"
+import { useEffect } from 'react'
 
 
-const Login = () => {
+const Login = (prod) => {
 
 const[username, setUsername] = useState()
 const[password, setPassword] = useState()
 const router = useRouter()
 
 
-
+// Production skip log in process
+useEffect(()=>{
+if (prod){
+  router.push("/")
+}
+},[])
 
 
 const handleUser = async () => {
@@ -30,7 +37,6 @@ if(res.data){
   console.log(err);
   alert("Error logging in")
 }
-
   }
 
 
@@ -53,3 +59,23 @@ if(res.data){
   }
 
 export default Login
+
+
+// Production skip log in process
+export const getServerSideProps = async (ctx) => {
+  
+  ctx.res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("token", process.env.TOKEN, {
+      maxAge: 60 * 60 * 24,
+      sameSite: "strict",
+      path: "/",
+    })
+  ); 
+  return {
+
+    props:{
+      prod: true
+    }
+  }
+}
