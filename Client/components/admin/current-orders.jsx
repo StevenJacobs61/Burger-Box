@@ -50,36 +50,37 @@ const CurrentOrders = ({orders}) => {
     setShow(true);
   };
   // Websocket updates
-  const sock = process.env.MODE === "DEV" ? io("ws://localhost:7500") : null
-  const socket =  useRef(sock)
+  const socket = useRef(process.env.MODE === "DEV" ? io("ws://localhost:7500") : null)
   
   useEffect(() => {
-    socket.current.on("getNewOrder", (data) => {
-      if (notifications){
-        showItem(data);
-      };
-      setOrdersList((prev) => ([...prev, data]));
-      setOrdersList([... new Set(ordersList)])
-    });
-    socket.current.on("paid", (data) => {
-      if (notifications){
-        showItem(data);
-      };
-      setOrdersList([... new Set(ordersList.map((order) => {
-        if(order._id === data._id){
-          order.status = 2;
-        } return order;
-      })
-      )
-    ]);
-    });
+    if(process.env.MODE === "DEV"){
+      socket.current.on("getNewOrder", (data) => {
+        if (notifications){
+          showItem(data);
+        };
+        setOrdersList((prev) => ([...prev, data]));
+        setOrdersList([... new Set(ordersList)])
+      });
+      socket.current.on("paid", (data) => {
+        if (notifications){
+          showItem(data);
+        };
+        setOrdersList([... new Set(ordersList.map((order) => {
+          if(order._id === data._id){
+            order.status = 2;
+          } return order;
+        })
+        )
+      ]);
+      });
+    }
   }, [socket, ordersList, notifications]);
 
   // Prevent duplicate orders
-
-  useEffect(() => {
-    setOrdersList([... new Set(ordersList)])
-  }, [socket, ordersList, newOrder])
+//*** */ causes error
+  // useEffect(() => {
+  //   setOrdersList([... new Set(ordersList)])
+  // }, [socket, ordersList, newOrder])
 
 
 
