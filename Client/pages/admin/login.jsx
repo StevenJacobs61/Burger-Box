@@ -19,9 +19,9 @@ const handleUser = async () => {
 
   
   try{
-    const res = await axios.post("http://localhost:3000/api/login", {username, password, isApp:true})
+    const res = await axios.post("/api/login", {username, password, isApp:true})
 if(res.data){
-  const cookieRes = await axios.post("http://localhost:3000/api/login/cookie", {adminMatch:true})
+  const cookieRes = await axios.post("/api/login/cookie", {adminMatch:true})
   if(cookieRes.data){
     router.push("/")
   }

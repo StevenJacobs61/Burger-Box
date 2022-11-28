@@ -3,9 +3,12 @@ import Checkout from '../components/checkout'
 import Orders from '../components/orders'
 import styles from '../styles/cart.module.css'
 import axios from 'axios'
+import settings from '../models/settings'
+import dbConnect from '../utils/mongodb'
 
 
-const Cart = ({settingsList}) => {
+const Cart = ({setts}) => {
+  const settingsList = JSON.parse(setts)
 
   return (
     <div className={styles.container}>
@@ -26,12 +29,14 @@ const Cart = ({settingsList}) => {
 export default Cart
 
 export const getServerSideProps = async () => {
-  
-  const settingsRes = await axios.get('http://localhost:3000/api/settings');
+  await dbConnect()
+  const settingsRes = await settings.find()
+  const setts = JSON.stringify(settingsRes)
+  // const settingsRes = await axios.get('http://localhost:3000/api/settings');
 
   return {
     props:{
-          settingsList: settingsRes.data,
+          setts: setts
         }
     }
 } 
