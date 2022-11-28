@@ -27,7 +27,7 @@ export default function Home({ sectionsProp, itemsList, admin, ordersList, setti
   useEffect(()=>{
     dispatch(setAdmin(admin))
     dispatch(setOffline(sets[0].offline))
-  }, [dispatch, admin, sets[0]])
+  }, [dispatch, admin, sets])
   return (
     <div className={styles.container}>
       <Head>

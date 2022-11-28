@@ -51,7 +51,7 @@ const CurrentOrders = ({orders}) => {
   };
   // Websocket updates
   
-  const socket = process.env.MODE === "DEV" ? useRef(io("ws://localhost:7500")) : null
+  const socket =  useRef(process.env.MODE === "DEV" ? io("ws://localhost:7500") : null)
   
   useEffect(() => {
     socket.current.on("getNewOrder", (data) => {
