@@ -223,19 +223,19 @@
         aspect-ratio: 1/1;
         }
     .logo{
-       width: 60px;
+       width: 70px;
        height: unset;
        aspect-ratio: 2.1/1;
         right: 55%;
-        top: 14%;
+        top: 15%;
     }
     .chevron_container{
-        margin: 0.5rem 1rem;
+        margin: 0.8rem 1rem 0.5rem 1rem;
     }
     .chevron{
-        width: 30px;
-        height: 30px;
-
+        width: 35px;
+        height: unset;
+        aspect-ratio: 1/1;
     }
     .basket{
         right: 3%;
