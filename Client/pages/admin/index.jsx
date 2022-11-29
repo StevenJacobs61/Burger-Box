@@ -8,10 +8,20 @@ import { io } from 'socket.io-client'
 import { useDispatch, useSelector } from 'react-redux'
 import Settings from '../../components/admin/manage/settings'
 import { setAdmin } from '../../redux/userSlice'
+import dbConnect from '../../utils/mongodb'
+import sections from '../../models/sections'
+import products from '../../models/products'
+import settings from '../../models/settings'
+import admins from '../../models/admin'
 
 
-const Admin = ({productsList, adminsList, sectionsList, settingsList, admin}) => {
+const Admin = ({productsProp, adminsProp, sectionsProp, settingsProp, admin}) => {
   const dispatch = useDispatch() 
+
+  const sectionsList = JSON.parse(sectionsProp)
+  const productsList = JSON.parse(productsProp)
+  const adminsList = JSON.parse(adminsProp)
+  const settingsList = JSON.parse(settingsProp)
 
   useEffect(()=>{
     dispatch(setAdmin(admin))
@@ -174,18 +184,27 @@ export const getServerSideProps = async (ctx) => {
     } else{
       admin = true
     }
+
+    await dbConnect()
+    const sectionsRes = await sections.find(); 
+    const sects = JSON.stringify(sectionsRes)
+
+   const prodsRes = await products.find(); 
+   const prods = JSON.stringify(prodsRes)
+
+   const adminRes = await admins.find();
+   const ads = JSON.stringify(adminRes)
+
+   const settingsRes = await settings.find()
+   const setts = JSON.stringify(settingsRes)
     
-  const prodRes = await axios.get("http://localhost:3000/api/products");
-    const listRes = await axios.get('http://localhost:3000/api/admin');
-    const sectionsRes = await axios.get('http://localhost:3000/api/sections');
-    const settingsRes = await axios.get('http://localhost:3000/api/settings');
 
     return {
       props:{
-            productsList: prodRes.data,
-            adminsList: listRes.data,
-            sectionsList: sectionsRes.data,
-            settingsList: settingsRes.data,
+            productsProp: prods,
+            adminsProp: ads,
+            sectionsProp: sects, 
+            settingsProp: setts,
             admin
           }
       }
