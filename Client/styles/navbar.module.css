@@ -49,8 +49,9 @@
     color: #fff;
     cursor: pointer;
    display: flex;
-    width: 115px;
-    height: 50px;
+    width: 100px;
+    height: unset;
+       aspect-ratio: 2.1/1;
     position: absolute;
     right: 45%;
     top: 12%;
@@ -75,8 +76,9 @@
 
 .chevron{
     fill: #fff;
-    width: 50px;
-    height: 50px;
+    width: 43px;
+    height: unset;
+    aspect-ratio: 1/1;
     cursor: pointer;
     display: none;
 }
@@ -180,7 +182,18 @@
     }
     .pagelink{
         margin: 1rem 0;
-        font-size: 3rem;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+    }
+    .text{
+        font-size: 2.2rem;
+        text-align: right;
+    }
+    .texts{
+        margin: 2rem 4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
     }
     .contact{
         flex-direction: column;
@@ -193,17 +206,11 @@
     }
     .chevron{
         display: unset;
+
     }
     .chevron_container{
         display: block;
-        margin: 1rem 6rem 1rem;
-    }
-    .texts{
-        margin: 2rem 4rem;
-    }
-    .text{
-        font-size: 3rem;
-        text-align: right;
+        margin: 1rem 3rem 1rem 0;
     }
     .social{
         margin: 1rem 2rem
@@ -211,7 +218,6 @@
     }
     .insta, .facebook{
     width: 40px;
-    height: 40px;
     }
   
 
@@ -227,7 +233,7 @@
        height: unset;
        aspect-ratio: 2.1/1;
         right: 55%;
-        top: 15%;
+        top: 16%;
     }
     .chevron_container{
         margin: 0.8rem 1rem 0.5rem 1rem;
@@ -249,8 +255,6 @@
     }
     .pagelink, .text{
         font-size: 1.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
     }
 }
 

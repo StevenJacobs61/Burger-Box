@@ -176,15 +176,15 @@ width: 410px;
 }
 .notice_hdr{
     text-align: center;
-    padding: 1rem 0 0 ;
-    font-size: 2.5rem;
+    padding: 0.5rem 0 0 ;
+    font-size: 1.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.15rem;
+    letter-spacing: 0.1rem;
 }
 .notice{
-    font-size: 2.3rem;
-    line-height: 3.5rem;
-    padding: 1rem 2rem 2rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    padding: 0.2rem 2rem 0.5rem;
     text-align: center;
 }
 

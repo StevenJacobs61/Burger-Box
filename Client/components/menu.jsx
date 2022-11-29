@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from '../styles/menu.module.css'
 import MenuSection from './menu_section'
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import {FaArrowDown} from 'react-icons/fa';
 import {  useRouter } from 'next/router'
