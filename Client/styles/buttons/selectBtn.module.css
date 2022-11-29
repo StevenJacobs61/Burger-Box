@@ -1,4 +1,4 @@
-.btn_small, .btn_large{
+.btn_small, .btn_large, .btn_med{
     opacity: 0.9;
     box-shadow: 0 0 4px #6a6969;
     cursor: pointer;
@@ -15,6 +15,11 @@
     margin: 1.5rem 0 2rem;
     letter-spacing: 0.4rem;
 }
+.btn_med{
+    font-size: 1.8rem;
+    padding: 0.5rem 0.7rem;
+    letter-spacing: 0.3rem;
+}
 .btn_large{
     font-size: 2.2rem;
     padding: 0.7rem 1rem;
@@ -24,6 +29,9 @@
 @media screen and (min-width:480px){
     .btn_small{
         font-size: 1.7rem;
+    }
+    .btn_med{
+        font-size: 2.2rem;
     }
 
 }

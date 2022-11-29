@@ -82,7 +82,7 @@ const roundedTotal = Math.round(total * 100)/100;
           </div>
           <div className={styles.checkout}>
             {!settings.offline ? <><p className={styles.text}>Total: £{roundedTotal}</p>
-            <SelectBtn innerTxt={"basket"} btnFucntion={handleBasket} btnStyle={"L"}/>
+            <SelectBtn innerTxt={"basket"} btnFucntion={handleBasket} btnStyle={"M"}/>
             </> 
             : 
             <p className={styles.offline}>Offline</p>
