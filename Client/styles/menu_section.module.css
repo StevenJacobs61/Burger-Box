@@ -47,9 +47,20 @@
     flex-direction: column;
     align-items: center;
 }
+@media screen and (min-width:380px){
+    .container{
+        margin: 0.4rem 0 1rem;
+        padding: 0.1rem 1rem;
+        width: 90%;
+    }
+    .title{
+        font-size: 2.8rem;
+        font-weight: 400;
+    }
+} 
 @media screen and (min-width:480px){
     .container{
-        margin: 0 0 1rem 0;
+        margin: 1.2rem 0 0.4rem;
         padding: 0.1rem 1rem;
         width: 100%;
     }
