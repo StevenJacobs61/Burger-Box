@@ -62,7 +62,8 @@
     width: 100%;
 }
 .container:hover{
-    transform: scale(1.01);
+    transform: scale(1.005);
+    box-shadow: 0 0 5px #101010;
 }
 .title_container{
     border-radius: 10px;

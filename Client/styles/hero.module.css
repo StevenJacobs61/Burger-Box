@@ -81,7 +81,7 @@
 }
 
 .blink{
-    animation: blinker 0.8s linear infinite;
+    animation: blinker 1s linear infinite;
     margin: 1rem 0 0 0.5rem;
     font-size: 4rem;
     font-weight: 300;
@@ -143,18 +143,26 @@
         margin: 3rem 2rem 2.5rem;
     }
 }
+@media screen and (min-width:1024px){
+    .container{
+        padding: 100px 0 0;
+    }
+    .title_container{
+        margin: 3.5rem 0;        
+    }
+}
 @media screen and (min-width:1200px){
     .title{
-        font-size: 12rem;
+        font-size: 10rem;
    
     }
     .blink{
-        font-size: 8rem;
+        font-size: 7rem;
         margin: 1rem 0 0 1rem;
     }
     .title_container{
         margin: 2rem 0 4rem;  
-        height: 200px;
+        height: 100px;
     }
     .header{
         font-size: 3rem;

@@ -34,6 +34,9 @@ h1, h2, h3, h4{
   --btn--del: rgb(255, 67, 67);
   --color--grey-dark: rgb(109, 109, 109);
   --textShadow: 0 0 0 transparent,
-                0 0 40px var(--bg-color--blue),
-                0 0 100px var(--bg-color--blue);
+                0 0 40px var(--bg-color--blue);
+  --textShadow-green: 0 0 0 transparent,
+                      0 0 20px #0ba800,
+                      0 0 50px #fff,
+                      0 0 1px #fff;
 }

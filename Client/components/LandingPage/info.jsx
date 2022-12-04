@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import styles from '../../styles/LandingPage/info.module.css'
 import {FaArrowDown} from 'react-icons/fa';
+import {AiOutlineArrowDown} from 'react-icons/ai';
 
 
 const Info = ({sections, settings, complete, setComplete}) => {
@@ -20,7 +21,7 @@ const Info = ({sections, settings, complete, setComplete}) => {
         animation: !complete ? "animate 3s infinite alternate" : null,
         color: open && !settings.offline ? "#0ba800" : "#be0606", 
         textShadow: !open || settings.offline ? "none": null, 
-        textShadow: complete ? "0 0 30px var(--bg-color--blue)" : null 
+        textShadow: complete ? "var(--textShadow-green)" : null 
       }
     const noticeStyle = {
       // animation: "animate4 3s infinite alternate",
@@ -53,7 +54,7 @@ const Info = ({sections, settings, complete, setComplete}) => {
       </h2>
       : null}
       <h2 className={styles.order_below}>{open && !settings.offline ? "Order below" : open && settings.offline || !open ?  "Browse Menu below" : null}</h2>
-      <FaArrowDown className={styles.icon}/>
+      <AiOutlineArrowDown className={styles.icon}/>
     </div>
   </div>
   )

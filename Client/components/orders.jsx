@@ -73,7 +73,7 @@ const handleClear = () => {
 
   return (
     <>
-          <h1 className={styles.title}> Your Order </h1>
+          <h1 className={styles.title}> <br/>Your Order </h1>
   <div className={styles.container}>
     <div className={styles.hdr_container}>
         <h2 className={styles.hdr}>Name</h2>

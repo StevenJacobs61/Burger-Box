@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { io } from 'socket.io-client'
 import SelectBtn from './buttons/selectBtn';
 
 
@@ -23,9 +22,6 @@ const [postcode, setPostcode] = useState();
 const [number,setNumber] = useState();
 const [email, setEmail] = useState();
 const [instructions, setInstructions] = useState();
-
-// ** Connect to websocket
-const [socket, setSocket] = useState()
 
 
 
@@ -119,15 +115,15 @@ const createOrder = async (data) => {
 return (
   <div className={styles.wrapper}>
     <h1 className={styles.title}>{settingsList.del ? "Delivery options" : "collection details"}</h1>
-    <h3 className={styles.times_hdr}>current times:</h3>
+    <h3 className={styles.times_hdr}>current times</h3>
     { settingsList.del ? 
     <div className={styles.times_container}>
-      <h3 className={styles.time_hdr}>Delivery Time:</h3>
+      <h3 className={styles.time_hdr}>Delivery:</h3>
       <p className={styles.time}>{settingsList.delTime}mins</p>
     </div>
     : null}
     <div className={styles.times_container}>
-      <h3 className={styles.time_hdr}>Collection Time:</h3>
+      <h3 className={styles.time_hdr}>Collection:</h3>
       <p className={styles.time}>{settingsList.colTime}mins</p>
     </div>  
     <div className={styles.container}>
@@ -145,29 +141,29 @@ return (
         </div>
         <p className={styles.text}>* all fields except Delivery Instructions are required</p>
       <div className={styles.details_container}>
-          <label htmlFor="" className={styles.details_label}>Full Name:</label>
-          <input type="text" id='name' name='name' placeholder='Name ...' className={styles.details_input}
+          <label htmlFor="" className={styles.details_label}>Full Name</label>
+          <input type="text" id='name' name='name' placeholder='' className={styles.details_input}
           onChange={(e) => setName(e.target.value)}/>
-          {showDeliver && <><label htmlFor="" className={styles.details_label}>Street:</label>
-          <input type="text" placeholder='Street ...' id='street' name='street' className={styles.details_input}
+          {showDeliver && <><label htmlFor="" className={styles.details_label}>Street Address</label>
+          <input type="text" placeholder='' id='street' name='street' className={styles.details_input}
           onChange={(e) => setStreet(e.target.value)}/>
-          <label htmlFor="" className={styles.details_label}>Postcode: <p className={styles.postcode_req}>* Must be BN25, BN9 or BN10</p></label>
+          <label htmlFor="" className={styles.details_label}>Postcode<p className={styles.postcode_req}>* Must enter '25' or '9' into Part 1</p></label>
           <div className={styles.postcode_container}>
             <p className={styles.postcode_text}>BN</p>
-            <input type="text" placeholder='9, 10 or 25' id='postcode' name='postcode' className={styles.details_input_postcode}
+            <input type="text" placeholder='Part 1' id='postcode' name='postcode' className={styles.details_input_postcode}
             onChange={(e) => (setPostcodeOne(e.target.value))}/>
-            <input type="text" placeholder='...' id='postcode' name='postcode' className={styles.details_input_postcode}
+            <input type="text" placeholder='Part 2' id='postcode' name='postcode' className={styles.details_input_postcode}
             onChange={(e) => (setPostcodeTwo(e.target.value))}/>
           </div>
-          <label htmlFor="" className={styles.details_label}>Delivery Instrutions:</label>
-          <textarea type="text" placeholder='Delivery Instructions...'
+          <label htmlFor="" className={styles.details_label}>Delivery Instrutions</label>
+          <textarea type="text" placeholder=''
           className={styles.instructions} onChange={(e)=>setInstructions(e.target.value)}/>
           </>}
-          <label htmlFor="" className={styles.details_label}>Phone Number:</label>
-          <input type="text" placeholder='Phone Number ...' id='number' name='number' className={styles.details_input}
+          <label htmlFor="" className={styles.details_label}>Phone Number</label>
+          <input type="text" placeholder='' id='number' name='number' className={styles.details_input}
           onChange={(e) => setNumber(e.target.value)}/>
-          <label htmlFor="" className={styles.details_label}>Email:</label>
-          <input type="email" placeholder='Email ...' id='email' name='email' className={styles.details_input}
+          <label htmlFor="" className={styles.details_label}>Email</label>
+          <input type="email" placeholder='' id='email' name='email' className={styles.details_input}
           onChange={(e) => setEmail(e.target.value)}/>
         </div>
         <div className={styles.btn_container}>

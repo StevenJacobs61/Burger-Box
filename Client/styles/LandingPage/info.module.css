@@ -15,7 +15,7 @@
     align-items: baseline;
 }
 
-/* Info */
+/* Open */
 .open_text, .open_word{
     color: #fff;
     font-size: 3rem;
@@ -49,12 +49,20 @@
  
 .order_below{
     color: #fff;
-    font-size: 2.5rem;
-    font-weight: 500;
+    font-size: 4rem;
+    font-weight: 300;
     text-transform: uppercase;
     padding: 0 0 0.5rem;
     text-align: center;
     letter-spacing: 0.1rem;
+}
+.opening_times{
+    color: #fff;
+    font-size: 1.7rem;
+    font-weight: 200;
+    text-align: center;
+    margin: 1rem 0 1rem;
+    line-height: 2.5rem;
 }
 @media screen and (min-width:480px){
     .open_text{
@@ -64,8 +72,7 @@
         font-size: 5rem;
     }
     .order_below{
-        font-size: 4rem;
-        font-weight: 400;
+        font-size: 4.8rem;
         margin: 1.5rem 0 0.5rem;
         letter-spacing: 0.2rem;
     }
@@ -81,17 +88,23 @@
     }
     .opening_times{
         font-size: 2.5rem;
-        line-height: 3.5rem;
+        line-height: 3rem;
         font-weight: 300;
     }
     .order_below{
-        font-size: 4rem;
-        font-weight: 400;
-        margin: 0;
+        margin: 1rem 0 0;
     }
 }
 @media screen and (min-width:1024px){
-   
+    .opening_times{
+        font-size: 2rem;
+    }
+    .open_text{
+        font-size: 5rem;
+    }
+    .open_word{
+        font-size: 6rem;
+    }
 }
 @media screen and (min-width:1200px){
  
@@ -127,16 +140,6 @@
 .justeat:hover{
     transform: scale(1.01);
     color: #ff9100;
-}
-
-/* Times */
-
-.opening_times{
-    color: #fff;
-    font-size: 2rem;
-    text-align: center;
-    margin: 1rem 0 1rem;
-    line-height: 2.5rem;
 }
 .noDel{
     font-size: 1.5rem;
@@ -179,15 +182,14 @@ width: 410px;
 
 .icon{
     fill: #fff;
-    width: 25px;
+    width: 40px;
     height: unset;
     aspect-ratio: 1/1;
     margin: 0 0 0.5rem 0;
 }
 @media screen and (min-width:768px){
     .icon{
-        width: 35px;
-        height: 35px;
+        width: 45px;
         margin: 1rem;
     }
 }
@@ -199,7 +201,7 @@ width: 410px;
     width: 50%;
     margin: 2rem 0;
     border-radius: 45px;
-    padding: 0.5rem 0;
+    padding: 0.8rem 0;
     border: 0.1px solid var(--bg-color--blue);
 }
 .notice_hdr{
@@ -244,9 +246,12 @@ width: 410px;
     }
 }
 @media screen and (min-width:769px){
+    .notice_container{
+        padding: 0.5rem 3rem;
+    }
     .notice{
-      font-size: 2rem;
-      padding: 0.5rem 0 1rem;
+      font-size: 1.7rem;
+      padding: 0.5rem 0.5rem 1rem;
     }
 
     .notice_hdr{

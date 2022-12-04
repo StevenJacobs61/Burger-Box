@@ -8,6 +8,7 @@
     color: #101010;
     border-radius: 7px;
     border: 0;
+    transition: all 0.1s;
 }
 .btn_small{
     font-size: 1.4rem;
@@ -42,7 +43,7 @@
         margin: 0;
     }
 }
-.btn_small:hover, .btn_large:hover{
+.btn_small:hover, .btn_large:hover, .btn_med:hover{
     transform: scale(1.01);
     opacity: 1;
     color: var(--text--light-green);

@@ -1,11 +1,12 @@
 .title{
-    font-size: 3rem;
+    font-size: 3.5rem;
     padding: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.2rem;
     text-align: center;
     border-bottom: 2px solid rgb(231, 249, 255);
     margin: 1rem 0 2rem;
+    font-weight: 300;
     }
 .container{
     width: 100%;
@@ -104,15 +105,16 @@ line-height: 1.3rem;
     margin: 0 0 0.7rem;
 }
 .btn_clear{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     border-radius: 5PX;
-    border: 1.5px solid;
-    padding: 0.5rem 2rem;
+    border: 1px solid;
+    padding: 0.4rem 1.6rem;
     background-color: #fff;
     color: var(--btn--del);
-    margin: 1rem 0 0;
+    margin: 1.5rem 0 0.3rem;
     text-transform: uppercase;
     cursor: pointer;
+    letter-spacing: 0.2px;
     opacity: 0.8;
 }
 .checkout{
@@ -121,10 +123,11 @@ line-height: 1.3rem;
 }
 .total{
     font-size: 2.5rem;
-    padding: 1.8rem;
-    border-bottom: 1px solid #101010;
+    padding: 1rem 0.5rem 0.5rem;
+    border-bottom: 0.1px solid #101010;
     margin: 1rem 0 2rem;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 @media screen and (min-width:1024px){
