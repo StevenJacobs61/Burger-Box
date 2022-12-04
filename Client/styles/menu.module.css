@@ -5,11 +5,6 @@
     height: 100%;
     background-color: #fff;
 }
-.bg_container{
-    width: 100%;
-    height: 100%;
-    background-color: #101010;
-}
 .container{
     display: flex;
     flex-direction: column;
@@ -25,8 +20,6 @@
     border-radius: 20px;
 }
 
-
-
 /* Header */
 
 .header{
@@ -38,79 +31,6 @@
     text-transform: uppercase;
     letter-spacing: 0.1rem;
 }
-.order_below{
-    color: #fff;
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    padding: 0 0 0.5rem;
-    text-align: center;
-    letter-spacing: 0.1rem;
-}
-
-/* Info */
-.open{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    transition: all 2s ease-in;
-}
-.open_container{
-    display: flex;
-    align-items: baseline;
-}
-.open_text, .open_word{
-    color: #fff;
-    font-size: 3rem;
-    text-transform: uppercase;
-    padding: 1rem;
-    font-weight: 400;
-}
-.open_word{
-    font-weight: 600;
-    font-size: 4rem;
-    transition: all 0.2s;
-} 
-/* * offline */
-.offline_notice_container{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.offline_notice{
-    font-size: 2rem;
-    color: #fff;
-    text-align: center;
-    line-height: 2.5rem;
-    font-weight: 400;
-}
-.justeat{
-    color: #fff;
-    text-align: center;   
-    font-size: 5rem;
-    text-transform: uppercase;
-    margin: 2rem 0 0;
-    font-weight: 900;
-    letter-spacing: 0.1rem;
-    word-spacing: -1.5rem;
-    font-style: oblique;
-    cursor: pointer;
-}
-.justeat:hover{
-    transform: scale(1.01);
-    color: #ff9100;
-}
-
-.opening_times{
-    color: #fff;
-    font-size: 2rem;
-    text-align: center;
-    margin: 1rem 0 1rem;
-    line-height: 2.5rem;
-}
 .text{
     font-size: 2.2rem;
     margin: 0.5rem 0 1rem;
@@ -119,96 +39,6 @@
     font-weight: 500;
     padding: 0 0 0.5rem;
     text-transform: capitalize;
-}
-.noDel{
-    font-size: 1.5rem;
-    width: 60%;
-    text-align: center;
-    text-transform: capitalize;
-    color: var(--text--dark-red);
-}
-.offline{
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    color: var(--text--dark-red);
-}
-@media screen and (min-width:480px){
-    .offline_notice_container{
-width: 410px;
-    }
-    .text{
-        margin: 1rem 0 2rem;
-    }
-}
-@media screen and (min-width:769px){
-    .offline_notice_container{
- width: 500px;
-    }
-    .offline_notice{
-        font-size: 2.2rem;
-        line-height: 2.6rem;
-    }
-}
-@media screen and (min-width:1024px){
-    .offline_notice_container{
- width: 550px;
-    }
-    .offline_notice{
-        font-size: 2.5rem;
-        line-height: 2.9rem;
-    }
-}
-
-/* Icons */
-
-.icon{
-    fill: #fff;
-    width: 25px;
-    height: unset;
-    aspect-ratio: 1/1;
-    margin: 0 0 0.5rem 0;
-}
-
-/* Notice */
-
-.notice_container{
-    background-color: #fff;
-    width: 100vw;
-    margin: 1rem 0 2rem;
-}
-.notice_hdr{
-    text-align: center;
-    padding: 0.5rem 0 0 ;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-}
-.notice{
-    font-size: 1.5rem;
-    line-height: 2rem;
-    padding: 0.2rem 2rem 0.5rem;
-    text-align: center;
-}
-@media screen and (min-width:480px){
-    .notice{
-      font-size: 1.8rem;
-    }
-
-    .notice_hdr{
-        font-size: 2rem;
-    }
-}
-@media screen and (min-width:769px){
-    .notice{
-      font-size: 2rem;
-      padding: 0.5rem 0 1rem;
-    }
-
-    .notice_hdr{
-        font-size: 2.3rem;
-        padding: 0.8rem 0 0.5rem;
-    }
 }
 
 /* Buttons */
@@ -246,47 +76,13 @@ width: 410px;
     }
     .text{
         font-size: 2.8rem;
+        margin: 1rem 0 2rem;
     }
     .header{
         margin: 2rem 0 1.5rem;
     }
-    .open_text{
-        font-size: 4rem;
-    }
-    .open_word{
-        font-size: 5rem;
-    }
-    .order_below{
-        font-size: 4rem;
-        font-weight: 400;
-        margin: 1.5rem 0 0.5rem;
-        letter-spacing: 0.2rem;
-    }
 }
 @media screen and (min-width:768px){
-    .open_text{
-        font-size: 4.5rem;
-    }
-    .open_word{
-        font-size: 5rem;
-        margin: 0 0 0 2rem;
-
-    }
-    .opening_times{
-        font-size: 2.5rem;
-        line-height: 3.5rem;
-        font-weight: 300;
-    }
-    .icon{
-        width: 35px;
-        height: 35px;
-        margin: 1rem;
-    }
-    .order_below{
-        font-size: 4rem;
-        font-weight: 400;
-        margin: 0;
-    }
     .header{
         font-size: 4.5rem;
         padding: 0.5rem  0 1rem;

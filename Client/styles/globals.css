@@ -33,4 +33,7 @@ h1, h2, h3, h4{
   --btn--edit: rgb(0, 164, 164);
   --btn--del: rgb(255, 67, 67);
   --color--grey-dark: rgb(109, 109, 109);
+  --textShadow: 0 0 0 transparent,
+                0 0 40px var(--bg-color--blue),
+                0 0 100px var(--bg-color--blue);
 }
