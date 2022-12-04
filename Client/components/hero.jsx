@@ -29,7 +29,7 @@ const Hero = ({settings, complete, setComplete}) => {
           clearTimeout(timeId)     
         }
     }
-  }, [currentTxt])
+  }, [currentTxt, setComplete])
   
   const h1Style ={
     boxShadow: complete ? "0 0 10px var(--bg-color--blue)" : null,

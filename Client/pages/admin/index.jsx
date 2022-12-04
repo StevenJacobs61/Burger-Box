@@ -47,15 +47,20 @@ const [showItem, setShowItem] = useState(false)
 
 
   useEffect(() => {
-    setSocket(io("ws://localhost:7500"));
+    if(process.env.MODE === "DEV"){
+      setSocket(io("ws://localhost:7500"));
+    }
   }, []);
 
   useEffect(() => {
-    socket?.on("getNewOrder", (data) => {
-      if(notifications){
-      setNewOrder(data);
-      setShowItem(true)};
-    });
+    if(process.env.MODE === "DEV"){
+
+      socket?.on("getNewOrder", (data) => {
+        if(notifications){
+        setNewOrder(data);
+        setShowItem(true)};
+      });
+    }
   }, [socket, notifications]);
   
   // Functions for managing pop up notificiations

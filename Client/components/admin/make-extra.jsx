@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../../styles/make-extra.module.css'
 import {AiOutlineClose} from 'react-icons/ai';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import SubmitBtn from '../buttons/submitBtn';
 
@@ -14,60 +14,76 @@ const router = useRouter()
 
 // set initial extra sections
 
-const [currentExtraSections, setCurrentExtraSections] = useState([])
-const [otherExtraSections, setOtherExtraSections] = useState([])
-const currentESArray = [];    
-const extraSections = product.extraSection !== null && product.extraSection.map((es) => currentESArray.push(es))
+const [currentES, setCurrentES] = useState(product.extraSection)
+const [otherES, setOtherES] = useState(sections.map((s)=>{
+    if(!currentES.includes(s.title)) return s.title
+}))
 
-useEffect(() => {
 
-    setCurrentExtraSections(currentESArray)
+
     
-}, [showMakeExtra, currentESArray]);
 
-const allSectionsArray = [];
-const allSections = sections.map((section) => allSectionsArray.push(section.title))
-const filteredSections = allSectionsArray.filter((section) => 
-    !currentESArray.includes(section)
-)
+// const [otherExtraSections, setOtherExtraSections] = useState(() => {
+//  sections.map((sec)=>{
+//     if(!currentExtraSections?.includes(sec.title)){
+//         return sec.titleS
+//  })
+// })
+// const currentESArray = [];    
+// const extraSections = product.extraSection !== null && product.extraSection.map((es) => currentESArray.push(es))
 
-useEffect(() => {
 
-    setOtherExtraSections(filteredSections)
+// useEffect(() => {
+
+//     setCurrentExtraSections(()=>{
+
+//     })
     
-}, [showMakeExtra, filteredSections]);
+// }, [showMakeExtra, currentESArray]);
+
+// const allSectionsArray = [];
+// const allSections = sections.map((section) => allSectionsArray.push(section.title))
+// const filteredSections = allSectionsArray.filter((section) => 
+//     !currentESArray.includes(section)
+// )
+
+// useEffect(() => {
+
+//     setOtherExtraSections(filteredSections)
+    
+// }, [showMakeExtra, filteredSections]);
 
 // Manage extra sections array to post updated information of 
 
 const handleAddExtra = (section) => {
-    setCurrentExtraSections((prev) => [...prev, section])
-    setOtherExtraSections(otherExtraSections.filter((oes) => oes !== section))
+    setCurrentES((prev) => [...prev, section])
+    setOtherES(otherES.filter((oes) => oes !== section))
 }
 
 const handleRemoveExtra = (section) => {
-    setOtherExtraSections((prev) => [...prev, section])
-    setCurrentExtraSections(currentExtraSections.filter((ces) => ces !== section))
+    setOtherES((prev) => [...prev, section])
+    setCurrentES(currentES.filter((ces) => ces !== section))
 }
 
 // mongoose put to change extraSections array of product
 const handleAddExtras = async (product) => {
     const id = product._id;
     const newData = {
-        extraSection: currentExtraSections,
+        extraSection: currentES,
     }
     try{
         const res = await axios.put("http://localhost:3000/api/products/" + id, newData)
         setShowMakeExtra(false);
-        if(currentExtraSections.length >= 1){
+        if(currentES.length >= 1){
         setIsExtra(true);
         setProducts(products.map((prod) => {
-            if(prod._id === product._id){
-                prod.extraSection = currentExtraSections;
+            if(prod._id === id){
+                prod.extraSection = currentES;
             } return prod;
         })); 
-    } else if (currentExtraSections.length === 0){
+    } else if (currentES.length === 0){
         setProducts(products.map((prod) => {
-            if(prod._id === product._id){
+            if(prod._id === id){
                 prod.extraSection = null;
             } return prod;
         }));
@@ -78,7 +94,6 @@ const handleAddExtras = async (product) => {
     }
 }
 
-
   return (
     <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
         <div className={styles.wrapper}>
@@ -87,14 +102,14 @@ const handleAddExtras = async (product) => {
             <div className={styles.input_container}>
               <label className={styles.label_hdr}>Extra Sections:</label>
               {
-                currentExtraSections.map((ces) => 
+                currentES.map((ces) => 
                 <button key={Math.random(10000)} className={styles.btn_current} onClick={() => handleRemoveExtra(ces)}>
                     {ces}
                 </button>
                 )
               }
               {
-                otherExtraSections.map((oes) => 
+                otherES.map((oes) => 
                 <button key={Math.random(10000)} className={styles.btn_other} onClick={() => handleAddExtra(oes)}>
                 {oes}
             </button>

@@ -19,7 +19,7 @@ useEffect(()=>{
 if (prod){
   router.push("/")
 }
-},[])
+},[prod, router])
 
 
 const handleUser = async () => {

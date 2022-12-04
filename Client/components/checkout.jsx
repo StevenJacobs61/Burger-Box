@@ -147,7 +147,7 @@ return (
           {showDeliver && <><label htmlFor="" className={styles.details_label}>Street Address</label>
           <input type="text" placeholder='' id='street' name='street' className={styles.details_input}
           onChange={(e) => setStreet(e.target.value)}/>
-          <label htmlFor="" className={styles.details_label}>Postcode<p className={styles.postcode_req}>* Must enter '25' or '9' into Part 1</p></label>
+          <label htmlFor="" className={styles.details_label}>Postcode<p className={styles.postcode_req}>* Must enter &apos25&apos or &apos9&apos into Part 1</p></label>
           <div className={styles.postcode_container}>
             <p className={styles.postcode_text}>BN</p>
             <input type="text" placeholder='Part 1' id='postcode' name='postcode' className={styles.details_input_postcode}
