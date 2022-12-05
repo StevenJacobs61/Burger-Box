@@ -127,7 +127,7 @@ useEffect(() => {
        
         </div>
        </div>
-    {!login && !user.offline && user.open ? <div className={styles.basket} style={{top: !showNav ? "20%" : "15%"}}>
+    {!login && !user.offline && user.open ? <div className={styles.basket} style={{top: !showNav ? "5%" : "10%"}}>
           <p className={styles.quantity}>{quantity}</p>
           <BsBasket className={styles.basket_icon} onClick={() => router.push("/cart")}/>
               </div>:null}

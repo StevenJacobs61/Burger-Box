@@ -9,22 +9,16 @@ const [expand, setExpand] = useState(false);
 const selected = currentSection === section && width > 768
 
 const handleClick = (e) => {
-if(width > 768){
   setCurrentSection(section)
-} else{
-  handleExpand(e)
+  if(e.target.id == 1){
+   setExpand(!expand);
+   };
 }
-}
-const handleExpand = (e) => {
- if(e.target.id == 1){
-  setExpand(!expand);
-  };
-};
+
 useEffect(() => {
   if(width>768){
     setExpand(false)
   }
-
 }, [width, expand])
 
 
