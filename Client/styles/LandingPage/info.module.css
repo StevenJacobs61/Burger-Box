@@ -27,7 +27,7 @@
     font-weight: 600;
     font-size: 4rem;
     transition: all 0.2s;
-    animation: animate 3s infinite alternate;
+    animation: 2s animate 10s infinite alternate;
 }
 @keyframes animate {
     20%{
@@ -197,7 +197,6 @@ width: 410px;
 /* Notice */
 
 .notice_container{
-    /* background-color: #fff; */
     width: 50%;
     margin: 2rem 0;
     border-radius: 45px;
@@ -217,7 +216,8 @@ width: 410px;
     padding: 0.5rem 2rem 0.5rem;
     text-align: center;
     color: #fff;
-    animation: animate4 3s infinite alternate;
+    animation: animate4 4s infinite alternate;
+    text-shadow: 0 0 30px var(--bg-color--blue);
 }
 @keyframes animate4 {
     50%{

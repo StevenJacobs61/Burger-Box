@@ -32,7 +32,7 @@
     font-weight: 300;
     line-height: 2.5rem;
     transition: all 0.2s;
-    animation: animate 3s infinite alternate;
+    animation: 3s animate 10s infinite alternate;
 }
 .title, .blink{
     color: #fff;
@@ -52,7 +52,7 @@
         opacity:1
     }
     45%{
-        opacity:0.3
+        opacity:0.4
     }
     46%{
         opacity:1

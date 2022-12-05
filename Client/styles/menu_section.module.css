@@ -25,7 +25,8 @@
     text-transform: capitalize;
 }
 .icon{
-    height: 50px;
+    aspect-ratio: 1/1;
+    height: unset;
     width: 50px;
     margin: 0 1rem 0 0;
 }
@@ -62,24 +63,14 @@
     .container{
         margin: 1.2rem 0 0.4rem;
         padding: 0.1rem 1rem;
-        width: 100%;
+        width: 420px;
     }
     .title{
         font-size: 3rem;
         font-weight: 400;
     }
 } 
-@media screen and (min-width:1024px){
-    .container{
-        margin: 0 0 1rem 0;
-        padding: 0.1rem 1rem;
-    }
-    .title{
-        font-size: 3rem;
-        font-weight: 400;
-    }
-} 
- @media screen and (min-width:550px){
+@media screen and (min-width:550px){
     .items_container{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -90,21 +81,33 @@
     }
 }
 @media screen and (min-width:769px){
-    .items_container{
-        grid-template-columns: repeat(2, 1fr);
+    .container{
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.5rem;
+        border: 1px solid #101010;
+    }
+    .title{
+        font-size: 2.2rem;
+    }
+    .icon{
+        width: 30px;
     }
 }
 @media screen and (min-width:1024px){
-    .items_container{
-        grid-template-columns: repeat(3, 1fr);
-    }
     .container{
         padding: 0.5rem 1rem;
+        margin: 0 0 1rem 0;
+    }
+    .title{
+        font-size: 3rem;
+        font-weight: 400;
     }
 }
 
 /* Hover */
 
 .container:hover{
-    transform: scale(1.008);
+    box-shadow: 0 0 3px #787878;
+    transform: scale(1.005);
 }

@@ -1,3 +1,5 @@
+/* Containers */
+
 .section{
     width: 100%;
     display: flex;
@@ -20,6 +22,7 @@
     background: #fff;
     padding: 0.5rem 0 0.2rem;
     justify-content: space-between;
+    cursor: pointer;
 }
 @media screen and (min-width:550px){
  .container{
@@ -40,21 +43,27 @@
 }
 @media screen and (min-width:769px){
     .container{
-        height: 300px;
+        height: 260px;
+    }
+    .section{
+        margin: 1.5rem 0 0;
     }
 }
 
 @media screen and (min-width:1024px){
     .container{
-        height: 330px;
+        height: 310px;
         margin: 0;
     }
 }
 @media screen and (min-width:1200px){
     .container{
-        height: 305px;
+        height: 330px;
+        width: 262px;
     }
 }
+
+/* Header */
 
 .top_wrapper{
     display: flex;
@@ -71,7 +80,7 @@
     align-items: center;
     justify-content: flex-start;
     flex: 1.5;
-    margin: 0./5rem 0 0;
+    margin: 0.5rem 0 0;
 }
 .title{
     text-align: center;
@@ -95,12 +104,12 @@
 @media screen and (min-width:480px){
     .title_container{
         flex: 2;
-        padding: 2rem 2rem;
+        padding: 1;
         justify-content: center;
     }
     .title{
-        font-size: 2.8rem;
-        line-height: 3.5rem;
+        font-size: 2.5rem;
+        line-height: 3.2rem;
     }
 }
 @media screen and (min-width:550px){
@@ -117,7 +126,7 @@
     .title{
         font-size: 2.5rem;
         line-height: 3.2rem;
-        margin: 1rem 2rem 0;
+        font-weight: 450;
     }
     .title_container{
         padding: 0 2rem;
@@ -130,6 +139,18 @@
         margin: 0;
     }
 }
+@media screen and (min-width:1200px){
+    .title{
+        font-size: 2.2rem;
+        line-height: 2.5rem;
+    }
+    .title_container{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* Details */
 
 .img_container{
     flex: 1;
@@ -144,7 +165,8 @@
 .img_wrapper{
     object-fit:contain;
     width: 100px;
-    height: 80px;
+    height: unset;
+    aspect-ratio: 1.25/1;
     border: 1px solid #e7e6e6;
     box-shadow: 0 0 2px #6a6969;
     position: relative;
@@ -189,7 +211,6 @@
     }
     .img_wrapper{
         width: 120px;
-        height: 95px;
     }
     .desc{
     line-height: 1.7rem;
@@ -200,17 +221,15 @@
 }
 @media screen and (min-width:480px){
 .img_container{
-    padding: 1rem 0 0 5%;
+    padding: 0 0 0 1rem;
 }
 .img_wrapper{
     width: 140px;
-    height: 115px;
 }
 }
 @media screen and (min-width:550px){
     .img_wrapper{
         width: 100px;
-        height: 85px;
     }
     .img_container{
         padding: 0.5rem 0 0 1rem;
@@ -224,6 +243,7 @@
     }
     .desc{
         line-height: 1.5rem;
+        font-weight: 300;
     }
 }
 @media screen and (min-width:700px){
@@ -231,20 +251,29 @@
         padding: 0.8rem 0 0 1.5rem;
     }
     .price{
-        font-weight:  500;
+        font-weight:  400;
     }
     .desc{
         font-size: 1.7rem;
         line-height: 1.9rem;
         padding: 0;
-        font-weight: 400;
     }
 }
 @media screen and (min-width:769px){
     .img_wrapper{
-        padding: 0.8rem 0 0 1.5rem;
-        width: 130px;
-        height: 105px;
+        padding: 0 0 0 1rem;
+        width: 110px;
+    }
+    .img_container{
+        padding: 0 0 0 0.8rem;
+    }
+    .desc{
+        padding:  0 0 0.3rem;
+    }
+}
+@media screen and (min-width:769px){
+    .desc{
+        font-size: 1.5rem;
     }
 }
 

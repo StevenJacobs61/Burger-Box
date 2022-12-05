@@ -1,11 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import styles from '../../styles/LandingPage/info.module.css'
-import {FaArrowDown} from 'react-icons/fa';
 import {AiOutlineArrowDown} from 'react-icons/ai';
 
 
-const Info = ({sections, settings, complete, setComplete}) => {
+const Info = ({sections, settings, complete}) => {
 
     const [open, setOpen] = useState(()=>{
         const sectionClosed = sections.filter((section) => !section.available);
@@ -18,16 +17,12 @@ const Info = ({sections, settings, complete, setComplete}) => {
         }
     }); 
     const openWordStyle = {
-        animation: !complete ? "animate 3s infinite alternate" : null,
+        animation: !complete ? "10s animate 3s infinite alternate" : null,
         color: open && !settings.offline ? "#0ba800" : "#be0606", 
         textShadow: !open || settings.offline ? "none": null, 
         textShadow: complete ? "var(--textShadow-green)" : null 
       }
-    const noticeStyle = {
-      // animation: "animate4 3s infinite alternate",
-      // textShadow: !open || settings.offline ? "none": null, 
-      textShadow: "0 0 30px var(--bg-color--blue)"
-    }
+    
 
   return (
     <div className={styles.container}>
@@ -46,7 +41,7 @@ const Info = ({sections, settings, complete, setComplete}) => {
         {  settings.noticeOn ? 
         <div className={styles.notice_container}>
     <h3 className={styles.notice_hdr} >Notice</h3>
-    <p className={styles.notice} style={noticeStyle}>{settings.notice}</p>
+    <p className={styles.notice}>{settings.notice}</p>
     </div>
     : null}
         {!settings.del ? <h2 className={styles.noDel}>

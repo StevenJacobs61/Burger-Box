@@ -58,7 +58,6 @@ const MenuItem = ({item, section, settings}) => {
           </p>
          </div>
          <div className={styles.price_container}>
-         {/* <p className={styles.price_text}>From</p> */}
          <h3 className={styles.price}>£{item.price}</h3>
        </div>
           </div>

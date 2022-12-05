@@ -32,8 +32,8 @@ const Hero = ({settings, complete, setComplete}) => {
   }, [currentTxt, setComplete])
   
   const h1Style ={
-    boxShadow: complete ? "0 0 10px var(--bg-color--blue)" : null,
-    animation: !complete ? "animate 3s infinite alternate" : null
+    boxShadow:  "0 0 10px var(--bg-color--blue)",
+    // animation: "animate 3s infinite alternate"
   }
 
   const h2Style = {

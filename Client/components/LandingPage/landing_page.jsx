@@ -11,7 +11,7 @@ const LandingPage = ({sections, settings}) => {
   return (
     <section className={styles.container}>
         <Hero settings={settings} complete={complete} setComplete={setComplete}/> 
-        <Info sections={sections} settings={settings} complete={complete} setComplete={setComplete}/>
+        <Info sections={sections} settings={settings} complete={complete}/>
     </section>
   )
 }

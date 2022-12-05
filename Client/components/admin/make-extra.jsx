@@ -2,12 +2,12 @@ import React from 'react'
 import styles from '../../styles/make-extra.module.css'
 import {AiOutlineClose} from 'react-icons/ai';
 import axios from 'axios';
-import { useState, useEffect, useMemo } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SubmitBtn from '../buttons/submitBtn';
 
 const MakeExtra = ({product, products, sections, 
-    showMakeExtra, setShowMakeExtra, setProducts,
+    setShowMakeExtra, setProducts,
     setIsExtra}) => {
 
 const router = useRouter()
@@ -19,39 +19,6 @@ const [otherES, setOtherES] = useState(sections.map((s)=>{
     if(!currentES.includes(s.title)) return s.title
 }))
 
-
-
-    
-
-// const [otherExtraSections, setOtherExtraSections] = useState(() => {
-//  sections.map((sec)=>{
-//     if(!currentExtraSections?.includes(sec.title)){
-//         return sec.titleS
-//  })
-// })
-// const currentESArray = [];    
-// const extraSections = product.extraSection !== null && product.extraSection.map((es) => currentESArray.push(es))
-
-
-// useEffect(() => {
-
-//     setCurrentExtraSections(()=>{
-
-//     })
-    
-// }, [showMakeExtra, currentESArray]);
-
-// const allSectionsArray = [];
-// const allSections = sections.map((section) => allSectionsArray.push(section.title))
-// const filteredSections = allSectionsArray.filter((section) => 
-//     !currentESArray.includes(section)
-// )
-
-// useEffect(() => {
-
-//     setOtherExtraSections(filteredSections)
-    
-// }, [showMakeExtra, filteredSections]);
 
 // Manage extra sections array to post updated information of 
 
@@ -72,7 +39,7 @@ const handleAddExtras = async (product) => {
         extraSection: currentES,
     }
     try{
-        const res = await axios.put("http://localhost:3000/api/products/" + id, newData)
+        const res = await axios.put("/api/products/" + id, newData)
         setShowMakeExtra(false);
         if(currentES.length >= 1){
         setIsExtra(true);
