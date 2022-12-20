@@ -16,8 +16,13 @@ const router = useRouter()
 
 // Production skip log in process
 useEffect(()=>{
-if (prod){
-  router.push("/")
+  const timer = setTimeout(()=>{
+    if (prod){
+    router.push("/")
+  }
+  }, 2000)
+return ()=>{
+  clearTimeout(timer)
 }
 },[prod, router])
 
@@ -43,8 +48,9 @@ if(res.data){
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>*Test mode doesn't require login and cookies are applied automatically.</h1>
         <span className={styles.login_container}>
-            <h1 className={styles.hdr}>Admin Login</h1>
+            <h2 className={styles.hdr}>Admin Login</h2>
             <label htmlFor="username" className={styles.label}>username:</label>
             <input type="text" onChange={(e) => setUsername(e.target.value)} className={styles.input}/>
             <label htmlFor="input" className={styles.label}>password:</label>

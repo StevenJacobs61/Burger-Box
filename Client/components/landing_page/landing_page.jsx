@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import Hero from '../hero'
+import Hero from '../landing_page/hero'
 import Info from './info'
 import styles from "../../styles/LandingPage/landing_page.module.css"
 

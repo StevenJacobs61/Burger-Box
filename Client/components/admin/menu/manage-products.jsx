@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../../styles/manage-products.module.css'
+import styles from '../../../styles/manage-products.module.css'
 import { useState } from 'react'
 import ManageSection from './manage-section'
-import EditSections from './edit-sections'
+import EditSections from './/edit-sections'
 
 const ManageProducts = ({productsList, sectionsList}) => {
 

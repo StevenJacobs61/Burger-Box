@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
-import styles from '../styles/footer.module.css'
-import Location from '../components/home/location'
+import styles from '../../styles/footer.module.css'
+import Location from '../home/location'
 import { useSelector } from 'react-redux'
 
 

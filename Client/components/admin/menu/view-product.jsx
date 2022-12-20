@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from "../../styles/view-product.module.css"
+import styles from "../../../styles/view-product.module.css"
 import {AiOutlineClose} from 'react-icons/ai';
 import { useState } from 'react';
 import axios from 'axios';
-import SubmitBtn from '../buttons/submitBtn';
+import SubmitBtn from '../../buttons/submitBtn';
 
 const ViewProduct = ({product, setShowProduct, setProducts, products}) => {
 
@@ -66,8 +66,7 @@ const ViewProduct = ({product, setShowProduct, setProducts, products}) => {
 
 
   return (
-        <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
-        <div className={styles.wrapper}>
+    <>
         <p className={styles.hdr_text}>Update</p>    
         <h1 className={styles.hdr}>&quot;{product.title}&quot;</h1>
         <AiOutlineClose className={styles.close} onClick={() => {setShowProduct(false)}}></AiOutlineClose>
@@ -102,8 +101,7 @@ const ViewProduct = ({product, setShowProduct, setProducts, products}) => {
               <input className={styles.input} onChange={(e) => setStripeId(e.target.value)} type="text"/>
             </div>
             <SubmitBtn innerTxt={"submit"} btnFunction={handleUpdate}/>
-        </div>
-        </div>
+     </>
   )
 }
 

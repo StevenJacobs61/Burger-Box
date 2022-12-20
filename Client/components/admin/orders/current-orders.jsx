@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from '../../styles/current-orders.module.css'
+import styles from '../../../styles/current-orders.module.css'
 import { useState, useEffect, useRef } from 'react'
 import { io } from 'socket.io-client'
 import ListItem from './list-item'
 import axios from 'axios'
-import Item from './item'
+import Item from '../orders/item'
 import { useSelector } from 'react-redux'
 
 const CurrentOrders = ({orders}) => {

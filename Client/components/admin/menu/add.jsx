@@ -1,12 +1,11 @@
 import React from 'react'
-import styles from '../../styles/add.module.css'
+import styles from '../../../styles/add.module.css'
 import axios from 'axios';
-import { useState } from 'react';
-import SubmitBtn from '../buttons/submitBtn';
-import InputField from '../inputs/input_field';
+import SubmitBtn from '../../buttons/submitBtn';
+import InputField from '../../inputs/input_field';
 import { useRef } from 'react';
 
-const Add = ({setShowAdd, section, isExtra, setIsExtra, setProducts}) => {
+const Add = ({setShowAdd, section, isExtra, setProducts}) => {
   
 // ** If rendered by "Add Extra",
 //  extraSection automatically the section title.
@@ -50,7 +49,7 @@ const Add = ({setShowAdd, section, isExtra, setIsExtra, setProducts}) => {
   }
   
   return (
-    <div className={styles.container}>
+    <>
             <div className={styles.hdr_container}>
               <h1 className={styles.hdr} style={{color: "rgb(0, 145, 0)"}}>Add</h1>
               <h1 className={styles.hdr}>{isExtra ? "Extra" : null} to {section.title}</h1>
@@ -60,7 +59,6 @@ const Add = ({setShowAdd, section, isExtra, setIsExtra, setProducts}) => {
               <div className={styles.input_wrapper}>
                 <InputField cRef={title} type={"text"}/>
               </div>
-              {/* <input className={styles.input} onChange={(e) => setTitle(e.target.value)} type="text"/> */}
             </div>
             <div className={styles.input_container}>
               <label className={styles.label}>Price:</label>
@@ -89,7 +87,7 @@ const Add = ({setShowAdd, section, isExtra, setIsExtra, setProducts}) => {
             <div className={styles.btn_container}>
               <SubmitBtn btnFunction={handleAddProduct}/>
             </div>
-        </div>
+        </>
   )
 }
 

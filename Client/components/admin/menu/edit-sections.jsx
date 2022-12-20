@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import styles from '../../styles/edit-sections.module.css'
+import styles from '../../../styles/edit-sections.module.css'
 import EditSection from './edit-section';
 import AddSection from './add-section';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Show from "../../show"
 
 const EditSections = ({sections, setSections}) => {
   
@@ -67,7 +68,11 @@ const EditSections = ({sections, setSections}) => {
           </tbody>
           </table>}
        
-          {showAdd ?  <AddSection setShowAdd={setShowAdd} sections={sections} setSections={setSections}/> : null}
+          {showAdd ?  
+          <Show setShowAdd={setShowAdd} >
+            <AddSection sections={sections} setSections={setSections}/> 
+          </Show>
+          : null}
   </div>
   )
 }

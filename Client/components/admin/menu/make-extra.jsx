@@ -1,10 +1,9 @@
 import React from 'react'
-import styles from '../../styles/make-extra.module.css'
-import {AiOutlineClose} from 'react-icons/ai';
+import styles from '../../../styles/make-extra.module.css'
 import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import SubmitBtn from '../buttons/submitBtn';
+import SubmitBtn from '../../buttons/submitBtn';
 
 const MakeExtra = ({product, products, sections, 
     setShowMakeExtra, setProducts,
@@ -62,9 +61,7 @@ const handleAddExtras = async (product) => {
 }
 
   return (
-    <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
-        <div className={styles.wrapper}>
-          <AiOutlineClose className={styles.close} onClick={() => setShowMakeExtra(false)}>Close</AiOutlineClose>
+ <>
             <h1 className={styles.hdr}>Make Extra</h1>
             <div className={styles.input_container}>
               <label className={styles.label_hdr}>Extra Sections:</label>
@@ -86,8 +83,7 @@ const handleAddExtras = async (product) => {
             <div className={styles.btn_container}>
                 <SubmitBtn innerTxt={"submit"} btnFunction={handleAddExtras} fProps={product}/>
             </div>
-        </div>
-    </div>
+            </>
   )
 }
 

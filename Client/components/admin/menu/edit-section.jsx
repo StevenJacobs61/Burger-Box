@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/edit-section.module.css'
+import styles from '../../../styles/edit-section.module.css'
 import axios from 'axios';
 
 

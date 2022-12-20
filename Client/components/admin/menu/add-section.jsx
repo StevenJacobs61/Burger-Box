@@ -1,11 +1,10 @@
-import styles from '../../styles/add-section.module.css'
+import styles from '../../../styles/add-section.module.css'
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import {AiOutlineClose} from 'react-icons/ai';
-import SubmitBtn from '../buttons/submitBtn'
+import SubmitBtn from '../../buttons/submitBtn'
 
-const AddSection = ({setShowAdd, sections, setSections}) => {
+const AddSection = ({setShowAdd, setSections}) => {
     const [title, setTitle] = useState();
    
 
@@ -28,9 +27,7 @@ const AddSection = ({setShowAdd, sections, setSections}) => {
   }
 
   return (
-    <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
-        <div className={styles.wrapper}>
-          <AiOutlineClose className={styles.close} onClick={() => setShowAdd(false)}>Close</AiOutlineClose>
+          <div className={styles.container} >
             <h1 className={styles.hdr}>Add Section</h1>
             <div className={styles.input_container}>
               <label className={styles.label}>Title:</label>
@@ -39,8 +36,7 @@ const AddSection = ({setShowAdd, sections, setSections}) => {
             <div className={styles.btn_container}>
             <SubmitBtn innerTxt={"submit"} btnFunction={handleAddSection}/>
             </div>
-        </div>
-    </div>
+            </div> 
   )
 }
 

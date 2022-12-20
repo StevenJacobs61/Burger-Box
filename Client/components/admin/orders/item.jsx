@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/item.module.css'
+import styles from '../../../styles/item.module.css'
 import {AiOutlineClose} from 'react-icons/ai';
 import { useState } from 'react';
 

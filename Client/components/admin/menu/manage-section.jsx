@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from '../../styles/manage-section.module.css'
+import styles from '../../../styles/manage-section.module.css'
 import { useState } from 'react'
 import ManageProduct from './manage-product'
 import Add from './add'
 import axios from 'axios'
 import ManageExtras from './manage-extras'
-import Show from '../show'
+import Show from '../../show'
 
 const ManageSection = ({section, products, setProducts, sections, setSections}) => {
   

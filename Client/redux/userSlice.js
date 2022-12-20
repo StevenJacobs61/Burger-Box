@@ -6,7 +6,6 @@ const userSlice = createSlice({
         admin: false,
         offline:false,
         open:true,
-        complete:false,
     },
     reducers:({
         setAdmin: (state, action) => {
@@ -18,10 +17,7 @@ const userSlice = createSlice({
         nowOpen: (state, action) =>{
             state.open = action.payload
         },
-        nowComplete: (state, action) =>{
-            state.complete = action.payload
-        }
 }
 )});
-export const {setAdmin, setOffline, nowOpen, nowComplete} = userSlice.actions;
+export const {setAdmin, setOffline, nowOpen} = userSlice.actions;
 export default userSlice.reducer;

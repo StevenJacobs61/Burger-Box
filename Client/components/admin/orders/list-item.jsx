@@ -1,9 +1,6 @@
 import React from 'react'
-import styles from '../../styles/list-item.module.css'
-import { useRouter } from 'next/router'
-import axios from 'axios'
+import styles from '../../../styles/list-item.module.css'
 import { useState } from 'react'
-import Item from './item'
 
 const ListItem = ({order, 
   handleComplete, handleAccept, handleDecline,

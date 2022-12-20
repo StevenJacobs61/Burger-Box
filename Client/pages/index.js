@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Menu from '../components/menu'
 import styles from '../styles/Home.module.css'
-import AdminNav from '../components/admin/admin-nav'
-import CurrentOrders from '../components/admin/current-orders'
+import AdminNav from '../components/admin/admin_nav'
+import CurrentOrders from '../components/admin/orders/current-orders'
 import { useDispatch } from 'react-redux'
 import { setAdmin, setOffline} from '../redux/userSlice'
 import { useEffect } from 'react'
@@ -11,7 +11,7 @@ import sections from '../models/sections'
 import products from '../models/products'
 import settings from '../models/settings'
 import orders from '../models/orders'
-import LandingPage from '../components/LandingPage/landing_page'
+import LandingPage from '../components/landing_page/landing_page'
 
 
 

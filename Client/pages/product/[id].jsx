@@ -1,11 +1,9 @@
 import styles from '../../styles/product.module.css'
-import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { addQuantity } from '../../redux/cartSlice';
-import { setOffline, nowOpen } from '../../redux/userSlice';
-import { useSelector } from 'react-redux';
+import { setOffline } from '../../redux/userSlice';
 import {MdOutlineFastfood, MdOutlineLocalDrink} from "react-icons/md"
 import {MdChildCare} from "react-icons/md"
 import {GiKetchup} from "react-icons/gi"
@@ -25,14 +23,16 @@ const Product = ({prods, prod, setts, secs}) => {
   const product = JSON.parse(prod)
   const settingsList = JSON.parse(setts)
 
+const section = product.section
+
 const settings = settingsList[0]
+
 const [open, setOpen] = useState(true)
 const dispatch = useDispatch();
 
 useEffect(() => {
   const sectionClosed = sectionsList.filter((section) => !section.available);
     const isOpen = sectionClosed.length < sectionsList.length;
-    dispatch(nowOpen(isOpen));
     setOpen(isOpen)
 
 
@@ -56,7 +56,6 @@ const[note, setNote] = useState();
 
 // redux and router
 const router = useRouter();
-const cart = useSelector((state) => state.cart)
 
 // Resize detenction to show element on 1024px+ display
 const [width, setWidth] = useState();
@@ -118,25 +117,24 @@ const handleOrder = () => {
 }
 
 const priceQuantity =  quantity >= 1 ?  price * quantity : price;
-const id = Math.floor(Math.random() * 1000000);
 const totalPrice = Math.round(priceQuantity * 100)/100;
 
 return (
   <div className={styles.container}>
     <div className={styles.left}>
-      {product.section.toLowerCase() === "burgers" ?
+      {section.toLowerCase() === "burgers" ?
               <div className={styles.img_container}><MdOutlineFastfood className={styles.icon} />
               </div> :
-              section.title.toLowerCase() === "kids box meals" ?
+              section.toLowerCase() === "kids box meals" ?
               <div className={styles.img_container}><MdChildCare className={styles.icon} />
               </div> :
-                section.title.toLowerCase() === "dips" ?
+                section.toLowerCase() === "dips" ?
               <div className={styles.img_container}><GiKetchup className={styles.icon} />
               </div> :
-              section.title.toLowerCase() === "dessert" ?
+              section.toLowerCase() === "dessert" ?
               <div className={styles.img_container}><GiCakeSlice className={styles.icon} />
               </div> :
-              section.title.toLowerCase() === "drinks" ?
+              section.toLowerCase() === "drinks" ?
               <div className={styles.img_container}><MdOutlineLocalDrink className={styles.icon} />
               </div> :
               <div className={styles.img_container}><GiHotMeal className={styles.icon} />

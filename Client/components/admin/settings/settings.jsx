@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../../../styles/admin/manage/settings.module.css"
+import styles from "../../../styles/admin/settings/settings.module.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
@@ -8,50 +8,21 @@ import SubmitBtn from '../../buttons/submitBtn'
 const Settings = ({settingsList, adminsList}) => {
 
     // Initial settings from MDB
+    const settings = settingsList[0];
 
-    const [settings, setSettings] = useState();
-    const [accounts, setAccounts] = useState();
-    const [offline, setOffline] = useState();
-
-    const[bannerOn, setBannerOn] = useState()
-
-    const [banner, setBanner] = useState();
+    const [accounts, setAccounts] = useState(adminsList);
+    const [offline, setOffline] = useState(settings.offline);
+    const [bannerOn, setBannerOn] = useState(settings.bannerOn)
+    const [banner, setBanner] = useState(settings.banner);
     const [upBanner, setUpBanner] = useState();
-
-    const [noticeOn, setNoticeOn] = useState();
-
-    const [notice, setNotice] = useState();
+    const [noticeOn, setNoticeOn] = useState(settings.noticeOn);
+    const [notice, setNotice] = useState(settings.notice);
     const [upNotice, setUpNotice] = useState();
-    
-    const [delivery, setDelivery] = useState();
-
-    const[delTime, setDelTime] = useState();
-    const[upDelTime, setUpDelTime] = useState();
-    const [colTime, setColTime] = useState();
+    const [delivery, setDelivery] = useState(settings.del);
+    const [delTime, setDelTime] = useState(settings.delTime);
+    const [upDelTime, setUpDelTime] = useState();
+    const [colTime, setColTime] = useState(settings.colTime);
     const [upColTime, setUpColTime] = useState();
-
-
-    useEffect(()=>{
-        const s = settingsList[0];
-        setSettings(s)
-        setAccounts(adminsList)
-
-        setOffline(s.offline)
-
-        setUpBanner(s.banner)
-        setBannerOn(s.bannerOn)
-
-        setUpColTime(s.colTime)
-        setUpDelTime(s.delTime)
-
-        setUpNotice(s.notice)
-        setNoticeOn(s.noticeOn)
-
-        setDelivery(s.del)
-    }, [adminsList, settingsList,])
-
-    
-
     
     // Show sections on click`
     

@@ -1,10 +1,11 @@
 import React from 'react'
-import styles from '../../styles/manage-product.module.css'
+import styles from '../../../styles/manage-product.module.css'
 import Image from 'next/image'
 import axios from 'axios'
 import { useState } from 'react'
 import MakeExtra from './make-extra'
 import ViewProduct from './view-product'
+import Show from '../../show'
 
 const ManageProduct = ({product, setProducts,
   products, sections}) => {
@@ -90,21 +91,29 @@ const ManageProduct = ({product, setProducts,
     </tr>
   <tr>
     <td>
-      {showMakeExtra ? <MakeExtra 
-      setShowMakeExtra={setShowMakeExtra} 
-      showMakeExtra={showMakeExtra}
-      product={product} 
-      sections={sections} 
-      setIsExtra={setIsExtra}
-      products={products}
-      setProducts={setProducts}
-      /> : null}
+      {showMakeExtra ?
+      <Show
+      setShowAdd={setShowMakeExtra} 
+      >
+        <MakeExtra 
+        showMakeExtra={showMakeExtra}
+        product={product} 
+        sections={sections} 
+        setIsExtra={setIsExtra}
+        products={products}
+        setProducts={setProducts}
+        />
+      </Show>
+       : null}
       {showProduct ? 
-    <ViewProduct product={product} 
-    products={products}
-    setProducts={setProducts}
-    setShowProduct={setShowProduct}
-  />
+      <Show
+      setShowAdd={setShowProduct}
+      >
+        <ViewProduct product={product} 
+        products={products}
+        setProducts={setProducts}
+      />
+      </Show>
     : null}
     </td>
   </tr>

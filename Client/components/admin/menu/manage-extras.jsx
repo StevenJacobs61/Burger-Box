@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/manage-extras.module.css'
+import styles from '../../../styles/manage-extras.module.css'
 import { useState } from 'react'
 import axios from 'axios'
 

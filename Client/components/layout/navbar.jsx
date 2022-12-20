@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/navbar.module.css'
+import styles from '../../styles/navbar.module.css'
 import {AiOutlineInstagram} from 'react-icons/ai';
 import {FiFacebook} from 'react-icons/fi';
 import {HiChevronDoubleDown} from 'react-icons/hi';
 import {BsBasket} from 'react-icons/bs';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -91,33 +90,24 @@ useEffect(() => {
             <div className={styles.chevron_container}>
               <HiChevronDoubleDown className={styles.chevron} onClick={() => setClick(!click)} style={{transform: click ?"rotate(0)":"rotate(180deg)"}}/>
             </div>
-            { click && mobileScreen? null :<div className={styles.pagelinks} style={{display: click && mobileScreen ?"none":"flex"}}>
-            <Link href={'/'}>
-              <div className={styles.pagelink} onClick={() => setClick(!click)}>Order</div>
-            </Link>
-            <Link href={'/admin'}>
-              <div className={styles.pagelink} onClick={() => setClick(!click)}>Admin</div>
-            </Link>
+            { click && mobileScreen ? null :<div className={styles.pagelinks} style={{display: click && mobileScreen ?"none":"flex"}}>
+              <div className={styles.pagelink} onClick={() => {setClick(!click), router.push("/")}}>Order</div>
+              <div className={styles.pagelink} onClick={() => {setClick(!click), router.push("/cart")}}>Basket</div>
+              <div className={styles.pagelink} onClick={() => {setClick(!click), router.push("/admin")}}>Admin</div>
           </div>}
-            <Link href={'/'}>
-              <div className={styles.logo_container}>
+              <div className={styles.logo_container} onClick={()=>router.push("/")}>
                 <div className={styles.logo}>
                   <Image  className={styles.img} src={'/img/bb-logo.webp'} alt='logo' layout='fill'/>
                   </div>
               </div>
-            </Link>
           { click && mobileScreen ? null :<div className={styles.contact}>
             <div className={styles.socials}>
-              <Link href={'https://www.facebook.com/BurgerBoxSeaford'}>
                 <a target="_blank">
-                  <div className={styles.social} onClick={() => setClick(!click)}> <FiFacebook className={styles.facebook}/> </div>
+                  <div className={styles.social} onClick={() => {setClick(!click), router.push('https://www.facebook.com/BurgerBoxSeaford')}}> <FiFacebook className={styles.facebook}/> </div>
                 </a>
-              </Link>
-                <Link href={'https://www.instagram.com/burgerboxseaford/'} >
               <a target="_blank">
-                  <div className={styles.social} onClick={() => setClick(!click)}> <AiOutlineInstagram className={styles.insta}/> </div>
+                  <div className={styles.social} onClick={() => {setClick(!click), router.push('https://www.instagram.com/burgerboxseaford/')}}> <AiOutlineInstagram className={styles.insta}/> </div>
               </a>
-                </Link>
             </div>
             <div className={styles.texts}>
               <div className={styles.text}>Contact Us</div>

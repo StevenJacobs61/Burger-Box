@@ -1,12 +1,12 @@
 import axios from 'axios'
 import styles from '../../styles/admin.module.css'
-import AdminNav from '../../components/admin/admin-nav'
-import ManageProducts from '../../components/admin/manage-products'
-import Item from '../../components/admin/item'
+import AdminNav from '../../components/admin/admin_nav'
+import ManageProducts from '../../components/admin/menu/manage-products'
+import Item from '../../components/admin/orders/item'
 import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { useDispatch, useSelector } from 'react-redux'
-import Settings from '../../components/admin/manage/settings'
+import Settings from '../../components/admin/settings/settings'
 import { setAdmin } from '../../redux/userSlice'
 import dbConnect from '../../utils/mongodb'
 import sections from '../../models/sections'
@@ -150,14 +150,6 @@ const [showItem, setShowItem] = useState(false)
             : null}
           </div>
       </div> 
-        {/* <div className={styles.item} style={{width: showAdmins && width < 1024 ? "90%" : null}}>
-        <h1 className={styles.hdr} 
-        onClick={() => setShowAdmins(!showAdmins)}>Admins</h1>
-          {showAdmins ? <Admins  
-          admins={adminsList} 
-          showAdmins={showAdmins}/>
-       : null}      
-        </div>  */}
         {showItem ? <Item 
         handleDecline={handleDecline} 
         handleAccept={handleAccept}

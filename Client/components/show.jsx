@@ -7,7 +7,13 @@ const Show = ({children, setShowAdd, setIsExtra}) => {
   return (
     <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
     <div className={styles.wrapper}>
-    <AiOutlineClose className={styles.close} onClick={() => {setShowAdd(false), setIsExtra(false)}}>Close</AiOutlineClose>
+    <AiOutlineClose className={styles.close} 
+    onClick={() => 
+      {
+      setShowAdd(false)
+     if(setIsExtra){setIsExtra(false)}
+    }
+    }>Close</AiOutlineClose>
     {children}
     </div>
     </div>

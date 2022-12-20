@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect} from 'react'
-import styles from '../styles/hero.module.css'
+import styles from '../../styles/hero.module.css'
 
 
 const Hero = ({settings, complete, setComplete}) => {
