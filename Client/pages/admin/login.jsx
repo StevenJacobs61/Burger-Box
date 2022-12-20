@@ -48,7 +48,7 @@ if(res.data){
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>*Test mode doesn't require login and cookies are applied automatically.</h1>
+      <h1 className={styles.title}>*Test mode doesn&apos;t require login and cookies are applied automatically.</h1>
         <span className={styles.login_container}>
             <h2 className={styles.hdr}>Admin Login</h2>
             <label htmlFor="username" className={styles.label}>username:</label>
