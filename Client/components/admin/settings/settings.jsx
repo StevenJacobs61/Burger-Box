@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import SubmitBtn from '../../buttons/submitBtn'
 
+
 const Settings = ({settingsList, adminsList}) => {
 
     // Initial settings from MDB
@@ -14,7 +15,7 @@ const Settings = ({settingsList, adminsList}) => {
     const [offline, setOffline] = useState(settings.offline);
     const [bannerOn, setBannerOn] = useState(settings.bannerOn)
     const [banner, setBanner] = useState(settings.banner);
-    const [upBanner, setUpBanner] = useState();
+    const [upBanner, setUpBanner] = useState(settings.banner);
     const [noticeOn, setNoticeOn] = useState(settings.noticeOn);
     const [notice, setNotice] = useState(settings.notice);
     const [upNotice, setUpNotice] = useState();
@@ -32,13 +33,10 @@ const Settings = ({settingsList, adminsList}) => {
     const [showNotice, setShowNotice] = useState(false);
     const [showAccounts, setShowAccounts] = useState(false);
     const [showDelivery, setShowDelivery] = useState(false);
-
-
+    
     
     // *** Times ***
    
-    // submit times to MDB
-
     const handleSubmit = async () => {
         
         const newColTime = !colTime || colTime < 1 ? settings.colTime : colTime;
