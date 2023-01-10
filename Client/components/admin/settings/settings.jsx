@@ -50,7 +50,7 @@ const Settings = ({settingsList, adminsList}) => {
          };
          const filter = {}
         try{
-        const res = await axios.patch("http://localhost:3000/api/settings", {filter, update})
+        const res = await axios.patch("/api/settings", {filter, update})
         setUpColTime(parseInt(newColTime))
         setUpDelTime(parseInt(newDelTime))
         } catch(err){
@@ -66,7 +66,7 @@ const Settings = ({settingsList, adminsList}) => {
         };
         const filter = {};
         try{
-        const res = await axios.patch("http://localhost:3000/api/settings", {filter, update});
+        const res = await axios.patch("/api/settings", {filter, update});
         setOffline(!offline)
         } catch (err){
             console.log(err);
@@ -85,7 +85,7 @@ const Settings = ({settingsList, adminsList}) => {
         };
         const filter = {};
         try{
-        const res = await axios.patch("http://localhost:3000/api/settings", {filter, update});
+        const res = await axios.patch("/api/settings", {filter, update});
         setUpBanner(newBanner)
         settings.banner = upBanner
         }catch(err) {
@@ -100,7 +100,7 @@ const Settings = ({settingsList, adminsList}) => {
         };
         const filter = {};
         try{
-            const res = await axios.patch("http://localhost:3000/api/settings", {filter, update});
+            const res = await axios.patch("/api/settings", {filter, update});
             setBannerOn(!bannerOn)
             }catch(err) {
                 console.log(err);
@@ -119,7 +119,7 @@ const Settings = ({settingsList, adminsList}) => {
         };
         const filter = {};
         try{
-        const res = await axios.patch("http://localhost:3000/api/settings", {filter, update});
+        const res = await axios.patch("/api/settings", {filter, update});
         setUpNotice(newNotice)
         settings.notice = upNotice
         }catch(err) {
@@ -134,7 +134,7 @@ const Settings = ({settingsList, adminsList}) => {
         };
         const filter = {};
         try{
-            const res = await axios.patch("http://localhost:3000/api/settings", {filter, update});
+            const res = await axios.patch("/api/settings", {filter, update});
             setNoticeOn(!noticeOn)
             }catch(err) {
                 console.log(err);
@@ -149,7 +149,7 @@ const Settings = ({settingsList, adminsList}) => {
         };
         const filter = {};
         try{
-        const res = await axios.patch("http://localhost:3000/api/settings", {filter, update});
+        const res = await axios.patch("/api/settings", {filter, update});
         setDelivery(!delivery)
         } catch (err){
             console.log(err);
