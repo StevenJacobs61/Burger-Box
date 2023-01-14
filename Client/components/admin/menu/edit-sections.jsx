@@ -69,8 +69,8 @@ const EditSections = ({sections, setSections}) => {
           </table>}
        
           {showAdd ?  
-          <Show setShowAdd={setShowAdd} >
-            <AddSection sections={sections} setSections={setSections}/> 
+          <Show setShow={setShowAdd} >
+            <AddSection setSections={setSections}/> 
           </Show>
           : null}
   </div>

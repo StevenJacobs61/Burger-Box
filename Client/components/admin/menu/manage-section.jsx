@@ -87,13 +87,11 @@ const ManageSection = ({section, products, setProducts, sections, setSections}) 
     
     <Show 
     setIsExtra={setIsExtra} 
-    setShowAdd={setShowAdd}>
-      <Add isExtra={isExtra}  sections={sections} 
+    setShow={setShowAdd}>
+      <Add isExtra={isExtra} 
       section={section}
-      products={products} 
       setProducts={setProducts}
-      setIsExtra={setIsExtra} 
-      setShowAdd={setShowAdd}/> 
+      /> 
     </Show>
 
     : null} 

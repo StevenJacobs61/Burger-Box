@@ -409,7 +409,7 @@ console.log(err);
        </div>
          )}
          {show ? 
-         <Show setShowAdd={setShow} >
+         <Show setShow={setShow} >
            <Item 
            order={newOrder} 
            setNewOrder={setNewOrder} 

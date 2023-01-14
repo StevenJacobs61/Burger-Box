@@ -5,7 +5,7 @@ import SubmitBtn from '../../buttons/submitBtn';
 import InputField from '../../inputs/input_field';
 import { useRef } from 'react';
 
-const Add = ({setShowAdd, section, isExtra, setProducts}) => {
+const Add = ({section, isExtra, setProducts}) => {
   
 // ** If rendered by "Add Extra",
 //  extraSection automatically the section title.

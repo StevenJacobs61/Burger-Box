@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 import SubmitBtn from '../../buttons/submitBtn'
-
+import Printer from './printer'
+import Show from '../../show'
 
 const Settings = ({settingsList, adminsList}) => {
 
@@ -33,6 +34,7 @@ const Settings = ({settingsList, adminsList}) => {
     const [showNotice, setShowNotice] = useState(false);
     const [showAccounts, setShowAccounts] = useState(false);
     const [showDelivery, setShowDelivery] = useState(false);
+    const [showPrinter, setShowPrinter] = useState(false);
     
     
     // *** Times ***
@@ -68,6 +70,7 @@ const Settings = ({settingsList, adminsList}) => {
         setOffline(!offline)
         } catch (err){
             console.log(err);
+            
         }
     }
 
@@ -229,13 +232,17 @@ const Settings = ({settingsList, adminsList}) => {
 
   return (
     <div className={styles.container}>
-            {/* Times */}
+
+        {/* Times */}
         <div className={styles.item}>
             <h1 className={styles.hdr} 
             onClick={()=>setShowTimes(!showTimes)}
             style={{margin: !showTimes ? margin : null, borderBottom: !showTimes ? underline : null}}
             >Times</h1>
-            {showTimes ? <div className={styles.wrapper}>
+            {showTimes ? 
+            <Show setShow={setShowTimes}>
+            <div className={styles.wrapper}>
+            <h2 className={styles.box_hdr}>Times</h2>
             <div className={styles.time_wrapper}>
                 <h2 className={styles.time_text}>Collection Time:</h2>
                 <p className={styles.time}>{upColTime} mins</p>
@@ -250,6 +257,8 @@ const Settings = ({settingsList, adminsList}) => {
             </div>
                 <SubmitBtn innerTxt={"Submit"} btnFunction={handleSubmit}/>
             </div>
+            </Show>
+
             : null}
         </div>
 
@@ -259,7 +268,10 @@ const Settings = ({settingsList, adminsList}) => {
             onClick={()=>setShowOffline(!showOffline)}
             style={{margin: !showOffline ? margin : null, borderBottom: !showOffline ? underline : null}}
             >Offline</h1>
-            {showOffline ?<div className={styles.wrapper}>
+            {showOffline ?
+            <Show setShow={setShowOffline}>
+            <div className={styles.wrapper}>
+                <h2 className={styles.box_hdr}>Offline</h2>
             <h2 className={styles.time_text}>Current status:</h2>
             <p className={styles.time} style={{color: !offline ? "var(--text--light-green)" : ""}} >{offline ? "Offline" : "live"}</p>
             <h3 className={styles.update_text}>Update status</h3>
@@ -267,6 +279,7 @@ const Settings = ({settingsList, adminsList}) => {
             onClick={()=> handleOffline()}
             style={{color: !offline ? "rgb(109, 109, 109)" : "var(--text--light-green)"}}>{offline ? "+ " : "- "}Live</button>
             </div>
+            </Show>
             : null}
         </div>
 
@@ -276,7 +289,10 @@ const Settings = ({settingsList, adminsList}) => {
             onClick={()=>setShowBanner(!showBanner)}
             style={{margin: !showBanner ? margin : null, borderBottom: !showBanner ? underline : null}}
             >Banner</h1>
-            {showBanner ? <div className={styles.wrapper}> 
+             {showBanner ?
+            <Show setShow={setShowBanner}>
+            <div className={styles.wrapper}> 
+            <h2 className={styles.box_hdr}>Banner</h2>
             <h2 className={styles.time_text}>Current status:</h2>
             <p className={styles.time} style={{color: bannerOn ? "var(--text--light-green)" : ""}} >{bannerOn ? "Banner On" : "Banner Off"}</p>
             <h3 className={styles.update_text}>Update status</h3>
@@ -289,6 +305,7 @@ const Settings = ({settingsList, adminsList}) => {
             <textarea type="text" className={styles.banner_input} onChange={(e) => setBanner(e.target.value)}/>
             <SubmitBtn innerTxt={"Submit"} btnFunction={handleBannerUpdate}/>
             </div>
+            </Show>
             : null}
         </div>
 
@@ -298,7 +315,10 @@ const Settings = ({settingsList, adminsList}) => {
             onClick={()=> {setShowNotice(!showNotice)}}
             style={{margin: !showNotice ? margin : null, borderBottom: !showNotice ? underline : null}}
             >notice</h1>
-            {showNotice ? <div className={styles.wrapper}> 
+        {showNotice ?  
+        <Show setShow={setShowNotice} >
+         <div className={styles.wrapper}> 
+         <h2 className={styles.box_hdr}>Times</h2>
             <h2 className={styles.time_text}>Current status:</h2>
             <p className={styles.time} style={{color: noticeOn ? "var(--text--light-green)" : ""}} >{noticeOn ? "Notice On" : "Notice Off"}</p>
             <h3 className={styles.update_text}>Update status</h3>
@@ -310,7 +330,9 @@ const Settings = ({settingsList, adminsList}) => {
              <h3 className={styles.update_text}>Update Notice</h3>
             <textarea type="text" className={styles.banner_input} onChange={(e) => setNotice(e.target.value)}/>
             <SubmitBtn innerTxt={"Submit"} btnFunction={handleNoticeUpdate}/>
-            </div> :null}
+            </div> 
+            </Show>
+            :null}
         </div>
 
         {/* Delivery */}
@@ -319,14 +341,34 @@ const Settings = ({settingsList, adminsList}) => {
             onClick={()=>setShowDelivery(!showDelivery)}
             style={{margin: !showDelivery ? margin : null, borderBottom: !showDelivery ? underline : null}}
             >Delivery</h1>
-            {showDelivery ? <div className={styles.wrapper}>
+            {showDelivery ? 
+            <Show setShow={setShowDelivery}>
+            <div className={styles.wrapper}>
+            <h2 className={styles.box_hdr}>Delivery</h2>
             <h2 className={styles.time_text}>Current status:</h2>
             <p className={styles.time} style={{color: delivery ? "var(--text--light-green)" : ""}} >{delivery ? "Delivery On" : "Delivery Off"}</p>
             <h3 className={styles.update_text}>Update status</h3>
             <button className={styles.btn_offline} 
             onClick={()=> handleDelivery()}
             style={{color: delivery ? "rgb(109, 109, 109)" : "var(--text--light-green)"}}>{delivery ? "OFF" : "On"}</button>
-            </div> :null}
+            </div>
+            </Show>
+             :null}
+        </div>
+        {/* Printer */}
+        <div className={styles.item}>
+            <h1 className={styles.hdr} 
+            onClick={()=>setShowPrinter(!showPrinter)}
+            style={{margin: !showDelivery ? margin : null, borderBottom: !showDelivery ? underline : null}}
+            >Printer</h1>
+          {showPrinter ? 
+          <Show setShow={setShowPrinter}>
+            <h2 className={styles.box_hdr}>Printer</h2>
+              <Printer/>
+          </Show>
+          : null
+          }
+            
         </div>
 
         {/* Accounts */}

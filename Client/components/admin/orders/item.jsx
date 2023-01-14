@@ -1,11 +1,10 @@
 import React from 'react'
 import styles from '../../../styles/item.module.css'
-import {AiOutlineClose} from 'react-icons/ai';
 import { useState } from 'react';
 
 const Item = ({order, 
   handleAccept, handleDecline, handleDelete, 
-  handleSendPast, handleComplete, setNote, handleRefund, handleStripeRefund}) => {
+  handleSendPast, handleComplete, setNote, handleRefund}) => {
 
   const [status, setStatus] = useState(order.status)
 

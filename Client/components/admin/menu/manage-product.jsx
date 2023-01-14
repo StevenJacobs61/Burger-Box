@@ -93,7 +93,7 @@ const ManageProduct = ({product, setProducts,
     <td>
       {showMakeExtra ?
       <Show
-      setShowAdd={setShowMakeExtra} 
+      setShow={setShowMakeExtra} 
       >
         <MakeExtra 
         showMakeExtra={showMakeExtra}
@@ -107,7 +107,7 @@ const ManageProduct = ({product, setProducts,
        : null}
       {showProduct ? 
       <Show
-      setShowAdd={setShowProduct}
+      setShow={setShowProduct}
       >
         <ViewProduct product={product} 
         products={products}

@@ -1,16 +1,17 @@
 import styles from '../../../styles/add-section.module.css'
 import React from 'react'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import SubmitBtn from '../../buttons/submitBtn'
+import InputField from '../../inputs/input_field'
 
-const AddSection = ({setShowAdd, setSections}) => {
-    const [title, setTitle] = useState();
+const AddSection = ({setSections}) => {
+    const title = useRef()
    
 
   const handleAddSection = async () => {
     const newSection = {
-      title: title,
+      title: title.current,
     }
     
     const JSONdata = JSON.stringify(newSection)
@@ -31,7 +32,7 @@ const AddSection = ({setShowAdd, setSections}) => {
             <h1 className={styles.hdr}>Add Section</h1>
             <div className={styles.input_container}>
               <label className={styles.label}>Title:</label>
-              <input className={styles.input} onChange={(e) => setTitle(e.target.value)} type="text"/>
+              <InputField type={"text"} cRef={title}/>
             </div>
             <div className={styles.btn_container}>
             <SubmitBtn innerTxt={"submit"} btnFunction={handleAddSection}/>
