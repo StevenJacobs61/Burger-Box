@@ -5,7 +5,9 @@ import {AiOutlineClose} from 'react-icons/ai';
 
 const Show = ({children, setShowAdd, setIsExtra}) => {
   return (
-    <div className={styles.container} style={{top: window.innerWidth >= 1024 ? window.scrollY : null}}>
+    <div className={styles.container} 
+    style={{top: window.innerWidth >= 1024 ? window.scrollY : null,
+    justifyContent: window.innerWidth > 1024 && window.location.pathname === "/admin" ? "flex-start" : "center"}}>
     <div className={styles.wrapper}>
     <AiOutlineClose className={styles.close} 
     onClick={() => 

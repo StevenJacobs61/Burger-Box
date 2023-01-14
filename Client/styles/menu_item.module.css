@@ -24,6 +24,12 @@
     justify-content: space-between;
     cursor: pointer;
 }
+.container:hover{
+    transform: scale(1.005);
+    box-shadow: 0 0 5px #676767;
+    transform: scale(1.005);
+    transition: all 0.1s;
+}
 @media screen and (min-width:550px){
  .container{
     height: 300px;
@@ -43,7 +49,7 @@
 }
 @media screen and (min-width:769px){
     .container{
-        height: 260px;
+        height: 280px;
     }
     .section{
         margin: 1.5rem 0 0;
@@ -52,16 +58,17 @@
 
 @media screen and (min-width:1024px){
     .container{
-        height: 310px;
+        height: 350px;
         margin: 0;
+        width: 320px;
     }
 }
 @media screen and (min-width:1200px){
     .container{
         height: 330px;
-        width: 262px;
     }
 }
+
 
 /* Header */
 
@@ -69,10 +76,6 @@
     display: flex;
     align-items: center;
     width: 100%;
-}
-.container:hover{
-    transform: scale(1.005);
-    box-shadow: 0 0 5px #101010;
 }
 .title_container{
     border-radius: 10px;
@@ -129,14 +132,14 @@
         font-weight: 450;
     }
     .title_container{
-        padding: 0 2rem;
+        padding: 0 4rem 0 0;
     }
 }
 @media screen and (min-width:1024px){
     .title{
         font-size: 2.4rem;
         line-height: 3.5rem;
-        margin: 0;
+        margin: 0 0 0 2rem;
     }
 }
 @media screen and (min-width:1200px){
@@ -145,7 +148,7 @@
         line-height: 2.5rem;
     }
     .title_container{
-        margin: 0;
+        margin: 0 2rem 0 0;
         padding: 0;
     }
 }
@@ -185,6 +188,7 @@
     font-size: 1.6rem;
     text-align: center;
     line-height: 1.5rem;
+    font-weight: 400;
 }
 .price_container{
     display: flex;
@@ -243,7 +247,7 @@
     }
     .desc{
         line-height: 1.5rem;
-        font-weight: 300;
+        font-weight: 400;
     }
 }
 @media screen and (min-width:700px){
@@ -265,18 +269,19 @@
         width: 110px;
     }
     .img_container{
-        padding: 0 0 0 0.8rem;
+        padding: 0.5rem 0 0 4rem;
     }
     .desc{
         padding:  0 0 0.3rem;
+        font-size: 1.85rem;
+        font-weight: 300;
     }
 }
-@media screen and (min-width:769px){
-    .desc{
-        font-size: 1.5rem;
+@media screen and (min-width:1024px){
+    .img_container{
+        padding: 0.5rem 0 0 2.5rem;
     }
 }
-
 /* Notice (!available) */
 
 .unavailable{

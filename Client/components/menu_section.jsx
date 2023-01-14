@@ -28,12 +28,12 @@ const chevStyle = {
   width: selected ? "37px" : null
 }
 const contStyle = {
-  background: !section.available ? "#101010" : expand || selected ? "#fff" : "rgb(241, 249, 254)", 
+  background: !section.available ? "#101010" : expand || selected ? "rgb(250, 253, 255)" : "rgb(241, 249, 254)", 
   width: expand && width >= 480 ? "90vw" : null,
 }
 const titleStyle= {
-  color: !section.available ? "#fff" : "#101010",
-  fontSize: selected ? "2.4rem" : "2.2rem"
+  color: !section.available ? "#fff" : expand || selected ? "var(--text--light-green)" : "#101010",
+  fontSize: selected ? "2.4rem" : null
 }
 
   return (

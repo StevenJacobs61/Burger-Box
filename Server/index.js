@@ -11,6 +11,7 @@ const socketOn = io.on("connection", (socket) => {
     // Take order from client, send it to notify Admin
     
     socket.on("newOrder", (order) => {
+      console.log("order ceieved");
         io.emit("getNewOrder", order);
     });
     // Take response data, "Accept or Decline" from Admin to user
@@ -24,6 +25,11 @@ const socketOn = io.on("connection", (socket) => {
       io.emit("paid", order);
     });
 });
+
+
+
+
+
 
 // Stripe
 

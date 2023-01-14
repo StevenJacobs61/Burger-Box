@@ -18,12 +18,12 @@ const Settings = ({settingsList, adminsList}) => {
     const [upBanner, setUpBanner] = useState(settings.banner);
     const [noticeOn, setNoticeOn] = useState(settings.noticeOn);
     const [notice, setNotice] = useState(settings.notice);
-    const [upNotice, setUpNotice] = useState();
+    const [upNotice, setUpNotice] = useState(settings.notice);
     const [delivery, setDelivery] = useState(settings.del);
     const [delTime, setDelTime] = useState(settings.delTime);
-    const [upDelTime, setUpDelTime] = useState();
+    const [upDelTime, setUpDelTime] = useState(settings.delTime);
     const [colTime, setColTime] = useState(settings.colTime);
-    const [upColTime, setUpColTime] = useState();
+    const [upColTime, setUpColTime] = useState(settings.colTime);
     
     // Show sections on click`
     

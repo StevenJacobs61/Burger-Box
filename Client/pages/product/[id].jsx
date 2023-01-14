@@ -22,6 +22,7 @@ const Product = ({prods, prod, setts, secs}) => {
   const products = JSON.parse(prods)
   const product = JSON.parse(prod)
   const settingsList = JSON.parse(setts)
+  const id = product._id
 
 const section = product.section
 

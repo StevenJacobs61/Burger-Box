@@ -6,6 +6,7 @@ import ListItem from './list-item'
 import axios from 'axios'
 import Item from '../orders/item'
 import { useSelector } from 'react-redux'
+import Show from '../../show'
 
 const CurrentOrders = ({orders}) => {
 
@@ -50,11 +51,11 @@ const CurrentOrders = ({orders}) => {
     setShow(true);
   };
   // Websocket updates
-  const socket = useRef(process.env.MODE === "DEV" ? io("ws://localhost:7500") : null)
+  const socket = useRef(io("ws://localhost:7500"))
   
   useEffect(() => {
-    if(process.env.MODE === "DEV"){
-      socket.current.on("getNewOrder", (data) => {
+      socket.current?.on("getNewOrder", (data) => {
+        console.log("order recieved");
         if (notifications){
           showItem(data);
         };
@@ -73,14 +74,7 @@ const CurrentOrders = ({orders}) => {
         )
       ]);
       });
-    }
   }, [socket, ordersList, notifications]);
-
-  // Prevent duplicate orders
-//*** */ causes error
-  // useEffect(() => {
-  //   setOrdersList([... new Set(ordersList)])
-  // }, [socket, ordersList, newOrder])
 
 
 
@@ -100,7 +94,7 @@ const CurrentOrders = ({orders}) => {
       status: 2
     }
     try{
-      const res = await axios.put('http://localhost:3000/api/orders/' + id, newData);
+      const res = await axios.put('/api/orders/' + id, newData);
       setOrdersList(ordersList.map((item) => {
         if (item._id === id){
           item.status = 2;
@@ -415,18 +409,20 @@ console.log(err);
        </div>
          )}
          {show ? 
-       <Item 
-       order={newOrder} 
-       setNewOrder={setNewOrder} 
-       setShow={setShow} 
-       handleAccept={handleAccept} 
-       handleDelete={handleDelete} 
-       handleDecline={handleDecline} 
-       handleComplete={handleComplete}
-       handleSendPast={handleSendPast}
-       setNote={setNote}
-       handleRefund={handleRefund}
-       /> 
+         <Show setShowAdd={setShow} >
+           <Item 
+           order={newOrder} 
+           setNewOrder={setNewOrder} 
+           handleAccept={handleAccept} 
+           handleDelete={handleDelete} 
+           handleDecline={handleDecline} 
+           handleComplete={handleComplete}
+           handleSendPast={handleSendPast}
+           setNote={setNote}
+           handleRefund={handleRefund}
+           /> 
+         </Show>
+
        : null}
     </div>
   )

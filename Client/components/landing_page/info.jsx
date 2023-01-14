@@ -19,8 +19,7 @@ const Info = ({sections, settings, complete}) => {
     const openWordStyle = {
         animation: !complete ? "10s animate 3s infinite alternate" : null,
         color: open && !settings.offline ? "#0ba800" : "#be0606", 
-        textShadow: !open || settings.offline ? "none": null, 
-        textShadow: complete ? "var(--textShadow-green)" : null 
+        textShadow: !open || settings.offline ? "none" : complete ? "var(--textShadow-green)" : null, 
       }
     
 
@@ -40,7 +39,7 @@ const Info = ({sections, settings, complete}) => {
       <p className={styles.opening_times}>Open 6 days a week 3.30pm - 10pm <br></br>Closed Tuesdays </p>
         {  settings.noticeOn ? 
         <div className={styles.notice_container}>
-    <h3 className={styles.notice_hdr} >Notice</h3>
+    <h3 className={styles.notice_hdr} >Notice!</h3>
     <p className={styles.notice}>{settings.notice}</p>
     </div>
     : null}

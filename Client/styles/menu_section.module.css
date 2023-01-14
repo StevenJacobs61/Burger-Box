@@ -1,8 +1,8 @@
 .container{
     width: 90%;
     height: 100%;
-    border: 2px solid #101010;
-    border-radius: 10px;
+    border: 1.5px solid #101010;
+    border-radius: 7px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,17 +18,19 @@
     align-items: center;
 }
 .title{
-    font-size: 2.5rem;
+    font-size:2.5rem;
     margin: 0 0.5rem;
-    font-weight: 500;
+    font-weight: 400;
     flex: 1;
     text-transform: capitalize;
+    letter-spacing: 0.1rem;
+
 }
 .icon{
     aspect-ratio: 1/1;
     height: unset;
-    width: 50px;
-    margin: 0 1rem 0 0;
+    width: 40px;
+    margin: 0.5rem 1rem;
 }
 .items_container{ 
     padding: 1rem 0.5rem;
@@ -50,24 +52,24 @@
 }
 @media screen and (min-width:380px){
     .container{
-        margin: 0.4rem 0 1rem;
+        margin: 0.4rem 0 0.5rem;
         padding: 0.1rem 1rem;
         width: 90%;
     }
     .title{
-        font-size: 2.8rem;
+        font-size: 2.6rem;
         font-weight: 400;
     }
 } 
 @media screen and (min-width:480px){
     .container{
-        margin: 1.2rem 0 0.4rem;
-        padding: 0.1rem 1rem;
+        margin: 0.5rem 0 0.2rem;
+        padding: 0.2rem 1rem;
         width: 420px;
     }
     .title{
         font-size: 3rem;
-        font-weight: 400;
+        font-weight: 300;
     }
 } 
 @media screen and (min-width:550px){
@@ -96,18 +98,18 @@
 }
 @media screen and (min-width:1024px){
     .container{
-        padding: 0.5rem 1rem;
-        margin: 0 0 1rem 0;
+        padding: 0.3rem 1rem;
+        margin: 0 0 0.5rem 0;
     }
     .title{
-        font-size: 3rem;
-        font-weight: 400;
+        font-size: 2.5rem;
+        font-weight: 300;
     }
 }
 
 /* Hover */
 
 .container:hover{
-    box-shadow: 0 0 3px #787878;
+    box-shadow: 0 0 1px #787878;
     transform: scale(1.005);
 }

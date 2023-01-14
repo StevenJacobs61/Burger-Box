@@ -3,7 +3,7 @@ import styles from '../../../styles/item.module.css'
 import {AiOutlineClose} from 'react-icons/ai';
 import { useState } from 'react';
 
-const Item = ({setShow, order, 
+const Item = ({order, 
   handleAccept, handleDecline, handleDelete, 
   handleSendPast, handleComplete, setNote, handleRefund, handleStripeRefund}) => {
 
@@ -11,9 +11,7 @@ const Item = ({setShow, order,
 
   const  [refundAm, setRefundAm] = useState(0)
   return (
-    <div className={styles.container}>
-    <div className={styles.wrapper}>
-    <AiOutlineClose className={styles.close} onClick={() => setShow(false)}>Close</AiOutlineClose>
+    <>
             <h1 className={styles.hdr}>
                 {order.status === 0 ? 'Declined Order' 
                 : order.status === 1 ? 'New Order' 
@@ -140,8 +138,7 @@ const Item = ({setShow, order,
         >Refund</button>
     </div> 
     : null}
-    </div>
-    </div>
+   </>
   )
 }
 

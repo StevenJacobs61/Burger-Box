@@ -92,13 +92,14 @@ useEffect(() => {
 
 //  Function will be replaced by webhook from stripe when live
 
-// useEffect(() => {
-//   if(order.status === 1){
-//     socket?.emit("newOrder", order);
-//     console.log("response recieved");
-//     localStorage.setItem("Orders", "[]")
-//   }
-//   }, [])
+useEffect(() => {
+  if(order.status === 1){
+    socket.current?.emit("newOrder", order);
+    console.log("order sent");
+    localStorage.setItem("Orders", "[]")
+  }
+  }, [])
+  console.log(order.status);
 
 const handlePaid = async (id) => {
   const data = {
@@ -120,7 +121,7 @@ const checkoutF = () => {
     <div className={styles.container}>
      <div className={styles.inner_container}>
        <div className={styles.wrapper}>
-        {accepted === 5 && width > 1023 ?
+        {accepted === 5 && width ?
         <>
          <h1 className={styles.hdr}>Please Check your order and click checkout</h1>
          <SelectBtn id={styles.bottom} innerTxt={"checkout"} btnFucntion={checkoutF} btnStyle={"L"}/>
@@ -146,7 +147,6 @@ const checkoutF = () => {
        <OrderComp order={order} fries={fries}/>
        {accepted === 5 && width < 1024 ?
        <SelectBtn id={styles.bottom} innerTxt={"checkout"} btnFucntion={checkoutF} btnStyle={"L"}/>
-      //  <button id={styles.bottom} className={styles.btn_pay} onClick={() => {CheckOut({lineItems: productsList}, order._id, order.details.email), handlePaid(order._id)}}>Checkout</button> 
        : null}
      </div>
    </div>

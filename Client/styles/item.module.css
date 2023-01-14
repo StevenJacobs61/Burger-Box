@@ -32,20 +32,20 @@
     margin: 1rem 0 2rem;
 }
 .close{
-    position: fixed;
-    top: 10%;
-    right: 10%;
+    position: absolute;
+    top: 2%;
+    right: 6%;
     width: 30px;
     height: 30px;
     cursor: pointer;
 }
 @media screen and (min-width:480px){
     .wrapper{
-        width: 60vw;
+        width: 380px;
+        height: unset;
         padding: 2rem 0;
     }
     .close{
-        right:23%;
         width: 35px;
         height: 35px;
     }
@@ -55,38 +55,33 @@
 }
 @media screen and (min-width:769px){
     .wrapper{
-        width: 50vw;
+        width: 450px;
     }
     .close{
-        right:29%;
         width: 40px;
         height: 40px;
     }
 }
 @media screen and (min-width:1024px){
     .wrapper{
-        width: 42vw;
         padding: 2rem 2rem;
     }
     .hdr{
         margin: 2rem;
     }
     .close{
-        right:32%;
         width: 40px;
         height: 40px;
     }
 }
 @media screen and (min-width:1200px){
     .wrapper{
-        width: 35vw;
         padding: 2rem 1rem;
     }
     .hdr{
         margin: 2rem;
     }
     .close{
-        right:36%;
         width: 45px;
         height: 45px;
     }
@@ -168,10 +163,10 @@ margin: 1rem 1.1rem 1rem 1rem;
 }
 @media screen and (min-width:1200px){
     .title{
-        font-size: 2.3rem;
+        font-size: 2.1rem;
     }
     .info{
-        font-size: 2.3rem;
+        font-size: 2.1rem;
     }
 }
 .btn_container{
