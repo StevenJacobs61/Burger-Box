@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState, useRef } from 'react';
+import styles from "../../../styles/printer/printer.module.css"
+import InputField from "../../inputs/input_field"
 
 const Printer = () => {
-    const [printerIPAddress, setPrinterIPAddress] = useState("192.168.0.121");
-    const [printerPort, setPrinterPort] = useState("8008");
-    const [textToPrint, setTextToPrint] = useState("");
+    const printerIP = useRef()
+    const printerPort = useRef()
     const [connectionStatus, setConnectionStatus] = useState("");
   
     const ePosDevice = useRef();
@@ -15,11 +16,11 @@ const Printer = () => {
     const connect = () => {
       setConnectionStatus("Connecting ...");
   
-      if (!printerIPAddress) {
+      if (!printerIP.current.value) {
         setConnectionStatus("Type the printer IP address");
         return;
       }
-      if (!printerPort) {
+      if (!printerPort.current.value) {
         setConnectionStatus("Type the printer port");
         return;
       }
@@ -29,7 +30,7 @@ const Printer = () => {
       let ePosDev = new window.epson.ePOSDevice();
       ePosDevice.current = ePosDev;
   
-      ePosDev.connect(printerIPAddress, printerPort, (data) => {
+      ePosDev.connect(printerIP.current.value, printerPort.current.value, (data) => {
         if (data === "OK") {
           ePosDev.createDevice(
             "local_printer",
@@ -37,7 +38,7 @@ const Printer = () => {
             { crypto: true, buffer: false },
             (devobj, retcode) => {
               if (retcode === "OK") {
-                printer.current = devobj;
+                printer.current.value = devobj;
                 setConnectionStatus(STATUS_CONNECTED);
               } else {
                 throw retcode;
@@ -51,7 +52,7 @@ const Printer = () => {
     };
   
     const print = (text) => {
-      let prn = printer.current;
+      let prn = printer.current.value;
       if (!prn) {
         alert("Not connected to printer");
         return;
@@ -64,7 +65,31 @@ const Printer = () => {
       prn.send();
     };
   return (
-    <div>Printer</div>
+    <div className={styles.container}>
+      <h2 className={styles.hdr}>Status: {connectionStatus}</h2>
+      <div className={styles.input_container}>
+      <InputField type={"text"} plHolder={"Printer IP Address"} cRef={printerIP}/>
+      </div>
+      <div className={styles.input_container}>
+      <InputField type={"number"} plHolder={"Printer Port"} cRef={printerPort}/>
+      </div>
+      <div className={styles.btn_container}>
+    <button
+    className={styles.btn_connect}
+      disabled={connectionStatus === STATUS_CONNECTED}
+      onClick={() => connect()}
+    >
+      Connect
+    </button>
+    <button
+    className={styles.btn_print}
+      disabled={connectionStatus !== STATUS_CONNECTED}
+      onClick={() => print(textToPrint)}
+    >
+      Print
+    </button>
+      </div>
+  </div>
   )
 }
 
