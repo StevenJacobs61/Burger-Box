@@ -11,9 +11,9 @@ function MyApp({ Component, pageProps}) {
 
   return (
     <>
-    <Head>
+    {/* <Head>
     <script src='../public/epos-2.22.0' type='text/javascript'/>
-    </Head>
+    </Head> */}
   <Provider store ={store}>
   <Layout>
 
