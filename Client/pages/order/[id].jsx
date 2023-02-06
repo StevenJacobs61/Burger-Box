@@ -98,8 +98,7 @@ useEffect(() => {
     console.log("order sent");
     localStorage.setItem("Orders", "[]")
   }
-  }, [])
-  console.log(order.status);
+  }, [order])
 
 const handlePaid = async (id) => {
   const data = {
